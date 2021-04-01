@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MathJax rendered</title>
+
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+        </script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+
+    <body>
+
+        <h1>Live rendering</h1>
+        <div>Example implimentation of MathJax</div>
+
+        <h2>↓ Type here ↓</h2>
+
+        <p><textarea id="input" name="body" style="box-sizing:border-box; width:100%; height:200px" cols="60" rows="12"></textarea></p>
+
+        <h2>Result</h2>
+
+        <div id="rendered" style="border-style: solid; border-width: 1px; border-color:black;"></div>
+
+        <script type="text/javascript">
+            window.addEventListener('DOMContentLoaded', function(){
+            
+                function func_render() {
+
+                    // Get renderble string
+                    var str_input = document.getElementById('input')
+                        .value
+                        .replace(/\r\n/g, "<br>")
+                        .replace(/\r/g, "<br>")
+                        .replace(/\n/g, "<br>")
+                    ;
+                    document.getElementById('rendered').innerHTML = str_input;
+
+                    // MathJax rendering
+                    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"rendered"]);
+                }
+                
+                // Add event listener
+                document.getElementById('input').addEventListener('keyup', func_render);
+                document.getElementById('input').addEventListener('change', func_render);
+
+                // First rendering
+                func_render();
+            });
+        </script>
+
+    </body>
+</html>

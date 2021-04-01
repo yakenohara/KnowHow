@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>指定文字列を含まない行</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="%E6%8C%87%E5%AE%9A%E6%96%87%E5%AD%97%E5%88%97%E3%82%92%E5%90%AB%E3%81%BE%E3%81%AA%E3%81%84%E8%A1%8C">指定文字列を含まない行</h1>
+<p>//note <code>VALUE</code> : 検索したい文字列</p>
+<pre><code><div>^(?!.*VALUE).+$
+</div></code></pre>
+<h1 id="%E6%8C%87%E5%AE%9A%E6%96%87%E5%AD%97%E5%88%97%E8%A4%87%E6%95%B0%E6%8C%87%E5%AE%9A%E3%82%92%E5%90%AB%E3%81%BE%E3%81%AA%E3%81%84%E8%A1%8C">指定文字列（複数指定）を含まない行</h1>
+<p>//note <code>VALUE</code> : 検索したい文字列(条件を増やす場合は、<code>|VALUE?</code>を続けて指定)</p>
+<pre><code><div>^(?!.*(VALUE1|VALUE2)).+$
+</div></code></pre>
+<h1 id="%E6%8C%87%E5%AE%9A%E6%96%87%E5%AD%97%E5%88%97%E3%81%8B%E3%82%89%E5%A7%8B%E3%81%BE%E3%82%89%E3%81%AA%E3%81%84%E8%A1%8C">指定文字列から始まらない行</h1>
+<p>//note <code>VALUE</code> : 検索したい文字列</p>
+<pre><code><div>^(?!VALUE).+$
+</div></code></pre>
+<h1 id="%E6%8C%87%E5%AE%9A%E6%96%87%E5%AD%97%E5%88%97%E3%81%A7%E7%B5%82%E3%82%8F%E3%82%89%E3%81%AA%E3%81%84%E8%A1%8C">指定文字列で終わらない行</h1>
+<p>//note <code>VALUE</code> : を検索したい文字列</p>
+<pre><code><div>^(?!.*VALUE$).+$
+</div></code></pre>
+<h1 id="%E6%8C%87%E5%AE%9A%E6%96%87%E5%AD%97%E5%88%971%E3%82%92%E5%90%AB%E3%81%BE%E3%81%AA%E3%81%84%E3%81%8C%E6%8C%87%E5%AE%9A%E6%96%87%E5%AD%97%E5%88%972%E3%82%92%E5%90%AB%E3%82%80%E8%A1%8C"><code>指定文字列1</code>を含まないが、<code>指定文字列2</code>を含む行</h1>
+<p>//note<br>
+<code>VALUE1</code>:含ませたくない文字列<br>
+<code>VALUE2</code>:含ませたい文字列</p>
+<pre><code><div>^(?!.*VALUE1).*(?=VALUE2).*$
+</div></code></pre>
+<h1 id="links">Links</h1>
+<p>JavaScript正規表現 怒濤の100サンプル!!<br>
+<a href="http://testcording.com/?p=2013">http://testcording.com/?p=2013</a></p>
+
+    </body>
+    </html>

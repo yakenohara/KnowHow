@@ -1,0 +1,15 @@
+{
+  "name": "008-wait-for-window.onload",
+  "version": "1.0.0",
+  "description": "(Class WebDriver).get(url) の完了は window.onload と同じ。  \r なので このスクリプトのように独自に `window.addEventListener(\"load\", ~` しても、  \r onload イベントは取得できない",
+  "main": "main.js",
+  "dependencies": {
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

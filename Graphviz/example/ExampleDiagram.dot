@@ -1,0 +1,10 @@
+digraph ExampleDiagram {
+
+    "STATE_1" [shape=ellipse label="STATE 1 のラベル"]
+    "STATE_2" [shape=ellipse label="STATE 2 のラベル"]
+    
+    "STATE_1" -> "STATE_2" [label="Label includes
+new line code
+"]
+    
+}

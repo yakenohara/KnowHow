@@ -1,0 +1,7 @@
+{% for str_key, obj_style in styles.items() %}
+{{ str_key }} {
+{% for str_styleKey, obj_styleValue in obj_style.items() %}
+    {{ str_styleKey }}: {{ obj_styleValue }};
+{% endfor %}
+}
+{% endfor %}

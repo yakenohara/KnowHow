@@ -1,0 +1,11 @@
+<html>
+<body>
+ようこそ、{{ shop }}です。
+<hr>
+<ul>
+{% for food in foods %}
+    <li>{{ loop.index }}: {{ food.name }} － {{ food.price }}円</li>
+{% endfor %}
+</ul>
+</body>
+</html>

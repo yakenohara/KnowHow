@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+    <h1>ようこそ、{{ shop['name'] }}です。</h1>
+    <hr>
+    <ul>
+{% for food in foods %}
+        <li>{{ loop.index }}: {{ food['name'] }} － {{ food['price'] }}円</li>
+{% endfor %}
+    </ul>
+
+    <script type="text/javascript" src="assets/js/s1.js"></script>
+    <script type="text/javascript" src="assets/js/s2.js"></script>
+  </body>
+</html>
