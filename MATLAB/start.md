@@ -22,6 +22,26 @@ https://jp.mathworks.com/?s_tid=gn_logo
 
 ![](assets/images/2021-04-01-09-22-52.png)
 
+# Setting
+
+## Simulink 入門を始めるには
+
+Simulink 入門をアプリから立ち上げようとすると、以下のように、`システムの一時フォルダーのサブフォルダーではなくなるよう、\CascheFolder を変更してください` と出る。  
+
+![](assets/images/2021-04-01-09-18-40.svg)  
+
+[Simulink 基本設定] ダイアログ ボックスを開くには、次の手順に従います。
+
+ - Simulink エディターのメニューから、[モデル化] タブで、[環境] 、 [Simulink 基本設定] を選択します。  
+または、  
+ - MATLAB® コマンド ウィンドウで次を入力します。  
+`slprivate('showprefs')`  
+
+以下の様に編集(例)  
+
+![](assets/images/2021-04-01-09-18-43.svg)  
+
+
 # 画面構成
 
 ![](assets/images/2021-04-01-10-39-02.svg)  
@@ -163,3 +183,7 @@ ans = 2x1
       80
 ```
 ![](assets/images/2021-04-01-18-20-51.svg)  
+
+ - `.` (dot notation (ドット表記))  
+
+![](assets/images/2021-04-06-14-14-48.svg)  
