@@ -77,3 +77,37 @@ git submodule foreach --recursive 'git status --short'
 ```
 git submodule foreach --recursive 'git reset . ; git clean --force -d ; git checkout .'
 ```
+
+## リモートリポジトリに Submodule が追加されたら
+
+```
+.testA
+┗sub/testA-A1
+  ┗sub/testA1-a
+```
+
+```
+# submodule の確認(左側の`-` は、submodule を pull したけれど、ローカルの PJ 配下のディレクトリ構成には反映していない状態を意味する)
+> git submodule ; git submodule foreach --recursive 'git submodule'
+-f8027fd91fbf2c7dcbdcae0afa7c7f99823c87d5 sub/testA-A1
+
+# submodule を再帰的に update & init
+> git submodule update --init ; git submodule foreach --recursive 'git submodule update --init'
+Submodule 'sub/testA-A1' (https://github.com/yakenohara/testA-A1.git) registered for path 'sub/testA-A1'
+Cloning into 'D:/testA/sub/testA-A1'...
+Submodule path 'sub/testA-A1': checked out 'f8027fd91fbf2c7dcbdcae0afa7c7f99823c87d5'
+Entering 'sub/testA-A1'
+Submodule 'sub/testA-A1-a' (https://github.com/yakenohara/testA-A1-a.git) registered for path 'sub/testA-A1-a'
+Cloning into 'D:/testA/sub/testA-A1/sub/testA-A1-a'...
+Submodule path 'sub/testA-A1-a': checked out '23723481abab88541e823fcf2d03f6e5e9cfcb7a'
+Entering 'sub/testA-A1/sub/testA-A1-a'
+
+# ↓ `-` が無くなった
+> git submodule ; git submodule foreach --recursive 'git submodule'
+ f8027fd91fbf2c7dcbdcae0afa7c7f99823c87d5 sub/testA-A1 (heads/master)
+Entering 'sub/testA-A1'
+ 23723481abab88541e823fcf2d03f6e5e9cfcb7a sub/testA-A1-a (heads/master)
+Entering 'sub/testA-A1/sub/testA-A1-a'
+
+
+```

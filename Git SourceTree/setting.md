@@ -5,6 +5,13 @@
 GitHub の `Settings` -> `Emails` -> `Keep my email addresses private`  にチェックを入れて、  
 `~@users.noreply.github.com`  の内容を以下のように Source Tree の `全般` -> `デフォルトユーザー情報` -> `メールアドレス` に反映する。  
 
+## 新規リポジトリ作成時のブランチ名は、`master` が無難
+
+既存のブランチの多くが `master` ブランチをメインとしている。  
+なので、それを参照する submodule を含むリポジトリの場合、参照名が変わってしまうと不都合がでる。以下を編集して `master` にしておくのが無難。  
+
+![](assets/images/2021-04-06-11-05-22.svg)  
+
 # Sourcetree Setting
 
 ## 1st Launch of Sourcetree
