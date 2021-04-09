@@ -42,7 +42,7 @@ Path : \HKEY_CLASSES_ROOT\Directory\Background\shell\
 Data : "<MPCの実行ファイルのフルパス>" "%V"  
 ※↑ '%V' である事に注意 ↑※  
 
-![](assets/images/2019-01-27-19-16-24.png)  
+![](assets/images/2019-01-27-19-15-11.png)  
 
 参考元Web資料
 
