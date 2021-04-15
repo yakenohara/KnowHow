@@ -6,3 +6,9 @@
 2. `C:\Program Files\Inkscape\share\inkscape\templates\default.ja.svg`  
 
 ※ 1. 2. 両方存在する場合は、1 のテンプレートが優先される。
+
+※ MAC OSX の場合は、  
+
+`/Users/abekoudai/Library/Application Support/org.inkscape.Inkscape/config/inkscape/templates/default.ja.svg`
+
+※ `ファイル(F)` -> `名前を付けて保存(A)...` -> `ファイルの保存先の選択` ウィンドウで、画面左側の `templates` にマウスをフォーカスすると、`templates` ディレクトリのパスが表示される。
