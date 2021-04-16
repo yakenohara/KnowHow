@@ -8,13 +8,13 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="git path.svg"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="git-path.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
    id="svg8"
    version="1.1"
-   viewBox="0 0 168.26666 159.80044"
+   viewBox="0 0 177.78523 159.80044"
    height="603.97015"
-   width="635.96851">
+   width="671.94421">
   <defs
      id="defs2">
     <pattern
@@ -48,7 +48,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="280.2851"
+     inkscape:cx="296.73339"
      inkscape:cy="296.64093"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
@@ -59,14 +59,14 @@
      fit-margin-left="10"
      fit-margin-right="10"
      fit-margin-bottom="10"
-     inkscape:window-width="1080"
-     inkscape:window-height="965"
-     inkscape:window-x="1701"
-     inkscape:window-y="604"
-     inkscape:window-maximized="0">
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="22"
+     inkscape:window-maximized="1">
     <inkscape:grid
-       originy="-32.736686"
-       originx="-17.920234"
+       originy="-32.736688"
+       originx="-13.568291"
        type="xygrid"
        id="grid833"
        snapvisiblegridlinesonly="false"
@@ -86,7 +86,7 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-17.920235,-32.736685)"
+     transform="translate(-13.568292,-32.736685)"
      style="display:inline"
      inkscape:label="レイヤー 1"
      inkscape:groupmode="layer"
@@ -101,23 +101,23 @@
        id="image834" />
   </g>
   <g
-     transform="translate(-17.920235,-32.736685)"
+     transform="translate(-13.568292,-32.736685)"
      inkscape:label="レイヤー 2"
      id="layer2"
      inkscape:groupmode="layer">
     <g
-       transform="translate(5.0781207,10.690781)"
+       transform="translate(-10.156242,14.432554)"
        id="g857">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke:#ff00b1;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          id="rect848"
-         width="146.84375"
+         width="171.69981"
          height="8.9296875"
          x="26.767242"
          y="90.531174" />
       <text
          xml:space="preserve"
-         style="font-size:3.96875px;line-height:1.25em;font-family:sans-serif;-inkscape-font-specification:sans-serif;word-spacing:0px;stroke-width:0.264583"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:1.25em;font-family:monospace;-inkscape-font-specification:monospace;word-spacing:0px;stroke-width:0.264583"
          x="30.735992"
          y="96.484299"
          id="text846"><tspan
@@ -125,7 +125,7 @@
            id="tspan844"
            x="30.735992"
            y="96.484299"
-           style="font-size:3.96875px;stroke-width:0.264583">C:\Users\&lt;UserName&gt;\AppData\Local\Atlassian\SourceTree\git_local\bin</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583">C:\Users\&lt;UserName&gt;\AppData\Local\Atlassian\SourceTree\git_local\bin</tspan></text>
     </g>
     <rect
        y="72.430038"
@@ -140,7 +140,7 @@
        inkscape:connector-curvature="0"
        inkscape:connector-type="polyline"
        id="path876"
-       d="M 102.21731,101.22195 89.304725,82.319011"
+       d="M 100.1579,104.96373 88.47756,82.319011"
        style="fill:none;fill-rule:evenodd;stroke:#ff00b1;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
   </g>
 </svg>
