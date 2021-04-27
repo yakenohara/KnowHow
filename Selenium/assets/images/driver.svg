@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -15,7 +13,7 @@
    viewBox="0 0 883.59924 1468.4187"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
    sodipodi:docname="driver.svg">
   <defs
      id="defs2">
@@ -578,23 +576,24 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35355339"
-     inkscape:cx="1276.805"
-     inkscape:cy="4258.7997"
+     inkscape:cx="396.75061"
+     inkscape:cy="753.61342"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1057"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="22"
      inkscape:window-maximized="1"
      inkscape:snap-global="true"
      fit-margin-top="10"
      fit-margin-left="10"
      fit-margin-right="10"
-     fit-margin-bottom="10">
+     fit-margin-bottom="10"
+     inkscape:document-rotation="0">
     <inkscape:grid
        type="xygrid"
        id="grid10"
@@ -610,7 +609,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -629,7 +628,7 @@
        width="147.6375" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="-70.369522"
        y="4.1338191"
        id="text25"><tspan
@@ -637,7 +636,7 @@
          id="tspan23"
          x="-70.369522"
          y="4.1338191"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://www.selenium.dev/documentation/en/webdriver/driver_requirements/</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://www.selenium.dev/documentation/en/webdriver/driver_requirements/</tspan></text>
     <image
        y="-231.42429"
        x="272.84305"
@@ -648,7 +647,7 @@
        width="53.181248" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="272.78128"
        y="-235.3141"
        id="text25-8"><tspan
@@ -656,10 +655,10 @@
          id="tspan23-1"
          x="272.78128"
          y="-235.3141"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://chromedriver.storage.googleapis.com/index.html</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://chromedriver.storage.googleapis.com/index.html</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="546.10962"
        y="-346.43909"
        id="text25-8-7"><tspan
@@ -667,7 +666,7 @@
          id="tspan23-1-5"
          x="546.10962"
          y="-346.43909"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://chromedriver.chromium.org/</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://chromedriver.chromium.org/</tspan></text>
     <image
        y="-343.75092"
        x="546.85968"
@@ -687,7 +686,8 @@
            height="220"
            x="340"
            y="122.51968" /></flowRegion><flowPara
-         id="flowPara4922" /></flowRoot>    <rect
+         id="flowPara4922" /></flowRoot>
+    <rect
        id="rect31-9"
        width="15.776121"
        height="5.1927938"
@@ -703,7 +703,7 @@
        style="fill:none;stroke:#f72dd1;stroke-width:0.79374999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="-71.88192"
        y="-20.660196"
        id="text4956"><tspan
@@ -711,10 +711,10 @@
          id="tspan4954"
          x="-71.88192"
          y="-20.660196"
-         style="stroke-width:0.26458332">www.selenium.dev</tspan></text>
+         style="stroke-width:0.264583">www.selenium.dev</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="546.48169"
        y="-366.4295"
        id="text4960"><tspan
@@ -722,10 +722,10 @@
          id="tspan4958"
          x="546.48169"
          y="-366.4295"
-         style="stroke-width:0.26458332">chromedriver.chromium.org</tspan></text>
+         style="stroke-width:0.264583">chromedriver.chromium.org</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="272.30045"
        y="-265.3602"
        id="text4964"><tspan
@@ -733,7 +733,7 @@
          id="tspan4962"
          x="272.30045"
          y="-265.3602"
-         style="stroke-width:0.26458332">chromedriver.storage.googleapis.com</tspan></text>
+         style="stroke-width:0.264583">chromedriver.storage.googleapis.com</tspan></text>
     <image
        y="-229.3958"
        x="364.0361"
@@ -750,7 +750,7 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="363.59262"
        y="-231.34535"
        id="text25-8-9"><tspan
@@ -758,7 +758,7 @@
          id="tspan23-1-0"
          x="363.59262"
          y="-231.34535"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://chromedriver.storage.googleapis.com/index.html?path=81.0.4044.69/</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://chromedriver.storage.googleapis.com/index.html?path=81.0.4044.69/</tspan></text>
     <image
        y="-235.18513"
        x="545.81744"
@@ -769,7 +769,7 @@
        width="63.5" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="546.10962"
        y="-236.71832"
        id="text25-8-7-2"><tspan
@@ -777,7 +777,7 @@
          id="tspan23-1-5-8"
          x="546.10962"
          y="-236.71832"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://chromedriver.chromium.org/downloads</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://chromedriver.chromium.org/downloads</tspan></text>
     <path
        style="fill:none;stroke:#f72dd1;stroke-width:1.58749998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker10636)"
        d="m 559.04663,-301.19867 10.31875,59.26666"
@@ -806,7 +806,7 @@
        width="91.942711" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="323.58438"
        y="-44.892014"
        id="text4964-3"><tspan
@@ -814,10 +814,10 @@
          id="tspan4962-7"
          x="323.58438"
          y="-44.892014"
-         style="stroke-width:0.26458332">github.com/mozilla</tspan></text>
+         style="stroke-width:0.264583">github.com/mozilla</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="326.50549"
        y="-36.876598"
        id="text25-8-2"><tspan
@@ -825,7 +825,7 @@
          id="tspan23-1-00"
          x="326.50549"
          y="-36.876598"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://github.com/mozilla/geckodriver/releases</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://github.com/mozilla/geckodriver/releases</tspan></text>
     <image
        y="-55.273811"
        x="550.05505"
@@ -836,7 +836,7 @@
        width="152.13542" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="548.51843"
        y="-60.689098"
        id="text25-8-2-3"><tspan
@@ -844,10 +844,10 @@
          id="tspan23-1-00-1"
          x="548.51843"
          y="-60.689098"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="549.49695"
        y="-70.688889"
        id="text4964-3-7"><tspan
@@ -855,7 +855,7 @@
          id="tspan4962-7-2"
          x="549.49695"
          y="-70.688889"
-         style="stroke-width:0.26458332">developer.mozilla.org</tspan></text>
+         style="stroke-width:0.264583">developer.mozilla.org</tspan></text>
     <path
        style="fill:none;stroke:#bb3979;stroke-width:0.93586791;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 349.34411,-293.63994 a 12.725142,7.048375 0 0 0 -11.51084,4.06309 12.725142,4.6989166 0 0 0 -7.57727,-0.93037 12.725142,4.6989166 0 0 0 -7.45197,0.89708 12.725142,7.048375 0 0 0 -4.31789,-0.42738 12.725142,7.048375 0 0 0 -9.21862,2.20179 7.953213,3.1326109 0 0 0 -6.05162,-1.10512 7.953213,3.1326109 0 0 0 -4.18304,0.47024 12.725142,4.6989166 0 0 0 -12.36017,-3.60296 12.725142,4.6989166 0 0 0 -10.87592,2.27058 12.725142,4.6989166 0 0 0 -5.50698,-0.46966 12.725142,4.6989166 0 0 0 -12.7254,4.69904 12.725142,4.6989166 0 0 0 5.89342,3.95818 8.8478402,6.7580761 0 0 0 -2.85486,4.96237 8.8478402,6.7580761 0 0 0 4.27648,5.77598 8.8478402,6.7580761 0 0 1 0,5.7e-4 8.8478402,6.7580761 0 0 0 -0.88439,2.92467 8.8478402,6.7580761 0 0 0 3.04387,5.09486 5.8985598,4.2237981 0 0 0 -3.04387,3.69033 5.8985598,4.2237981 0 0 0 0.31958,1.35718 13.271761,6.7580761 0 0 0 -13.00146,6.75256 13.271761,6.7580761 0 0 0 9.7442,6.50787 8.8478402,6.7580761 0 0 0 2.47159,4.43742 13.271761,6.7580761 0 0 0 -5.43263,5.44333 13.271761,6.7580761 0 0 0 5.7469,5.56568 5.8985598,4.2237982 0 0 0 -0.73363,2.03716 5.8985598,4.2237982 0 0 0 2.46736,3.43042 8.8478402,6.7580761 0 0 0 -6.32127,6.47121 8.8478402,6.7580761 0 0 0 4.27541,5.77599 8.8478402,6.7580761 0 0 0 -0.88333,2.92464 8.8478402,6.7580761 0 0 0 3.04385,5.09488 5.8985598,4.2237982 0 0 0 -3.04385,3.6909 5.8985598,4.2237982 0 0 0 0.31958,1.35661 13.271761,6.7580761 0 0 0 -13.00144,6.75312 13.271761,6.7580761 0 0 0 9.74417,6.50731 8.8478402,6.7580761 0 0 0 2.4716,4.43743 13.271761,6.7580761 0 0 0 -5.43263,5.44332 13.271761,6.7580761 0 0 0 5.74584,5.56512 5.8985598,4.2237982 0 0 0 -0.73257,2.03773 5.8985598,4.2237982 0 0 0 1.49592,2.80284 12.725142,4.6989166 0 0 0 -0.25798,0.9405 12.725142,4.6989166 0 0 0 12.72537,4.69905 12.725142,4.6989166 0 0 0 10.87489,-2.27116 12.725142,4.6989166 0 0 0 5.50801,0.46969 12.725142,4.6989166 0 0 0 9.59342,-1.61653 7.9532136,3.1326109 0 0 0 6.94978,1.61653 7.9532136,3.1326109 0 0 0 2.55444,-0.17028 12.725142,7.048375 0 0 0 12.71584,6.90537 12.725142,7.048375 0 0 0 12.25292,-5.17494 12.725142,4.6989166 0 0 0 8.35442,-1.31319 12.725142,7.048375 0 0 0 10.25058,2.88574 12.725142,7.048375 0 0 0 10.47992,-3.05206 7.9532143,3.1326109 0 0 0 3.83587,0.38904 7.9532143,3.1326109 0 0 0 6.46038,-1.30924 12.725142,4.6989166 0 0 0 12.18393,3.35654 12.725142,4.6989166 0 0 0 10.87592,-2.27115 12.725142,4.6989166 0 0 0 5.50805,0.46969 12.725142,4.6989166 0 0 0 9.5934,-1.61654 7.9532143,3.1326109 0 0 0 6.94874,1.61654 7.9532143,3.1326109 0 0 0 2.55443,-0.16972 12.725142,7.048375 0 0 0 12.71582,6.90479 12.725142,7.048375 0 0 0 12.25293,-5.17493 12.725142,4.6989166 0 0 0 8.35548,-1.31262 12.725142,7.048375 0 0 0 10.25059,2.88518 12.725142,7.048375 0 0 0 10.47993,-3.05207 7.9532147,3.1326109 0 0 0 3.83584,0.38905 7.9532147,3.1326109 0 0 0 7.95312,-3.13214 7.9532147,3.1326109 0 0 0 -4.17032,-2.75494 5.8985598,4.2237982 0 0 0 0.66356,-1.93904 5.8985598,4.2237982 0 0 0 -0.19538,-1.06737 13.271761,6.7580761 0 0 0 9.92787,-6.53548 13.271761,6.7580761 0 0 0 -7.65055,-6.11317 8.8478402,6.7580761 0 0 0 1.75181,-4.02357 8.8478402,6.7580761 0 0 0 -1.68917,-3.95816 13.271761,6.7580761 0 0 0 0.80476,-2.29316 13.271761,6.7580761 0 0 0 -4.14587,-4.89582 5.8985598,4.2237982 0 0 0 2.0809,-3.21391 5.8985598,4.2237982 0 0 0 -0.88545,-2.22154 8.8478402,6.7580761 0 0 0 6.7842,-6.56424 8.8478402,6.7580761 0 0 0 -4.27542,-5.77598 8.8478402,6.7580761 0 0 0 0.88437,-2.92465 8.8478402,6.7580761 0 0 0 -5.22031,-6.15714 5.8985598,4.2237982 0 0 0 3.17549,-3.74449 5.8985598,4.2237982 0 0 0 -0.19537,-1.06734 13.271761,6.7580761 0 0 0 9.92783,-6.5355 13.271761,6.7580761 0 0 0 -7.6505,-6.11374 8.8478402,6.7580761 0 0 0 1.75178,-4.02356 8.8478402,6.7580761 0 0 0 -1.68914,-3.95817 13.271761,6.7580761 0 0 0 0.80474,-2.29315 13.271761,6.7580761 0 0 0 -4.14696,-4.89583 5.8985598,4.2237981 0 0 0 2.08304,-3.21391 5.8985598,4.2237981 0 0 0 -0.8865,-2.22153 8.8478402,6.7580761 0 0 0 6.78417,-6.56366 8.8478402,6.7580761 0 0 0 -4.27541,-5.77602 8.8478402,6.7580761 0 0 0 0.88439,-2.9252 8.8478402,6.7580761 0 0 0 -0.0224,-0.47813 8.8478402,6.7580761 0 0 0 -7.38402,-6.18198 7.9532143,3.1326109 0 0 0 0.73786,-1.3098 7.9532143,3.1326109 0 0 0 -7.95308,-3.13271 7.9532143,3.1326109 0 0 0 -2.00977,0.10381 12.725142,7.048375 0 0 0 -12.30603,-5.27246 12.725142,7.048375 0 0 0 -11.51082,4.06303 12.725142,4.6989166 0 0 0 -7.57727,-0.93035 12.725142,4.6989166 0 0 0 -7.45303,0.89764 12.725142,7.048375 0 0 0 -4.31789,-0.42795 12.725142,7.048375 0 0 0 -9.21864,2.20178 7.9532136,3.1326109 0 0 0 -6.0516,-1.10511 7.9532136,3.1326109 0 0 0 -4.182,0.47082 12.725142,4.6989166 0 0 0 -12.36016,-3.60353 12.725142,4.6989166 0 0 0 -10.87699,2.2706 12.725142,4.6989166 0 0 0 -5.50696,-0.46911 12.725142,4.6989166 0 0 0 -11.59363,2.77129 7.9532136,3.1326109 0 0 0 -7.05066,-1.68592 7.9532136,3.1326109 0 0 0 -2.00979,0.10382 12.725142,7.048375 0 0 0 -12.306,-5.2725 z"
@@ -891,7 +891,7 @@
        width="121.70834" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="422.82053"
        y="190.38132"
        id="text4956-2"><tspan
@@ -899,7 +899,7 @@
          id="tspan4954-5"
          x="422.82053"
          y="190.38132"
-         style="stroke-width:0.26458332">developer.microsoft.com</tspan></text>
+         style="stroke-width:0.264583">developer.microsoft.com</tspan></text>
     <path
        style="fill:none;stroke:url(#linearGradient2475);stroke-width:1.24301255;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 473.41446,161.31573 a 10.779791,14.67629 0 0 0 -9.75111,8.46026 10.779791,9.7841936 0 0 0 -6.41892,-1.93723 10.779791,9.7841936 0 0 0 -6.31274,1.86791 10.779791,14.67629 0 0 0 -3.65781,-0.88988 10.779791,14.67629 0 0 0 -7.8093,4.5846 6.7373689,6.5227947 0 0 0 -5.12649,-2.30111 6.7373689,6.5227947 0 0 0 -3.54357,0.97916 10.779791,9.7841936 0 0 0 -10.47061,-7.50217 10.779791,9.7841936 0 0 0 -9.21326,4.72784 10.779791,9.7841936 0 0 0 -4.66511,-0.97795 10.779791,9.7841936 0 0 0 -10.78,9.78447 10.779791,9.7841936 0 0 0 4.99245,8.24183 7.4952302,14.071823 0 0 0 -2.41841,10.33274 7.4952302,14.071823 0 0 0 3.6227,12.02688 7.4952302,14.071823 0 0 1 0,0.001 7.4952302,14.071823 0 0 0 -0.74918,6.08981 7.4952302,14.071823 0 0 0 2.57854,10.60862 4.9968201,8.7948907 0 0 0 -2.57854,7.68411 4.9968201,8.7948907 0 0 0 0.27073,2.82595 11.242846,14.071823 0 0 0 -11.01387,14.06033 11.242846,14.071823 0 0 0 8.25456,13.55086 7.4952302,14.071823 0 0 0 2.09374,9.23969 11.242846,14.071823 0 0 0 -4.60212,11.33422 11.242846,14.071823 0 0 0 4.86835,11.58898 4.9968201,8.794891 0 0 0 -0.62147,4.24182 4.9968201,8.794891 0 0 0 2.09017,7.14291 7.4952302,14.071823 0 0 0 -5.35493,13.47451 7.4952302,14.071823 0 0 0 3.62181,12.02689 7.4952302,14.071823 0 0 0 -0.74829,6.08976 7.4952302,14.071823 0 0 0 2.57853,10.60868 4.9968201,8.794891 0 0 0 -2.57853,7.68527 4.9968201,8.794891 0 0 0 0.27073,2.82478 11.242846,14.071823 0 0 0 -11.01385,14.06147 11.242846,14.071823 0 0 0 8.25454,13.54967 7.4952302,14.071823 0 0 0 2.09375,9.23972 11.242846,14.071823 0 0 0 -4.60211,11.33425 11.242846,14.071823 0 0 0 4.86744,11.5878 4.9968201,8.794891 0 0 0 -0.62057,4.24301 4.9968201,8.794891 0 0 0 1.26723,5.83616 10.779791,9.7841936 0 0 0 -0.21855,1.9583 10.779791,9.7841936 0 0 0 10.77999,9.78446 10.779791,9.7841936 0 0 0 9.21238,-4.72904 10.779791,9.7841936 0 0 0 4.66598,0.97801 10.779791,9.7841936 0 0 0 8.12684,-3.36598 6.7373692,6.5227947 0 0 0 5.88733,3.36598 6.7373692,6.5227947 0 0 0 2.16393,-0.35456 10.779791,14.67629 0 0 0 10.77191,14.37853 10.779791,14.67629 0 0 0 10.37977,-10.77538 10.779791,9.7841936 0 0 0 7.07723,-2.73437 10.779791,14.67629 0 0 0 8.68353,6.00875 10.779791,14.67629 0 0 0 8.87781,-6.35507 6.73737,6.5227947 0 0 0 3.24948,0.81007 6.73737,6.5227947 0 0 0 5.47274,-2.72611 10.779791,9.7841936 0 0 0 10.32131,6.98907 10.779791,9.7841936 0 0 0 9.21327,-4.72906 10.779791,9.7841936 0 0 0 4.66602,0.978 10.779791,9.7841936 0 0 0 8.12679,-3.36599 6.73737,6.5227947 0 0 0 5.88647,3.36599 6.73737,6.5227947 0 0 0 2.16391,-0.35339 10.779791,14.67629 0 0 0 10.77191,14.37731 10.779791,14.67629 0 0 0 10.37976,-10.77533 10.779791,9.7841936 0 0 0 7.07812,-2.73319 10.779791,14.67629 0 0 0 8.68353,6.00757 10.779791,14.67629 0 0 0 8.87783,-6.35508 6.7373703,6.5227947 0 0 0 3.24942,0.81011 6.7373703,6.5227947 0 0 0 6.73731,-6.52183 6.7373703,6.5227947 0 0 0 -3.53279,-5.73641 4.9968201,8.794891 0 0 0 0.56213,-4.03752 4.9968201,8.794891 0 0 0 -0.16551,-2.22247 11.242846,14.071823 0 0 0 8.41015,-13.60834 11.242846,14.071823 0 0 0 -6.48099,-12.72898 7.4952302,14.071823 0 0 0 1.48402,-8.37799 7.4952302,14.071823 0 0 0 -1.43095,-8.24175 11.242846,14.071823 0 0 0 0.68176,-4.7749 11.242846,14.071823 0 0 0 -3.5121,-10.19418 4.9968201,8.794891 0 0 0 1.76279,-6.69209 4.9968201,8.794891 0 0 0 -0.75008,-4.62574 7.4952302,14.071823 0 0 0 5.74707,-13.66821 7.4952302,14.071823 0 0 0 -3.62182,-12.02688 7.4952302,14.071823 0 0 0 0.74915,-6.08977 7.4952302,14.071823 0 0 0 -4.42223,-12.82054 4.9968201,8.794891 0 0 0 2.69003,-7.79688 4.9968201,8.794891 0 0 0 -0.16551,-2.22243 11.242846,14.071823 0 0 0 8.41014,-13.60837 11.242846,14.071823 0 0 0 -6.48096,-12.73018 7.4952302,14.071823 0 0 0 1.48398,-8.37794 7.4952302,14.071823 0 0 0 -1.43089,-8.2418 11.242846,14.071823 0 0 0 0.68169,-4.77485 11.242846,14.071823 0 0 0 -3.51298,-10.1942 4.9968201,8.7948907 0 0 0 1.7646,-6.69208 4.9968201,8.7948907 0 0 0 -0.75099,-4.62571 7.4952302,14.071823 0 0 0 5.74703,-13.66702 7.4952302,14.071823 0 0 0 -3.6218,-12.02698 7.4952302,14.071823 0 0 0 0.7492,-6.09091 7.4952302,14.071823 0 0 0 -0.0189,-0.99556 7.4952302,14.071823 0 0 0 -6.25519,-12.87227 6.73737,6.5227947 0 0 0 0.62506,-2.72731 6.73737,6.5227947 0 0 0 -6.73724,-6.52322 6.73737,6.5227947 0 0 0 -1.70254,0.21616 10.779791,14.67629 0 0 0 -10.42472,-10.97838 10.779791,14.67629 0 0 0 -9.75112,8.46012 10.779791,9.7841936 0 0 0 -6.4189,-1.9372 10.779791,9.7841936 0 0 0 -6.31364,1.8691 10.779791,14.67629 0 0 0 -3.65783,-0.89107 10.779791,14.67629 0 0 0 -7.80934,4.58458 6.7373692,6.5227947 0 0 0 -5.12646,-2.30109 6.7373692,6.5227947 0 0 0 -3.54269,0.98036 10.779791,9.7841936 0 0 0 -10.47059,-7.50337 10.779791,9.7841936 0 0 0 -9.21418,4.7279 10.779791,9.7841936 0 0 0 -4.66509,-0.97678 10.779791,9.7841936 0 0 0 -9.82126,5.77045 6.7373692,6.5227947 0 0 0 -5.97278,-3.51046 6.7373692,6.5227947 0 0 0 -1.70256,0.21617 10.779791,14.67629 0 0 0 -10.42472,-10.97851 z"
@@ -918,9 +918,9 @@
          id="text4964-3-7-7"
          y="45.486889"
          x="592.21436"
-         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-size:7.05555534px;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+           style="font-size:7.05556px;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
            y="45.486889"
            x="592.21436"
            id="tspan4962-7-2-2"
@@ -944,7 +944,7 @@
        width="110.19896" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="559.00513"
        y="516.41089"
        id="text4956-2-6"><tspan
@@ -952,7 +952,7 @@
          id="tspan4954-5-4"
          x="559.00513"
          y="516.41089"
-         style="stroke-width:0.26458332">github.com/SeleniumHQ</tspan></text>
+         style="stroke-width:0.264583">github.com/SeleniumHQ</tspan></text>
     <image
        y="525.46771"
        x="253.73541"
@@ -963,7 +963,7 @@
        width="72.760414" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="250.78572"
        y="508.77002"
        id="text4956-2-7"><tspan
@@ -971,10 +971,10 @@
          id="tspan4954-5-2"
          x="250.78572"
          y="508.77002"
-         style="stroke-width:0.26458332">selenium-release.storage.googleapis.com</tspan></text>
+         style="stroke-width:0.264583">selenium-release.storage.googleapis.com</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="250.89389"
        y="523.99939"
        id="text25-8-2-8"><tspan
@@ -982,7 +982,7 @@
          id="tspan23-1-00-9"
          x="250.89389"
          y="523.99939"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://selenium-release.storage.googleapis.com/index.html</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://selenium-release.storage.googleapis.com/index.html</tspan></text>
     <path
        style="fill:none;stroke:#bb3979;stroke-width:0.88729119;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 332.87064,487.89119 a 13.263023,6.0787237 0 0 0 -11.99739,3.50412 13.263023,4.0524825 0 0 0 -7.89756,-0.80237 13.263023,4.0524825 0 0 0 -7.76695,0.77367 13.263023,6.0787237 0 0 0 -4.50042,-0.36858 13.263023,6.0787237 0 0 0 -9.60826,1.89889 8.2893886,2.7016546 0 0 0 -6.30742,-0.9531 8.2893886,2.7016546 0 0 0 -4.35987,0.40555 13.263023,4.0524825 0 0 0 -12.88262,-3.10729 13.263023,4.0524825 0 0 0 -11.33563,1.95821 13.263023,4.0524825 0 0 0 -5.73976,-0.40506 13.263023,4.0524825 0 0 0 -13.26326,4.0526 13.263023,4.0524825 0 0 0 6.14249,3.41365 9.2218304,5.8283616 0 0 0 -2.97551,4.27969 9.2218304,5.8283616 0 0 0 4.45723,4.98137 9.2218304,5.8283616 0 0 1 0,5.2e-4 9.2218304,5.8283616 0 0 0 -0.92177,2.52232 9.2218304,5.8283616 0 0 0 3.17254,4.39395 6.1478871,3.6427264 0 0 0 -3.17254,3.18266 6.1478871,3.6427264 0 0 0 0.3331,1.17046 13.832746,5.8283616 0 0 0 -13.55101,5.82361 13.832746,5.8283616 0 0 0 10.15607,5.61258 9.2218304,5.8283616 0 0 0 2.57606,3.82696 13.832746,5.8283616 0 0 0 -5.66227,4.69448 13.832746,5.8283616 0 0 0 5.98982,4.8 6.1478871,3.6427266 0 0 0 -0.76464,1.75691 6.1478871,3.6427266 0 0 0 2.57166,2.9585 9.2218304,5.8283616 0 0 0 -6.58848,5.58095 9.2218304,5.8283616 0 0 0 4.45613,4.98139 9.2218304,5.8283616 0 0 0 -0.92067,2.52229 9.2218304,5.8283616 0 0 0 3.17252,4.39397 6.1478871,3.6427266 0 0 0 -3.17252,3.18315 6.1478871,3.6427266 0 0 0 0.3331,1.16997 13.832746,5.8283616 0 0 0 -13.551,5.82408 13.832746,5.8283616 0 0 0 10.15604,5.6121 9.2218304,5.8283616 0 0 0 2.57609,3.82696 13.832746,5.8283616 0 0 0 -5.66226,4.6945 13.832746,5.8283616 0 0 0 5.98869,4.79952 6.1478871,3.6427266 0 0 0 -0.76353,1.75739 6.1478871,3.6427266 0 0 0 1.55916,2.41726 13.263023,4.0524825 0 0 0 -0.26889,0.8111 13.263023,4.0524825 0 0 0 13.26327,4.0526 13.263023,4.0524825 0 0 0 11.33453,-1.95872 13.263023,4.0524825 0 0 0 5.74084,0.40509 13.263023,4.0524825 0 0 0 9.99893,-1.39415 8.2893886,2.7016546 0 0 0 7.24355,1.39415 8.2893886,2.7016546 0 0 0 2.66241,-0.14686 13.263023,6.0787237 0 0 0 13.25332,5.9554 13.263023,6.0787237 0 0 0 12.77085,-4.46302 13.263023,4.0524825 0 0 0 8.70755,-1.13254 13.263023,6.0787237 0 0 0 10.68386,2.48875 13.263023,6.0787237 0 0 0 10.92291,-2.63219 8.2893896,2.7016546 0 0 0 3.99802,0.33552 8.2893896,2.7016546 0 0 0 6.73345,-1.12912 13.263023,4.0524825 0 0 0 12.69893,2.89478 13.263023,4.0524825 0 0 0 11.33562,-1.95871 13.263023,4.0524825 0 0 0 5.74087,0.40507 13.263023,4.0524825 0 0 0 9.99889,-1.39414 8.2893896,2.7016546 0 0 0 7.24246,1.39414 8.2893896,2.7016546 0 0 0 2.6624,-0.14637 13.263023,6.0787237 0 0 0 13.25332,5.95489 13.263023,6.0787237 0 0 0 12.77085,-4.46301 13.263023,4.0524825 0 0 0 8.70863,-1.13204 13.263023,6.0787237 0 0 0 10.68387,2.48826 13.263023,6.0787237 0 0 0 10.92291,-2.63219 8.2893901,2.7016546 0 0 0 3.99799,0.33554 8.2893901,2.7016546 0 0 0 8.28931,-2.70127 8.2893901,2.7016546 0 0 0 -4.3466,-2.37594 6.1478871,3.6427266 0 0 0 0.6916,-1.67228 6.1478871,3.6427266 0 0 0 -0.20361,-0.92051 13.832746,5.8283616 0 0 0 10.34748,-5.6364 13.832746,5.8283616 0 0 0 -7.97393,-5.27218 9.2218304,5.8283616 0 0 0 1.82587,-3.47004 9.2218304,5.8283616 0 0 0 -1.76058,-3.41363 13.832746,5.8283616 0 0 0 0.83879,-1.97771 13.832746,5.8283616 0 0 0 -4.32113,-4.22229 6.1478871,3.6427266 0 0 0 2.16885,-2.77176 6.1478871,3.6427266 0 0 0 -0.92286,-1.91593 9.2218304,5.8283616 0 0 0 7.07096,-5.66119 9.2218304,5.8283616 0 0 0 -4.45613,-4.98137 9.2218304,5.8283616 0 0 0 0.92172,-2.52231 9.2218304,5.8283616 0 0 0 -5.44094,-5.31009 6.1478871,3.6427266 0 0 0 3.30971,-3.22936 6.1478871,3.6427266 0 0 0 -0.20364,-0.9205 13.832746,5.8283616 0 0 0 10.34749,-5.63641 13.832746,5.8283616 0 0 0 -7.97389,-5.27266 9.2218304,5.8283616 0 0 0 1.82582,-3.47004 9.2218304,5.8283616 0 0 0 -1.76051,-3.41364 13.832746,5.8283616 0 0 0 0.83873,-1.97768 13.832746,5.8283616 0 0 0 -4.32223,-4.2223 6.1478871,3.6427264 0 0 0 2.17108,-2.77177 6.1478871,3.6427264 0 0 0 -0.92398,-1.91591 9.2218304,5.8283616 0 0 0 7.07093,-5.6607 9.2218304,5.8283616 0 0 0 -4.45611,-4.98141 9.2218304,5.8283616 0 0 0 0.92178,-2.52277 9.2218304,5.8283616 0 0 0 -0.0232,-0.41236 9.2218304,5.8283616 0 0 0 -7.69616,-5.33151 8.2893896,2.7016546 0 0 0 0.76907,-1.12962 8.2893896,2.7016546 0 0 0 -8.28923,-2.70183 8.2893896,2.7016546 0 0 0 -2.09475,0.0895 13.263023,6.0787237 0 0 0 -12.82616,-4.5471 13.263023,6.0787237 0 0 0 -11.99739,3.50407 13.263023,4.0524825 0 0 0 -7.89757,-0.80236 13.263023,4.0524825 0 0 0 -7.76804,0.77415 13.263023,6.0787237 0 0 0 -4.50044,-0.36907 13.263023,6.0787237 0 0 0 -9.60831,1.89887 8.2893886,2.7016546 0 0 0 -6.30739,-0.95308 8.2893886,2.7016546 0 0 0 -4.35878,0.40606 13.263023,4.0524825 0 0 0 -12.88259,-3.1078 13.263023,4.0524825 0 0 0 -11.33674,1.95823 13.263023,4.0524825 0 0 0 -5.73973,-0.40457 13.263023,4.0524825 0 0 0 -12.0837,2.39004 8.2893886,2.7016546 0 0 0 -7.34867,-1.45398 8.2893886,2.7016546 0 0 0 -2.09476,0.0895 13.263023,6.0787237 0 0 0 -12.82615,-4.54715 z"
@@ -995,7 +995,7 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="556.69299"
        y="656.25043"
        id="text25-8-2-8-2"><tspan
@@ -1003,10 +1003,10 @@
          id="tspan23-1-00-9-7"
          x="556.69299"
          y="656.25043"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="556.69299"
        y="537.26923"
        id="text25-8-2-8-2-7"><tspan
@@ -1014,7 +1014,7 @@
          id="tspan23-1-00-9-7-4"
          x="556.69299"
          y="537.26923"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://github.com/SeleniumHQ/selenium/wiki</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://github.com/SeleniumHQ/selenium/wiki</tspan></text>
     <image
        y="802.0896"
        x="296.20105"
@@ -1045,9 +1045,9 @@
          id="text4964-3-7-7-5"
          y="45.486889"
          x="592.21436"
-         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-size:7.05555534px;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+           style="font-size:7.05556px;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
            y="45.486889"
            x="592.21436"
            id="tspan4962-7-2-2-9"
@@ -1060,7 +1060,7 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="275.37079"
        y="785.96704"
        id="text4956-2-7-1"><tspan
@@ -1068,10 +1068,10 @@
          id="tspan4954-5-2-0"
          x="275.37079"
          y="785.96704"
-         style="stroke-width:0.26458332">webkit.org</tspan></text>
+         style="stroke-width:0.264583">webkit.org</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="287.21603"
        y="797.08838"
        id="text25-8-2-8-4"><tspan
@@ -1079,10 +1079,10 @@
          id="tspan23-1-00-9-1"
          x="287.21603"
          y="797.08838"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://webkit.org/blog/6900/webdriver-support-in-safari-10/</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://webkit.org/blog/6900/webdriver-support-in-safari-10/</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="426.90521"
        y="203.90802"
        id="text25-8-2-6"><tspan
@@ -1090,7 +1090,7 @@
          id="tspan23-1-00-0"
          x="426.90521"
          y="203.90802"
-         style="font-size:2.82222223px;stroke-width:0.26458332">https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/</tspan></text>
+         style="font-size:2.82222px;stroke-width:0.264583">https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/</tspan></text>
     <image
        y="334.90179"
        x="429.44427"
@@ -1113,9 +1113,9 @@
          id="text4964-3-7-7-5-2"
          y="45.486889"
          x="592.21436"
-         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-size:7.05555534px;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+           style="font-size:7.05556px;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
            y="45.486889"
            x="592.21436"
            id="tspan4962-7-2-2-9-1"
@@ -1326,9 +1326,9 @@
          id="text4964-3-7-7-5-4"
          y="45.486889"
          x="592.21436"
-         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-size:7.05555534px;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+           style="font-size:7.05556px;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
            y="45.486889"
            x="592.21436"
            id="tspan4962-7-2-2-9-4"
@@ -1349,7 +1349,7 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="-42.043945"
        y="-378.815"
        id="text1689"><tspan
@@ -1357,10 +1357,10 @@
          id="tspan1687"
          x="-42.043945"
          y="-378.815"
-         style="stroke-width:0.26458335">Rejends</tspan></text>
+         style="stroke-width:0.264583">Legend</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444447px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="-11.247547"
        y="-363.60941"
        id="text1693"><tspan
@@ -1368,10 +1368,10 @@
          id="tspan1691"
          x="-11.247547"
          y="-363.60941"
-         style="font-size:5.64444447px;stroke-width:0.26458335">Installation document</tspan></text>
+         style="font-size:5.64444px;stroke-width:0.264583">Installation document</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444447px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="-11.247547"
        y="-348.26358"
        id="text1693-6"><tspan
@@ -1379,7 +1379,7 @@
          id="tspan1691-4"
          x="-11.247547"
          y="-348.26358"
-         style="font-size:5.64444447px;stroke-width:0.26458335">Strage where stores Drivers</tspan></text>
+         style="font-size:5.64444px;stroke-width:0.264583">Strage where stores Drivers</tspan></text>
     <g
        id="g2721"
        transform="translate(57.743167,8.3221621)">
@@ -1988,7 +1988,7 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="-11.649935"
        y="-334.66788"
        id="text1693-6-2"><tspan
@@ -1996,7 +1996,7 @@
          id="tspan1691-4-9"
          x="-11.649935"
          y="-334.66788"
-         style="font-size:5.64444494px;stroke-width:0.26458335">Relationship of links</tspan></text>
+         style="font-size:5.64444px;stroke-width:0.264583">Relationship of links</tspan></text>
   </g>
   <style
      id="style15356"
