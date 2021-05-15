@@ -20,7 +20,9 @@
     "window.restoreWindows": "none",
     "workbench.list.openMode": "doubleClick",
     "workbench.startupEditor": "newUntitledFile",
-    
+    "editor.insertSpaces": true, // <- defaulst as true
+    "extensions.ignoreRecommendations": true,
+
     // Dummy
-    "dummy":0,
+    "dummy": 0,
 }
