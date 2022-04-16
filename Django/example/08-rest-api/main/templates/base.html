@@ -1,0 +1,87 @@
+{% load i18n static %}
+<!DOCTYPE html>{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+{% block extra_css %}{% endblock %}
+<title>{% block title %}My books{% endblock %}</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand flex-md-row navbar-dark bg-dark">
+    <div class="container justify-content-between">
+      <a href="/" class="navbar-brand">書籍ライブラリ</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {# ドロップダウンの実装方法は右参照 https://getbootstrap.jp/docs/5.0/components/navbar/#nav #}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuBooks" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            書籍
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuBooks">
+            <li><a class="dropdown-item" href="/">書籍の一覧</a></li>
+            <li><a class="dropdown-item" href="{% url 'editors:list' %}">編集者の一覧</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-md-2">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuAccounts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {# ユーザーがログインしているかどうかは、`user.is_authenticated` で判定できる #}
+            {# https://docs.djangoproject.com/en/4.0/ref/contrib/auth/#django.contrib.auth.models.User.is_authenticated #}
+            {% if user.is_authenticated %}
+            {# ユーザー名は、`user.username` で取得できる #}
+            {# https://docs.djangoproject.com/en/4.0/ref/contrib/auth/#django.contrib.auth.models.User.username #}
+            {{ user.username }}
+            {% else %}
+            ログアウト中
+            {% endif %}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAccounts">
+            <li>
+              <a class="dropdown-item" href="{% url 'accounts:list' %}">ユーザーの一覧</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+              <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">ログアウト</button>
+            </li>
+            {% endif %}
+          </ul>
+        </li>
+        {% if not user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}">ユーザー登録</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <!-- ログアウトを確認するモーダルダイアログ -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">ログアウト確認</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>ログアウトしますか？</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+          <a class="btn btn-primary" href="{% url 'accounts:logout' %}" role="button">ログアウト</a> {# `<a>` タグをボタンの見た目にする方法は右参照 https://getbootstrap.jp/docs/5.0/components/buttons/#button-tags #}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/utility.js' %}"></script>
+{% block scripts %}
+  {{ scripts }}
+{% endblock %}
+</body>
+</html>

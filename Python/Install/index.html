@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pythonのインストール</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 11px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="python%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab">Pythonのインストール</h1>
+<p>インストーラを実行するだけ</p>
+<h1 id="vs-code-%e4%b8%8a%e3%81%ae%e9%96%8b%e7%99%ba%e7%92%b0%e5%a2%83%e3%82%92%e4%bd%9c%e3%82%8b">VS Code 上の開発環境を作る</h1>
+<h2 id="python-%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e5%a0%b4%e6%89%80%e3%82%92%e3%83%a1%e3%83%a2%e3%82%8b">Python のインストール場所をメモる</h2>
+<p>コマンドプロンプトを開いて <code>py</code> 。Pythonターミナルが起動する<br>
+起動したPythonターミナル内で、以下を入力する</p>
+<pre><code><div>import sys
+sys.path
+</div></code></pre>
+<p>Pythonのインストール場所情報が出力される<br>
+以下のように沢山場所が表示されるけれど、<code>～python\\python37</code>迄は共通のハズ。<br>
+これをメモしておく。</p>
+<pre><code><div>['', 'C:\\Users\\&lt;username&gt;\\AppData\\Local\\Programs\\Python\\Python37\\python37.zip', 'C:\\Users\\&lt;username&gt;\\AppData\\Local\\
+Programs\\Python\\Python37\\DLLs', 'C:\\Users\\&lt;username&gt;\\AppData\\Local\\Programs\\Python\\Python37\\lib', 'C:\\Users\\&lt;username&gt;\\
+AppData\\Local\\Programs\\Python\\Python37', 'C:\\Users\\&lt;username&gt;\\AppData\\Local\\Programs\\Python\\Python37\\lib\\s
+ite-packages']
+</div></code></pre>
+<h2 id="vs-code-%e7%94%a8%e6%8b%a1%e5%bc%b5%e6%a9%9f%e8%83%bd-%22python%22-%e3%82%92%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b"><code>VS Code 用拡張機能 &quot;Python&quot;</code> をインストールする</h2>
+<p>VS Code を起動する。<br>
+適当なファイルを新規作成して、<code>～.py</code> の拡張子で保存する。<br>
+すると画面右下に、以下のポップアップが出現する。</p>
+<p><img src="assets/images/2018-10-20-17-06-54.png" alt=""></p>
+<p><code>インストール</code> をクリック。
+サイドバーに拡張機能が表示され、以下画面のように <code>Python</code> の項目が <code>インストールしています</code> になる。</p>
+<p><img src="assets/images/2018-10-20-17-10-45.png" alt=""></p>
+<p>インストールが完了すると、<code>インストールしています</code> から <code>再読込み</code> に変化する。</p>
+<p><img src="assets/images/2018-10-20-17-12-19.png" alt=""></p>
+<p><code>再読込み</code> をクリック。</p>
+<h2 id="linter-pylint%e3%82%92%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b">Linter <code>Pylint</code>をインストールする</h2>
+<p><strong>&lt;!Caution!&gt;</strong><br>
+PCがプロキシ環境下の場合は以下を確認します。<br>
+VS Code 内の Settings.json で、以下のようなプロキシ設定がされている事を確認します。</p>
+<pre><code><div>    &quot;http.proxy&quot;: &quot;http://&lt;ProxyID&gt;:&lt;ProxyPassword&gt;@&lt;ProxyURI&gt;:&lt;PortNo&gt;&quot;,
+    &quot;http.proxyStrictSSL&quot;: false
+</div></code></pre>
+<p><strong>&lt;/!Caution!&gt;</strong></p>
+<p>VS Code 用拡張機能<code>Python</code>のインストールが完了して再読込みすると、<br>
+画面右下に以下のポップアップが出現する。</p>
+<p><img src="assets/images/2018-10-20-17-23-48.png" alt=""></p>
+<p><code>Install</code> をクリック。</p>
+<p>画面左下に以下警告が表示されることがある。</p>
+<p><img src="assets/images/2018-10-20-17-25-54.png" alt=""></p>
+<p>警告をクリックすると、画面上部に以下選択肢が表示される。</p>
+<p><img src="assets/images/2018-10-20-17-27-15.png" alt=""></p>
+<p>Pythonインストールにメモしたディレクトリの方の <code>python.exe</code> を選択する。<br>
+もう1度画面右下に <code>Linter pylint is not installed.</code> が表示されるので、<code>Install</code> をクリックする。</p>
+<p>ターミナルが起動し、<code>Pylint</code>をインストールするコマンドが実行される。<br>
+以下は実行結果例。</p>
+<pre><code><div>C:\Users\&lt;username&gt;\Desktop\test&gt;C:/Users/&lt;username&gt;/AppData/Local/Programs/Python/Python37/python.exe -m pip install -U pylint --user
+Collecting pylint
+  Downloading https://files.pythonhosted.org/packages/6e/c2/1e97c238877b6a86562d32297eb33a6670b6220e8ec0ca85f67b66dc893f/pylint-2.1.1-py3-none-any.whl (737kB)
+    100% |████████████████████████████████| 747kB 867kB/s
+Collecting colorama; sys_platform == &quot;win32&quot; (from pylint)
+  Downloading https://files.pythonhosted.org/packages/0a/93/6e8289231675d561d476d656c2ee3a868c1cca207e16c118d4503b25e2bf/colorama-0.4.0-py2.py3-none-any.whl
+Collecting astroid&gt;=2.0.0 (from pylint)
+  Downloading https://files.pythonhosted.org/packages/19/92/6f6d3591c429dbdb31c18d8476ba1af08d5973d7cc09f66346109e9de7fb/astroid-2.0.4-py3-none-any.whl (172kB)
+    100% |████████████████████████████████| 174kB 745kB/s
+Collecting isort&gt;=4.2.5 (from pylint)
+  Downloading https://files.pythonhosted.org/packages/1f/2c/22eee714d7199ae0464beda6ad5fedec8fee6a2f7ffd1e8f1840928fe318/isort-4.3.4-py3-none-any.whl (45kB)
+    100% |████████████████████████████████| 51kB 707kB/s
+Collecting mccabe (from pylint)
+  Downloading https://files.pythonhosted.org/packages/87/89/479dc97e18549e21354893e4ee4ef36db1d237534982482c3681ee6e7b57/mccabe-0.6.1-py2.py3-none-any.whl
+Collecting wrapt (from astroid&gt;=2.0.0-&gt;pylint)
+  Downloading https://files.pythonhosted.org/packages/a0/47/66897906448185fcb77fc3c2b1bc20ed0ecca81a0f2f88eda3fc5a34fc3d/wrapt-1.10.11.tar.gz
+Collecting lazy-object-proxy (from astroid&gt;=2.0.0-&gt;pylint)
+  Downloading https://files.pythonhosted.org/packages/55/08/23c0753599bdec1aec273e322f277c4e875150325f565017f6280549f554/lazy-object-proxy-1.3.1.tar.gz
+Collecting six (from astroid&gt;=2.0.0-&gt;pylint)
+  Downloading https://files.pythonhosted.org/packages/67/4b/141a581104b1f6397bfa78ac9d43d8ad29a7ca43ea90a2d863fe3056e86a/six-1.11.0-py2.py3-none-any.whl
+Installing collected packages: colorama, wrapt, lazy-object-proxy, six, astroid, isort, mccabe, pylint
+  Running setup.py install for wrapt ... done
+  Running setup.py install for lazy-object-proxy ... done
+  The script isort.exe is installed in 'C:\Users\&lt;username&gt;\AppData\Roaming\Python\Python37\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  The scripts epylint.exe, pylint.exe, pyreverse.exe and symilar.exe are installed in 'C:\Users\&lt;username&gt;\AppData\Roaming\Python\Python37\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed astroid-2.0.4 colorama-0.4.0 isort-4.3.4 lazy-object-proxy-1.3.1 mccabe-0.6.1 pylint-2.1.1 six-1.11.0 wrapt-1.10.11
+You are using pip version 10.0.1, however version 18.1 is available.
+You should consider upgrading via the 'python -m pip install --upgrade pip' command.
+
+</div></code></pre>
+<p>警告 <code>which is not on PATH</code> が発生した場合は、以下の方法で Path を追加する。</p>
+<p>Winの場合、
+[マイコンピューターを右クリック]→[プロパティ]→[詳細設定]→[環境変数]
+のところで、  変数 <code>PYTHONPATH</code> を編集する。(変数 <code>PYTHONPATH</code> が存在しなければ、追加する。)<br>
+以下が例。<code>変数値(V):</code> に、警告で言われた、
+<code>C:\Users\&lt;username&gt;\AppData\Roaming\Python\Python37\Scripts</code> を設定している。</p>
+<p><img src="assets/images/2018-10-20-18-22-46.png" alt=""></p>
+<h1 id="optional-%e8%bf%bd%e5%8a%a0%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e3%82%92%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b">(Optional) 追加パッケージをインストールする</h1>
+<p>コマンドプロンプト(VS Codeのターミナルでもいい)で、<code>pip install &lt;package_name&gt;</code> を実行する。<br>
+以下は <code>lxml</code> をインストールする例。</p>
+<pre><code><div>py -m pip install lxml
+</div></code></pre>
+<p>PCがプロキシ環境下の場合は以下のコマンド。</p>
+<pre><code><div>py -m pip install lxml --proxy=&lt;ProxyID&gt;:&lt;ProxyPassword&gt;@&lt;ProxyURI&gt;:&lt;PortNo&gt;
+</div></code></pre>
+
+    </body>
+    </html>

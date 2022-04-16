@@ -1,0 +1,15 @@
+{
+  "name": "007-evaluate-webdrivererror",
+  "version": "1.0.0",
+  "description": "https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_ThenableWebDriver.html  \r ↑ Interface ThenableWebDriver の説明↑ では time out 時に TypeError が throw されるとあるが、  \r 実際は`Class TimeoutError`(<- `Class WebDriverError` の sub class)。  \r なのでこのエラーを判定を判定する方法は ↓↓ になる",
+  "main": "main.js",
+  "dependencies": {
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

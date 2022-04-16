@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+<div class="mb-3">
+    
+    {{ obj_field.label_tag}}{% if obj_field.field.required %} ※{% endif %}{# フィールドが入力必須フィールドなら「※」を表示 #}
+    {% if str_help_message %}<i title="{{str_help_message}}"> ？</i>{% endif %}{# `str_help_message` を定義している場合は「？」を表示してマウスオーバー時にポップアップで表示 #}
+    
+    {% if obj_field.errors %}{# `errors` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/forms/api/ #}
+        
+    {# django-widget-tweaks の `add_class` を利用してクラスを追加 #}
+    {# https://pypi.org/project/django-widget-tweaks/ #}
+    {{ obj_field | add_class:"form-control is-invalid"}}
+    {# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
+    {# `is-invalid` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+    
+    {% for errorObj in obj_field.errors %}
+    <div class="invalid-feedback">{# `invalid-feedback` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+        {{ errorObj | escape }}{# `escape` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#escape #}
+    </div>
+    {% endfor %}
+
+    {% else %}
+    {{ obj_field | add_class:"form-control"}}{# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
+    {% endif %}
+
+</div>

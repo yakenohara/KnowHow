@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chart</title>
+
+    <!-- D3.js -->
+    <!-- Library released under BSD license. Copyright 2017 Mike Bostock.  -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@5.4.0/dist/d3.min.js"></script>
+
+    <!-- C3.js -->
+    <!-- Released under the MIT license. Copyright (c) 2013 Masayuki Tanaka -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.2/c3.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.2/c3.min.js"></script>
+
+  </head>
+  <body>
+    <div id="chart"></div>
+
+    <script>
+      try {
+
+        //X軸調整用
+        var minOfX = 0;
+        var maxOfX = 330;
+        var tickOrderOfX = 10;
+
+        //Y軸調整用
+        var minOfY = 0;
+        var maxOfY = 500;
+        var tickOrderOfY = 50;
+
+        //軸調整用共通関数
+        function getTickArr(min, max, order){
+          var arr = new Array();
+          for (i = min ; i < max ; i += order){
+            arr.push(i);
+          }
+          return arr;
+        }
+
+        var chart = c3.generate({
+
+          data: {
+            x: 'x',
+            rows: [
+              ['x', 'data1', 'data2'],
+              [30, 30, 130],
+              [50, 200, 300],
+              [100, 100, 200],
+              [230, 400, 300],
+              [300, 150, 250],
+              [310, 250, 450],
+            ],
+            onmouseover: function (d){this.ygrids.add(d);},
+            onmouseout: function (d){this.ygrids.remove(d);},
+          },
+
+          axis: {
+            x: {
+              label:'X-label',
+              tick: {
+                values: getTickArr(minOfX,maxOfX,tickOrderOfX)
+              },
+              min:minOfX,
+              max:maxOfX,
+              padding:0
+            },
+            y:{
+              label:'Y-label',
+              tick: {
+                values: getTickArr(minOfY,maxOfY,tickOrderOfY)
+              },
+              min:minOfY,
+              max:maxOfY,
+              padding:0
+            }
+          }
+
+        });
+
+      } catch (error) { throw error; }
+    </script>
+
+  </body>
+</html>

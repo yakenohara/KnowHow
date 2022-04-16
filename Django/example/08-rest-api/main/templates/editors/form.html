@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}編集者の{% if object %}編集{% else %}追加{% endif %}{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 mb-5 border-bottom">編集者の{% if object %}編集{% else %}追加{% endif %}</h4>
+    <form method="post">
+      {% csrf_token %}{# Cross Site Request Forgery protection https://docs.djangoproject.com/en/4.0/ref/csrf/ #}
+      
+      {# note #}
+      {# `field=form.name` の `=` にはスペースをいれてはならない #}
+      {% include "form.html" with obj_field=form.name str_help_message="編集者の名前を入力します。"%}
+      {% include "form.html" with obj_field=form.sex str_help_message="任意で編集者の性別を入力します。"%}
+      
+      <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+          <button type="submit" class="btn btn-primary">登録</button>
+        </div>
+      </div>
+    </form>
+    <a href="{% url 'editors:list' %}" class="btn btn-secondary btn-sm">戻る</a>
+{% endblock content %}

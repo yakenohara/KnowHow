@@ -1,0 +1,16 @@
+<inkscape-extension>
+    <_name>Show methods</_name>
+    <id>extension.example.05</id>
+	<dependency type="executable" location="extensions">show-methods.py</dependency>
+	<dependency type="executable" location="extensions">inkex.py</dependency>
+	<dependency type="executable" location="extensions">simplestyle.py</dependency>
+    <effect>
+		<object-type>text</object-type>
+                <effects-menu>
+                        <submenu _name="User Extension 1"/>
+                </effects-menu>
+    </effect>
+    <script>
+        <command reldir="extensions" interpreter="python">show-methods.py</command>
+    </script>
+</inkscape-extension>

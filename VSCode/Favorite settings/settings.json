@@ -1,0 +1,28 @@
+{
+    // Markdown All in One
+    "markdown.extension.print.absoluteImgPath": false,
+    
+    // Paste Image
+    "pasteImage.path": "${currentFileDir}/assets/images",
+
+    // Git
+    "git.ignoreMissingGitWarning": true,
+    
+    // General
+    "debug.console.fontSize" : 11,
+    "editor.fontSize": 11,
+    "editor.mouseWheelZoom": true,
+    "files.autoGuessEncoding": true,
+    "files.hotExit": "off",
+    "markdown.preview.fontSize": 11,
+    "terminal.integrated.fontSize": 11,
+    "update.showReleaseNotes": false,
+    "window.restoreWindows": "none",
+    "workbench.list.openMode": "doubleClick",
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.insertSpaces": true, // <- defaulst as true
+    "extensions.ignoreRecommendations": true,
+
+    // Dummy
+    "dummy": 0,
+}

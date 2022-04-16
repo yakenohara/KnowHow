@@ -1,0 +1,727 @@
+/*
+Theme Name: Path-Child
+Template: path
+*/
+
+@import url('../path/style.css');
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+
+* {
+    font-family:
+    "メイリオ",
+    Meiryo,
+    "ＭＳ Ｐゴシック",
+    sans-serif!important;
+    -webkit-font-smoothing: antialiased;
+}
+img{
+    -ms-interpolation-mode: bicubic; /* IEで画像縮小時の劣化防止 */
+}
+
+pre, textarea {
+    font-family: "Source Code Pro", sans-serif;
+}
+
+/*
+Bootstrap 風に簡単に見出しを装飾
+http://no-delay.com/blog/?p=450
+----------------------------------------------------------- */
+
+/* 基礎罫線 */
+.border {
+    color: #333333;
+    margin: 0 0 20px;
+    padding: 13px 20px;
+    background-color: #ffffff;
+}
+
+.gray {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #dddddd;
+}
+
+.blue {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #3B5998;
+}
+
+.green {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #60792F;
+}
+
+.red {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #E93832;
+}
+
+.brown {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #BF594D;
+}
+
+.clearbrown {
+    color: #9E7D5C;
+    background-color: #ffffff;
+    border-color: #F8F5ED;
+}
+
+.lightbrown {
+    color: #9E7D5C;
+    background-color: #ffffff;
+    border-color: #9E7D5C;
+}
+
+.sand {
+    color: #9E7D5C;
+    background-color: #F8F5ED;
+    border-color: #9E7D5C;
+}
+
+.orange {
+    color: #FF7900;
+    background-color: #ffffff;
+    border-color: #FF7900;
+}
+
+.lightblue {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #A2BCD5;
+}
+
+.facebook {
+    color: #ffffff;
+    background-color: #3B5998;
+    border-color: #6D84B4;
+}
+
+.army {
+    color: #60792F;
+    background-color: #E4F0CC;
+    border-color: #60792F;
+}
+
+.kazan {
+    color: #333333;
+    background-color: #FBE1E2;
+    border-color: #BF594D;
+}
+
+.azuki {
+    color: #6A4C4C;
+    background-color: #EBE0DE;
+    border-color: #B9A6AA;
+}
+
+.vivi {
+    color: #ffffff;
+    background-color: #553F41;
+    border-color: #FF0101;
+}
+
+.water {
+    color: #3B65C9;
+    background-color: #E4E9EC;
+    border-color: #3B65C9;
+}
+
+.voodoo {
+    color: #ffffff;
+    background-color: #474747;
+    border-color: #76B900;
+}
+
+.wedgwood {
+    color: #627997;
+    background-color: #F0F2F2;
+    border-color: #A2BCD5;
+}
+
+.onsen {
+    color: #222250;
+    background-color: #E6F2F8;
+    border-color: #358FBC;
+}
+
+.lightblack {
+    color: #ffffff;
+    background-color: #474747;
+    border-color: #818282;
+}
+
+.dark {
+    color: #ffffff;
+    background-color: #396178;
+    border-color: #5BA1C9;
+}
+
+.lightorange {
+    color: #333333;
+    background-color: #ffffff;
+    border-top-color: #FFCC66;
+    border-bottom-color: #FFCC66;
+    border-right-color: #FF9933;
+    border-left-color: #FF9933;
+}
+
+.gold {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #AF903F;
+}
+
+.goldrash {
+    color: #ffffff;
+    background-color: #AF903F;
+    border-color: #B9A6AA;
+}
+
+.cleargreen {
+    color: #8CC220;
+    background-color: #ffffff;
+    border-color: #EDF5DC;
+}
+
+.lightgreen {
+    color: #8CC220;
+    background-color: #ffffff;
+    border-color: #8CC220;
+}
+
+.osaka {
+    color: #8CC220;
+    background-color: #EDF5DC;
+    border-color: #8CC220;
+}
+
+.modern {
+    color: #333333;
+    background-color: #E4E9EC;
+    border-color: #cccccc;
+}
+
+/* 上線 */
+.topline {
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+.topline1 {
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+.topline2 {
+    border-top-width: 2px;
+    border-top-style: solid;
+}
+.topline3 {
+    border-top-width: 3px;
+    border-top-style: solid;
+}
+.topline4 {
+    border-top-width: 4px;
+    border-top-style: solid;
+}
+.topline5 {
+    border-top-width: 5px;
+    border-top-style: solid;
+}
+.topline6 {
+    border-top-width: 6px;
+    border-top-style: solid;
+}
+.topline7 {
+    border-top-width: 7px;
+    border-top-style: solid;
+}
+.topline-solid {
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+.topline1-solid {
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+.topline2-solid {
+    border-top-width: 2px;
+    border-top-style: solid;
+}
+.topline3-solid {
+    border-top-width: 3px;
+    border-top-style: solid;
+}
+.topline4-solid {
+    border-top-width: 4px;
+    border-top-style: solid;
+}
+.topline5-solid {
+    border-top-width: 5px;
+    border-top-style: solid;
+}
+.topline6-solid {
+    border-top-width: 6px;
+    border-top-style: solid;
+}
+.topline7-solid {
+    border-top-width: 7px;
+    border-top-style: solid;
+}
+.topline-dashed {
+    border-top-width: 1px;
+    border-top-style: dashed;
+}
+.topline1-dashed {
+    border-top-width: 1px;
+    border-top-style: dashed;
+}
+.topline2-dashed {
+    border-top-width: 2px;
+    border-top-style: dashed;
+}
+.topline3-dashed {
+    border-top-width: 3px;
+    border-top-style: dashed;
+}
+.topline4-dashed {
+    border-top-width: 4px;
+    border-top-style: dashed;
+}
+.topline5-dashed {
+    border-top-width: 5px;
+    border-top-style: dashed;
+}
+.topline6-dashed {
+    border-top-width: 6px;
+    border-top-style: dashed;
+}
+.topline7-dashed {
+    border-top-width: 7px;
+    border-top-style: dashed;
+}
+.topline-dotted {
+    border-top-width: 1px;
+    border-top-style: dotted;
+}
+.topline1-dotted {
+    border-top-width: 1px;
+    border-top-style: dotted;
+}
+.topline2-dotted {
+    border-top-width: 2px;
+    border-top-style: dotted;
+}
+.topline3-dotted {
+    border-top-width: 3px;
+    border-top-style: dotted;
+}
+.topline4-dotted {
+    border-top-width: 4px;
+    border-top-style: dotted;
+}
+.topline5-dotted {
+    border-top-width: 5px;
+    border-top-style: dotted;
+}
+.topline6-dotted {
+    border-top-width: 6px;
+    border-top-style: dotted;
+}
+.topline7-dotted {
+    border-top-width: 7px;
+    border-top-style: dotted;
+}
+
+/* 下線 */
+.bottomline {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+.bottomline1 {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+.bottomline2 {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+.bottomline3 {
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+}
+.bottomline4 {
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+}
+.bottomline5 {
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+}
+.bottomline6 {
+    border-bottom-width: 6px;
+    border-bottom-style: solid;
+}
+.bottomline7 {
+    border-bottom-width: 7px;
+    border-bottom-style: solid;
+}
+.bottomline-solid {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+.bottomline1-solid {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+.bottomline2-solid {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+.bottomline3-solid {
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+}
+.bottomline4-solid {
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+}
+.bottomline5-solid {
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+}
+.bottomline6-solid {
+    border-bottom-width: 6px;
+    border-bottom-style: solid;
+}
+.bottomline7-solid {
+    border-bottom-width: 7px;
+    border-bottom-style: solid;
+}
+.bottomline-dashed {
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+}
+.bottomline1-dashed {
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+}
+.bottomline2-dashed {
+    border-bottom-width: 2px;
+    border-bottom-style: dashed;
+}
+.bottomline3-dashed {
+    border-bottom-width: 3px;
+    border-bottom-style: dashed;
+}
+.bottomline4-dashed {
+    border-bottom-width: 4px;
+    border-bottom-style: dashed;
+}
+.bottomline5-dashed {
+    border-bottom-width: 5px;
+    border-bottom-style: dashed;
+}
+.bottomline6-dashed {
+    border-bottom-width: 6px;
+    border-bottom-style: dashed;
+}
+.bottomline7-dashed {
+    border-bottom-width: 7px;
+    border-bottom-style: dashed;
+}
+.bottomline-dotted {
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+}
+.bottomline1-dotted {
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+}
+.bottomline2-dotted {
+    border-bottom-width: 2px;
+    border-bottom-style: dotted;
+}
+.bottomline3-dotted {
+    border-top-width: 3px;
+    border-bottom-style: dotted;
+}
+.bottomline4-dotted {
+    border-bottom-width: 4px;
+    border-bottom-style: dotted;
+}
+.bottomline5-dotted {
+    border-bottom-width: 5px;
+    border-bottom-style: dotted;
+}
+.bottomline6-dotted {
+    border-bottom-width: 6px;
+    border-bottom-style: dotted;
+}
+.bottomline7-dotted {
+    border-bottom-width: 7px;
+    border-bottom-style: dotted;
+}
+
+/* 左線 */
+.leftline {
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+.leftline1 {
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+.leftline2 {
+    border-left-width: 2px;
+    border-left-style: solid;
+}
+.leftline3 {
+    border-left-width: 3px;
+    border-left-style: solid;
+}
+.leftline4 {
+    border-left-width: 4px;
+    border-left-style: solid;
+}
+.leftline5 {
+    border-left-width: 5px;
+    border-left-style: solid;
+}
+.leftline6 {
+    border-left-width: 6px;
+    border-left-style: solid;
+}
+.leftline7 {
+    border-left-width: 7px;
+    border-left-style: solid;
+}
+.leftline-solid {
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+.leftline1-solid {
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+.leftline2-solid {
+    border-left-width: 2px;
+    border-left-style: solid;
+}
+.leftline3-solid {
+    border-left-width: 3px;
+    border-left-style: solid;
+}
+.leftline4-solid {
+    border-left-width: 4px;
+    border-left-style: solid;
+}
+.leftline5-solid {
+    border-left-width: 5px;
+    border-left-style: solid;
+}
+.leftline6-solid {
+    border-left-width: 6px;
+    border-left-style: solid;
+}
+.leftline7-solid {
+    border-left-width: 7px;
+    border-left-style: solid;
+}
+.leftline-dashed {
+    border-left-width: 1px;
+    border-left-style: dashed;
+}
+.leftline1-dashed {
+    border-left-width: 1px;
+    border-left-style: dashed;
+}
+.leftline2-dashed {
+    border-left-width: 2px;
+    border-left-style: dashed;
+}
+.leftline3-dashed {
+    border-left-width: 3px;
+    border-left-style: dashed;
+}
+.leftline4-dashed {
+    border-left-width: 4px;
+    border-left-style: dashed;
+}
+.leftline5-dashed {
+    border-left-width: 5px;
+    border-left-style: dashed;
+}
+.leftline6-dashed {
+    border-left-width: 6px;
+    border-left-style: dashed;
+}
+.leftline7-dashed {
+    border-left-width: 7px;
+    border-left-style: dashed;
+}
+.leftline-dotted {
+    border-left-width: 1px;
+    border-left-style: dotted;
+}
+.leftline1-dotted {
+    border-left-width: 1px;
+    border-left-style: dotted;
+}
+.leftline2-dotted {
+    border-left-width: 2px;
+    border-left-style: dotted;
+}
+.leftline3-dotted {
+    border-left-width: 3px;
+    border-left-style: dotted;
+}
+.leftline4-dotted {
+    border-left-width: 4px;
+    border-left-style: dotted;
+}
+.leftline5-dotted {
+    border-left-width: 5px;
+    border-left-style: dotted;
+}
+.leftline6-dotted {
+    border-left-width: 6px;
+    border-left-style: dotted;
+}
+.leftline7-dotted {
+    border-left-width: 7px;
+    border-left-style: dotted;
+}
+
+/* 右線 */
+.rightline {
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+.rightline1 {
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+.rightline2 {
+    border-right-width: 2px;
+    border-right-style: solid;
+}
+.rightline3 {
+    border-right-width: 3px;
+    border-right-style: solid;
+}
+.rightline4 {
+    border-right-width: 4px;
+    border-right-style: solid;
+}
+.rightline5 {
+    border-right-width: 5px;
+    border-right-style: solid;
+}
+.rightline6 {
+    border-right-width: 6px;
+    border-right-style: solid;
+}
+.rightline7 {
+    border-right-width: 7px;
+    border-right-style: solid;
+}
+.rightline-solid {
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+.rightline1-solid {
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+.rightline2-solid {
+    border-right-width: 2px;
+    border-right-style: solid;
+}
+.rightline3-solid {
+    border-right-width: 3px;
+    border-right-style: solid;
+}
+.rightline4-solid {
+    border-right-width: 4px;
+    border-right-style: solid;
+}
+.rightline5-solid {
+    border-right-width: 5px;
+    border-right-style: solid;
+}
+.rightline6-solid {
+    border-right-width: 6px;
+    border-right-style: solid;
+}
+.rightline7-solid {
+    border-right-width: 7px;
+    border-right-style: solid;
+}
+.rightline-dashed {
+    border-right-width: 1px;
+    border-right-style: dashed;
+}
+.rightline1-dashed {
+    border-right-width: 1px;
+    border-right-style: dashed;
+}
+.rightline2-dashed {
+    border-right-width: 2px;
+    border-right-style: dashed;
+}
+.rightline3-dashed {
+    border-right-width: 3px;
+    border-right-style: dashed;
+}
+.rightline4-dashed {
+    border-right-width: 4px;
+    border-right-style: dashed;
+}
+.rightline5-dashed {
+    border-right-width: 5px;
+    border-right-style: dashed;
+}
+.rightline6-dashed {
+    border-right-width: 6px;
+    border-right-style: dashed;
+}
+.rightline7-dashed {
+    border-right-width: 7px;
+    border-right-style: dashed;
+}
+.rightline-dotted {
+    border-right-width: 1px;
+    border-right-style: dotted;
+}
+.rightline1-dotted {
+    border-right-width: 1px;
+    border-right-style: dotted;
+}
+.rightline2-dotted {
+    border-right-width: 2px;
+    border-right-style: dotted;
+}
+.rightline3-dotted {
+    border-right-width: 3px;
+    border-right-style: dotted;
+}
+.rightline4-dotted {
+    border-right-width: 4px;
+    border-right-style: dotted;
+}
+.rightline5-dotted {
+    border-right-width: 5px;
+    border-right-style: dotted;
+}
+.rightline6-dotted {
+    border-right-width: 6px;
+    border-right-style: dotted;
+}
+.rightline7-dotted {
+    border-right-width: 7px;
+    border-right-style: dotted;
+}
