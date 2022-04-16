@@ -17,19 +17,6 @@ class EditorSerializerForQueryString(serializers.Serializer):
     id = serializers.IntegerField(required = False)
     name = serializers.CharField(required = False)
 
-    # note
-    # `def create(self, validated_data):`, `def update(self, instance, validated_data):`
-    # https://www.django-rest-framework.org/tutorial/1-serialization/#creating-a-serializer-class
-    # インスタンス化したこのクラスの `.save()` method がコールされた際に呼ばれる。  
-    # このクラスの用途は、クエリ文字列に対してバリデーションをかけることだけなので、  
-    # `.save()` method がコールされることは考慮しない。
-    # その為、以下関数は両方ともなにもせずに None を返すこととする。
-    # (これらの関数がコールされること自体が運用上無い想定)  
-    def create(self, validated_data):
-        return None
-    def update(self, instance, validated_data):
-        return None
-
     def getQueryDictForFilter(self):
         dict_queryForFilter = {}
 
