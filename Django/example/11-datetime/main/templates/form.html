@@ -13,7 +13,7 @@
     {# `form-select` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/select/ #}
     {# `is-invalid` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
     {% elif obj_field.widget_type == 'date' %}
-    {{ obj_field | attr:"type:datetime-local" | add_class:"form-control is-invalid"}}
+    {{ obj_field | attr:"type:date" | add_class:"form-control is-invalid"}}
     {% else %}
     {{ obj_field | add_class:"form-control is-invalid"}}
     {# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
@@ -29,7 +29,7 @@
     {% if obj_field.widget_type == 'select' %}
     {{ obj_field | add_class:"form-select"}}
     {% elif obj_field.widget_type == 'date' %}
-    {{ obj_field | attr:"type:datetime-local" | add_class:"form-control"}}
+    {{ obj_field | attr:"type:date" | add_class:"form-control"}}
     {% else %}
     {{ obj_field | add_class:"form-control"}}
     {% endif %}
