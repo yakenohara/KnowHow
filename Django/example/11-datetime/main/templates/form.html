@@ -6,11 +6,18 @@
     
     {% if obj_field.errors %}{# `errors` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/forms/api/ #}
         
+    {% if obj_field.widget_type == 'select' %}{# `widget_type` の意味は右参照 https://docs.djangoproject.com/ja/4.0/ref/forms/api/#django.forms.BoundField.widget_type #}
     {# django-widget-tweaks の `add_class` を利用してクラスを追加 #}
     {# https://pypi.org/project/django-widget-tweaks/ #}
+    {{ obj_field | add_class:"form-select is-invalid"}}
+    {# `form-select` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/select/ #}
+    {# `is-invalid` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+    {% elif obj_field.widget_type == 'date' %}
+    {{ obj_field | attr:"type:datetime-local" | add_class:"form-control is-invalid"}}
+    {% else %}
     {{ obj_field | add_class:"form-control is-invalid"}}
     {# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
-    {# `is-invalid` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+    {% endif %}
     
     {% for errorObj in obj_field.errors %}
     <div class="invalid-feedback">{# `invalid-feedback` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
@@ -19,12 +26,10 @@
     {% endfor %}
 
     {% else %}
-    {% if obj_field.widget_type == 'select' %}{# `widget_type` の意味は右参照 https://docs.djangoproject.com/ja/4.0/ref/forms/api/#django.forms.BoundField.widget_type #}
-    {{ obj_field | add_class:"form-select"}}{# `form-select` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/select/ #}
+    {% if obj_field.widget_type == 'select' %}
+    {{ obj_field | add_class:"form-select"}}
     {% elif obj_field.widget_type == 'date' %}
     {{ obj_field | attr:"type:datetime-local" | add_class:"form-control"}}
-    {# attribute を変更する方法は右参照 https://pypi.org/project/django-widget-tweaks/ #}
-    {# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
     {% else %}
     {{ obj_field | add_class:"form-control"}}
     {% endif %}

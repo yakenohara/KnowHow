@@ -525,17 +525,50 @@ class EditorEditForm(forms.ModelForm):
 `{% include "form.html" with obj_field=form.sex ~` で `sex` フィールドオブジェクトを受け取る templates/form.html では以下の様に定義を変更する
  - 変更前
 ```html
+    {% if obj_field.errors %}{# `errors` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/forms/api/ #}
+        
+    {# django-widget-tweaks の `add_class` を利用してクラスを追加 #}
+    {# https://pypi.org/project/django-widget-tweaks/ #}
+    {{ obj_field | add_class:"form-control is-invalid"}}
+    {# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
+    {# `is-invalid` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+    
+    {% for errorObj in obj_field.errors %}
+    <div class="invalid-feedback">{# `invalid-feedback` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+        {{ errorObj | escape }}{# `escape` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#escape #}
+    </div>
+    {% endfor %}
+
     {% else %}
-    {{ obj_field | add_class:"form-control"}}{# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
+    {{ obj_field | add_class:"form-control"}}
     {% endif %}
 ```
  - 変更後
 ```html
-    {% else %}
+    {% if obj_field.errors %}{# `errors` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/forms/api/ #}
+        
     {% if obj_field.widget_type == 'select' %}{# `widget_type` の意味は右参照 https://docs.djangoproject.com/ja/4.0/ref/forms/api/#django.forms.BoundField.widget_type #}
-    {{ obj_field | add_class:"form-select"}}{# `form-select` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/select/ #}
+    {# django-widget-tweaks の `add_class` を利用してクラスを追加 #}
+    {# https://pypi.org/project/django-widget-tweaks/ #}
+    {{ obj_field | add_class:"form-select is-invalid"}}
+    {# `form-select` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/select/ #}
+    {# `is-invalid` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
     {% else %}
-    {{ obj_field | add_class:"form-control"}}{# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
+    {{ obj_field | add_class:"form-control is-invalid"}}
+    {# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
+    {% endif %}
+    
+    {% for errorObj in obj_field.errors %}
+    <div class="invalid-feedback">{# `invalid-feedback` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+        {{ errorObj | escape }}{# `escape` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#escape #}
+    </div>
+    {% endfor %}
+
+    {% else %}
+    {% if obj_field.widget_type == 'select' %}
+    {{ obj_field | add_class:"form-select"}}
+    {% else %}
+    {{ obj_field | add_class:"form-control"}}
     {% endif %}
     {% endif %}
 ```
