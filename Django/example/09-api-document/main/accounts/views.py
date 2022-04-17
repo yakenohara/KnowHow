@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
+from django.utils.timezone import make_aware
 from django.views.generic import CreateView, ListView, DeleteView
 
 from .forms import TokenEditForm
@@ -65,11 +66,11 @@ def createToken(request, pk):
 
             # 有効期限の設定
             if obj_token.expiration == TokenForRESTAPI.Expiration.ONE_WEEK:
-                obj_token.expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+                obj_token.expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
             elif obj_token.expiration == TokenForRESTAPI.Expiration.ONE_MONTH:
-                obj_token.expired_date = datetime.datetime.now() + relativedelta(months = 1) # 1 ヶ月加算
+                obj_token.expired_date = make_aware(datetime.datetime.now()) + relativedelta(months = 1) # 1 ヶ月加算
             elif obj_token.expiration == TokenForRESTAPI.Expiration.THREE_MONTHS:
-                obj_token.expired_date = datetime.datetime.now() + relativedelta(months = 3) # 3 ヶ月加算
+                obj_token.expired_date = make_aware(datetime.datetime.now()) + relativedelta(months = 3) # 3 ヶ月加算
             else:
                 obj_token.expired_date = None
 

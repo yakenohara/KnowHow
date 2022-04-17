@@ -9,13 +9,13 @@ from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from django.db.utils import OperationalError
 from django.test import TestCase
+from django.utils.timezone import make_aware
 
 from accounts.models import TokenForRESTAPI
 
 from common.const import INT_TIMES_OF_RETRYING_CAUSE_OF_DEADLOCK, STR_ATTRIBUTE_KEYWORD_FOR_TOKEN
 
 from editors.models import Editor
-from editors.serializer import EditorSerializerForQueryString
 from editors.views import makeDictFromEditors
 
 # Create your tests here.
@@ -625,7 +625,7 @@ class EditorCreateAPIViewTest(TestCase):
         self.client.force_login(obj_user)
         self.obj_token = TokenForRESTAPI.objects.create(
             user = obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
         )
 
     def test_001(self):
@@ -690,7 +690,7 @@ class EditorListAPIViewTest(TestCase):
         self.client.force_login(obj_user)
         self.obj_token = TokenForRESTAPI.objects.create(
             user = obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
         )
 
     def test_001(self):
@@ -741,7 +741,7 @@ class EditorUpdateAPIViewTest(TestCase):
         self.client.force_login(obj_user)
         self.obj_token = TokenForRESTAPI.objects.create(
             user = obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
         )
 
     def test_001(self):

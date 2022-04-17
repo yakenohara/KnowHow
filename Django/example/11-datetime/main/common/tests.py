@@ -9,6 +9,7 @@ from unittest import mock
 from django.contrib.auth.models import User
 from django.db.utils import OperationalError
 from django.test import TestCase
+from django.utils.timezone import make_aware
 
 from accounts.models import TokenForRESTAPI
 from editors.models import Editor
@@ -38,7 +39,7 @@ class TokenAuthenticationForRESTAPITest(TestCase):
         """
         obj_token = TokenForRESTAPI.objects.create(
             user = self.obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
         )
 
         obj_response = self.client.get('/api/v1/editors.json/', HTTP_AUTHORIZATION = f'{STR_ATTRIBUTE_KEYWORD_FOR_TOKEN} {obj_token.key}')
@@ -50,7 +51,7 @@ class TokenAuthenticationForRESTAPITest(TestCase):
         """
         obj_token = TokenForRESTAPI.objects.create(
             user = self.obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = -7) # 7 日減算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = -7) # 7 日減算
         )
 
         obj_response = self.client.get('/api/v1/editors.json/', HTTP_AUTHORIZATION = f'{STR_ATTRIBUTE_KEYWORD_FOR_TOKEN} {obj_token.key}')
@@ -196,7 +197,7 @@ class TokenAPIViewForCreationTest(TestCase):
         self.client.force_login(obj_user)
         self.obj_token = TokenForRESTAPI.objects.create(
             user = obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
         )
 
     def test_001(self):
@@ -371,7 +372,7 @@ class TokenAPIViewForListTest(TestCase):
         self.client.force_login(obj_user)
         self.obj_token = TokenForRESTAPI.objects.create(
             user = obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
         )
 
     def test_001(self):
@@ -429,7 +430,7 @@ class TokenAPIViewForUpdateTest(TestCase):
         self.client.force_login(obj_user)
         self.obj_token = TokenForRESTAPI.objects.create(
             user = obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
         )
         
         Editor.objects.update_or_create(
@@ -750,7 +751,7 @@ class TokenAPIViewForDeletionTest(TestCase):
         self.client.force_login(obj_user)
         self.obj_token = TokenForRESTAPI.objects.create(
             user = obj_user,
-            expired_date = datetime.datetime.now() + datetime.timedelta(days = 7) # 7 日加算
+            expired_date = make_aware(datetime.datetime.now()) + datetime.timedelta(days = 7) # 7 日加算
         )
 
         Editor.objects.update_or_create(
