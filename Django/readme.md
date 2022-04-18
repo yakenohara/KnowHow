@@ -3809,11 +3809,117 @@ class InvalidReasonSerializerForDoc(serializers.Serializer):
 
 # 単体テスト
 
+Djang の単体テストフレームワークは、Python の [unittest フレームワーク](https://docs.python.org/ja/3/library/unittest.html#) がベースになっている。  
+
+accounts/urls.py -> `CreateView.as_view(~)` に対するテストを例に、内容を説明する。  
+
+ - accounts/urls.py (テスト対象)
+```python
+    path('signup/', CreateView.as_view(
+        template_name = 'accounts/form.html',
+        form_class = UserCreationForm,
+        success_url = '/',
+    ), name='signup'),
 ```
-python manage.py test -v2 accounts
-coverage run --source=. manage.py test accounts common editors
-coverage html
+
+上記コードでは、以下 2 点の観点でテストを実施したい。  
+ 1. `/accounts/signup/` にアクセスした際に使用されるテンプレートファイルが `accounts/form.html` であること。
+ 2. `UserCreationForm` クラスを使用してユーザー作成し、成功したら `/` へリダイレクトされること。
+
+テストを実装するためには、以下の要点をおさえたテストコードを実装する。
+
+ 1. [テスト内容を記載するファイルは、`test` のキーワードで始まるファイル内に記載していく。](https://docs.djangoproject.com/ja/4.0/intro/tutorial05/#create-a-test-to-expose-the-bug)  
+ 2. [`django.test.TestCase` を継承したクラスを定義し、そのクラス内にテスト内容を定義する](https://docs.djangoproject.com/ja/4.0/topics/testing/tools/#django.test.TestCase)  
+ 3. [各テストは名前が `test` で始まるメソッドで実装する](https://docs.python.org/ja/3/library/unittest.html#organizing-test-code)  
+
+上記テスト観点と実装の要点を踏まえると、テスト内容は以下のようになる。  
+
+ - editors/tests.py  
+```python
+class CreateViewTest(TestCase):
+    """ CreateView """
+
+    def test_001(self):
+        """
+        使用しているテンプレートファイルが正しいかどうかを確認する
+        """
+
+        # /accounts/create にアクセス
+        obj_response =  self.client.get('/accounts/signup/')
+        
+        # 使用しているテンプレートファイルが 'accounts/form.html' であるかどうかをチェックする
+        self.assertTemplateUsed(obj_response, 'accounts/form.html')
+
+    def test_002(self):
+        """
+        アカウント作成に成功した時に、'/' へリダイレクトされることを確認する
+        """
+        dict_toCreateAccount = {
+            'username': 'user1',
+            'password1': 'supersuper', # パスワードの設定
+            'password2': 'supersuper', # 確認用パスワードの設定
+        }
+        obj_response = self.client.post('/accounts/signup/', data = dict_toCreateAccount)
+        self.assertEqual(obj_response.status_code, 302)
+        self.assertEqual(obj_response.url, '/')
 ```
+
+そして、テストの実行は以下のようにする
+
+## Windows の場合
+
+```terminal
+# ※manage.py が存在するディレクトリに移動しておく
+D:\yakenohara\KnowHow\Django\example\10-unit-test\main>"D:\pyvenv\Scripts\python.exe" manage.py test -v2 accounts
+Found 2 test(s).
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Operations to perform:
+  Synchronize unmigrated apps: django_bootstrap5, drf_spectacular, messages, rest_framework, staticfiles, widget_tweaks
+  Apply all migrations: accounts, admin, auth, contenttypes, editors, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying accounts.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying editors.0001_initial... OK
+  Applying editors.0002_alter_editor_name... OK
+  Applying editors.0003_editor_sex... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+test_001 (accounts.tests.CreateViewTest)
+使用しているテンプレートファイルが正しいかどうかを確認する ... ok
+test_002 (accounts.tests.CreateViewTest)
+アカウント作成に成功した時に、'/' へリダイレクトされることを確認する ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.399s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+D:\yakenohara\KnowHow\Django\example\10-unit-test\main>
+```
+
+このテストは、VS Code を使用している場合は、PJ 配下に .vscode/launch.json を作成して、内容を以下の様にすることでデバッグ実行することもできる
+
+ - .vscode/launch.json  
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
@@ -3830,8 +3936,6 @@ coverage html
                 "test",
                 "-v2",
                 "accounts",
-                "common",
-                "editors",
             ],
             "django": true,
             "justMyCode": true
@@ -3839,3 +3943,52 @@ coverage html
     ]
 }
 ```
+
+また、テストカバレッジは以下のようにして取得できる
+
+```terminal
+D:\yakenohara\KnowHow\Django\example\10-unit-test\main>"D:\pyvenv\Scripts\coverage.exe" run --source=. manage.py test accounts
+Found 2 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.315s
+
+OK
+Destroying test database for alias 'default'...
+
+D:\yakenohara\KnowHow\Django\example\10-unit-test\main>"D:\pyvenv\Scripts\coverage.exe" html
+Wrote HTML report to htmlcov\index.html
+
+D:\yakenohara\KnowHow\Django\example\10-unit-test\main>
+```
+
+すると `htmlcov` フォルダが作成され、その中の `index.html` を Web ブラウザで開くと、以下のように各ファイルのカバレッジが取得できる。  
+
+![](assets/images/2022-04-18-17-31-27.png)  
+
+## Mac の場合
+
+todo
+
+## テストコードの実装
+
+この調子で、テストコードを実装していき、`python manage.py test -v2 [アプリ名]...` でテストを実行する。  
+各テストコードは、example/10-unit-test/main 配下に置いたが、使用している各コードの説明を以下にしておく。  
+
+| コード                    | 説明                                                                                                                                                                                                                                                                     |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `def setUp(self):`        | [各テストメソッドが実行される毎に直前に実行される](https://docs.python.org/ja/3/library/unittest.html#unittest.TestCase.setUp)                                                                                                                                           |
+| `self.assertTemplateUsed` | [使用しているテンプレートファイルが期待するテンプレートファイルと一致するかどうか確認する。第 3 引数に期待する http レスポンスコードを指定することができる。](https://docs.djangoproject.com/ja/4.0/topics/testing/tools/#django.test.SimpleTestCase.assertTemplateUsed) |
+| `self.assertEqual`        | [第 1 引数と第 2 引数が一致するかどうかを確認する。](https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertEqual)                                                                                                                                      |
+| `self.assertTrue`         | [`True` となることを確認する。](https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertTrue)                                                                                                                                                            |
+| `self.assertContains`     | [第 1 引数で指定した http レスポンスオブジェクトの中に、第 2 引数で指定した文字列が含まれるかどうかを確認する](https://docs.djangoproject.com/ja/4.0/topics/testing/tools/#django.test.SimpleTestCase.assertContains)                                                    |
+
+他に使用できる確認用メソッド (このメソッドのことを "アサーションメソッド" という) は以下で確認できる。  
+https://docs.python.org/ja/3/library/unittest.html#unittest.TestCase  
+https://docs.djangoproject.com/ja/4.0/topics/testing/tools/#assertions-1  
+
+## ここまでのソースコード
+
+この項で実装したソースコードを、example/09-api-document/main に置いた。 
