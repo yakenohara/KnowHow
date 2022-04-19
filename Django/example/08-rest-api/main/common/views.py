@@ -178,6 +178,6 @@ class TokenAPIViewForDeletion(TokenAPIView):
             return Response({}, status=status.HTTP_200_OK)
         
         # 削除対象オブジェクトが存在しない場合
-        str_errmsg = f'Specified Editor ID: {pk} not found.'
+        str_errmsg = f'Specified {self.model.__name__} ID: {pk} not found.'
         logger.warning(str_errmsg)
         return Response({'detail': str_errmsg}, status=status.HTTP_404_NOT_FOUND)

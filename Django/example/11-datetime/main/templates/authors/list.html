@@ -21,7 +21,7 @@
         <tr>
           <th scope="row">{{ author.id }}</th>
           <td>{{ author.name }}</td>
-          <td>{{ author.birthday }}</td>
+          <td>{% if author.birthday %}{{ author.birthday }}{% else %} - {% endif %}</td>
           <td>
             <a href="{% url 'authors:update' author.id %}" class="btn btn-outline-primary btn-sm">編集</a>
             <a href="javascript:void(0)" data-id="{{ author.id }}" data-delete_confirmation_message="著者 {{ author.name }} を削除しますか？" class="btn btn-outline-primary btn-sm delete-btn">削除</a>
