@@ -264,8 +264,8 @@ class AuthorCreateOpenApiView(OpenApiViewExtension):
                 },
                 examples = [
                     OpenApiExample(
-                        name = '誕生日指定',
-                        description = '誕生日指定',
+                        name = '生年月日指定',
+                        description = '生年月日指定',
                         request_only = True,
                         value = {
                             "authors" : [
@@ -277,8 +277,8 @@ class AuthorCreateOpenApiView(OpenApiViewExtension):
                         }
                     ),
                     OpenApiExample(
-                        name = '誕生日未指定 (null)',
-                        description = '誕生日未指定 (null)',
+                        name = '生年月日未指定 (null)',
+                        description = '生年月日未指定 (null)',
                         request_only = True,
                         value = {
                             "authors" : [
