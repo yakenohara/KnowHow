@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}トークンの生成{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 mb-5 border-bottom">トークンの生成</h4>
+    <form method="post">
+      {% csrf_token %}
+
+      {% include "form.html" with obj_field=form.expiration str_help_message="有効期限を設定します。"%}
+      
+      <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tokenCreateConfirmationModal">
+            生成
+          </button>
+        </div>
+      </div>
+    </form>
+    <a href="{% url 'accounts:list' %}" class="btn btn-secondary btn-sm">戻る</a>
+
+    <!-- トークン生成を確認するモーダルダイアログ -->
+    <div class="modal fade" id="tokenCreateConfirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">トークンの生成確認</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>トークンを生成します。次のダイアログ以降トークン文字列を確認することはできません。</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+            <a href="javascript:void(0)" id="tokenCreateConfirmation" class="btn btn-primary">生成</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 生成されたトークン表示するモーダルダイアログ -->
+    <div class="modal fade" id="tokenCreatedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">生成トークンの確認</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>トークンを生成しました。</p>
+            <p id="tokenCreatedParagraph"></p>
+          </div>
+          <div class="modal-footer">
+            <a href="/accounts" class="btn btn-primary">確認</a>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+<script>
+  $(document).ready(()=>{
+
+    // トークンの生成
+    $('#tokenCreateConfirmation').on('click', function(){
+      $('#tokenCreateConfirmationModal').modal('hide');
+
+      // トークン生成 URL を POST で叩く
+      $.ajax({
+        url: location.pathname, // 現在のパス
+        method: 'POST',
+        headers: {'X-CSRFToken': dict_utilities.getValueFromCookie('csrftoken')},
+        data: {expiration: document.getElementById('id_expiration').value},
+      }).done((dict_data) =>{
+        // 生成されたトークンを表示
+        $('#tokenCreatedParagraph').text(dict_data.token);
+        $('#tokenCreatedModal').modal('show');
+      });
+
+    });
+
+    // CSV 入力
+    $('#csv-input-btn').on('click', function(){ // CSV 入力ボタンクリック時
+      $('#CSVInputModal').modal('show');
+    });
+  });
+</script>
+{% endblock scripts %}
