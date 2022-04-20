@@ -4091,3 +4091,181 @@ https://docs.djangoproject.com/ja/4.0/topics/testing/tools/#assertions-1
 ## ここまでのソースコード
 
 この項で実装したソースコードを、example/09-api-document/main に置いた。 
+
+# Date フィールド
+
+日付を管理するフィールドである DateField を利用しよう。  
+ここでは例として、著者を管理する新しいアプリ `authors` アプリを作成し、著者の生年月日を表すフィールドに DateField を使用する。  
+
+`python manage.py startapp authors` して `authors` アプリを作成し、アプリを main/mainsettings.py -> `INSTALLED_APPS` に登録したら、URL スキームの設計、モデル定義・フィールド定義、View 定義、html ファイルの作り込みをする。
+
+Datefield に関する点はモデル定義のフィールド定義で以下の様になる。
+
+ - authors/models.py
+```python
+class Author(models.Model):
+    id = models.AutoField(verbose_name = 'ID', primary_key = True)
+    name = models.CharField(verbose_name = '名前', max_length = 255, unique = True)
+    birthday = models.DateField(verbose_name = '生年月日', null = True, blank = True)
+```
+
+View 定義では CSV インポートの機能で使用する Form クラスは以下の様になる。  
+
+```python
+class AuthorCSVForm(forms.Form):
+    
+    id = forms.IntegerField(
+        validators = [
+            MinValueValidator(limit_value = -2147483648, message = 'ID は -2147483648 から 2147483647 の範囲を指定してください。'),
+            MaxValueValidator(limit_value = 2147483647, message = 'ID は -2147483648 から 2147483647 の範囲を指定してください。'),
+        ]
+    )
+    name = forms.CharField(max_length = 255)
+    birthday = forms.DateField(required = False)
+```
+
+また、REST API の内、登録と編集で使用する Serializers は以下の様になる。  
+
+```python
+class AuthorSerializerForCreate(serializers.ModelSerializer):
+    name = serializers.CharField(max_length = 255)
+    birthday = serializers.DateField(required = False, allow_null = True)
+
+    class Meta:
+        model = Author
+        fields = (
+            'name',
+            'birthday',
+        )
+
+    def validate(self, data):
+
+        if Author.objects.filter(name = data.get('name')).first(): # すでに登録済みの名前の場合
+            raise serializers.ValidationError('この 名前 を持った Author が既に存在します。')
+
+        data['birthday'] = data.get('birthday', None)
+        
+        return data
+
+class AuthorSerializerForUpdate(serializers.ModelSerializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField(max_length = 255)
+    birthday = serializers.DateField(required = False, allow_null = True)
+
+    class Meta:
+        model = Author
+        fields = '__all__'
+
+    def validate(self, data):
+
+        # 別レコードですでに使われている名前かどうかチェック
+        if Author.objects.filter(
+            ~Q(id = data.get('id')) &
+            Q(name = data.get('name'))
+        ).first(): # すでに登録済みの名前の場合
+            raise serializers.ValidationError('この 名前 を持った Author が既に存在します。')
+
+        data['birthday'] = data.get('birthday', None)
+        
+        return data
+```
+
+html ファイルの作り込みでは、新しい widget 定義 `date` が増えることになるので、templates/form.html を以下の様に変更する。  
+
+ - 変更前  
+```html
+    {% if obj_field.errors %}{# `errors` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/forms/api/ #}
+        
+    {% if obj_field.widget_type == 'select' %}{# `widget_type` の意味は右参照 https://docs.djangoproject.com/ja/4.0/ref/forms/api/#django.forms.BoundField.widget_type #}
+    {# django-widget-tweaks の `add_class` を利用してクラスを追加 #}
+    {# https://pypi.org/project/django-widget-tweaks/ #}
+    {{ obj_field | add_class:"form-select is-invalid"}}
+    {# `form-select` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/select/ #}
+    {# `is-invalid` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+    {% else %}
+    {{ obj_field | add_class:"form-control is-invalid"}}
+    {# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
+    {% endif %}
+    
+    {% for errorObj in obj_field.errors %}
+    <div class="invalid-feedback">{# `invalid-feedback` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+        {{ errorObj | escape }}{# `escape` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#escape #}
+    </div>
+    {% endfor %}
+
+    {% else %}
+    {% if obj_field.widget_type == 'select' %}
+    {{ obj_field | add_class:"form-select"}}
+    {% else %}
+    {{ obj_field | add_class:"form-control"}}
+    {% endif %}
+    {% endif %}
+```
+
+ - 変更後
+```html
+    {% if obj_field.errors %}{# `errors` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/forms/api/ #}
+        
+    {% if obj_field.widget_type == 'select' %}{# `widget_type` の意味は右参照 https://docs.djangoproject.com/ja/4.0/ref/forms/api/#django.forms.BoundField.widget_type #}
+    {# django-widget-tweaks の `add_class` を利用してクラスを追加 #}
+    {# https://pypi.org/project/django-widget-tweaks/ #}
+    {{ obj_field | add_class:"form-select is-invalid"}}
+    {# `form-select` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/select/ #}
+    {# `is-invalid` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+    {% elif obj_field.widget_type == 'date' %}
+    {{ obj_field | attr:"type:date" | add_class:"form-control is-invalid"}}
+    {% else %}
+    {{ obj_field | add_class:"form-control is-invalid"}}
+    {# `form-control` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/form-control/ #}
+    {% endif %}
+    
+    {% for errorObj in obj_field.errors %}
+    <div class="invalid-feedback">{# `invalid-feedback` の意味は右参照 https://getbootstrap.jp/docs/5.0/forms/validation/ #}
+        {{ errorObj | escape }}{# `escape` の意味は右参照 https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#escape #}
+    </div>
+    {% endfor %}
+
+    {% else %}
+    {% if obj_field.widget_type == 'select' %}
+    {{ obj_field | add_class:"form-select"}}
+    {% elif obj_field.widget_type == 'date' %}
+    {{ obj_field | attr:"type:date" | add_class:"form-control"}}
+    {% else %}
+    {{ obj_field | add_class:"form-control"}}
+    {% endif %}
+    {% endif %}
+```
+
+そして、API ドキュメントで使用する Serializer の内、登録と編集で使用する Serializers は以下の様になる。  
+
+```python
+class AuthorListSerializerForDoc(serializers.Serializer):
+    id = serializers.IntegerField(help_text = 'ID')
+    name = serializers.CharField(help_text = '名前')
+    birthday = serializers.DateField(help_text = '生年月日')
+~~~~~~~~~~~~~~~~~~~~~~~~~~Omitting~~~~~~~~~~~~~~~~~~~~~~~~~~
+class AuthorUpdateSerializerForDoc(serializers.Serializer):
+    id = serializers.IntegerField(help_text = 'ID を指定します。存在しない ID は指定できません。')
+    name = serializers.CharField(help_text = '名前を指定します。他の編集者と同じの名前は指定できません。また、空文字も無効です。')
+    birthday = serializers.DateField(help_text = '任意で生年月日を指定します。', required = False)
+```
+
+## 動作確認
+
+`python manage.py runserver` して、ブラウザで `http://127.0.0.1:8000/authors/` にアクセスしてみよう。  
+
+![](assets/images/2022-04-20-18-20-27.png)  
+
+生年月日を表示する列が表示され、追加ボタンを押すと著者の追加画面に遷移し、生年月日をカレンダーから指定できる。  
+
+![](assets/images/2022-04-20-18-21-46.png)
+
+また、DateField は `required = False` としたので、未指定のまま登録することもできる。  
+
+![](assets/images/2022-04-20-18-24-43.png)  
+
+CSV 入出力、REST API、API ドキュメントは editors アプリ同様に使用することが可能なはずだ。  
+
+## ここまでのソースコード
+
+この項で実装したソースコードを、example/11-date-field/main に置いた。 

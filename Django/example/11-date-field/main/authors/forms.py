@@ -2,8 +2,6 @@ from unicodedata import name
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-from common.utilities import StrChoiceEnum
-
 from .models import Author
 
 class AuthorEditForm(forms.ModelForm):
