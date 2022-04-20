@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="351.15057mm"
+   height="168.99437mm"
+   viewBox="0 0 351.15057 168.99437"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="on-delete-restrict.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.64052329"
+     inkscape:cx="652.59142"
+     inkscape:cy="609.65777"
+     inkscape:window-width="1610"
+     inkscape:window-height="1121"
+     inkscape:window-x="2562"
+     inkscape:window-y="760"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#ff00b1;fill-opacity:1;fill-rule:evenodd;stroke:#ff00b1;stroke-width:1pt;stroke-opacity:1"
+         id="path14206" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(144.12498,12.532608)">
+    <g
+       id="g2013"
+       transform="translate(-20.240612,-7.0222531)">
+      <rect
+         style="fill:none;stroke:#ff00b1;stroke-width:1.05833"
+         id="rect846"
+         width="79.375"
+         height="14.2875"
+         x="36.196594"
+         y="31.78237" />
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="42.546593"
+         y="41.307369"
+         id="text1928"><tspan
+           sodipodi:role="line"
+           id="tspan1926"
+           style="stroke-width:0.264583"
+           x="42.546593"
+           y="41.307369">name = 'artist one'</tspan></text>
+    </g>
+    <g
+       id="g2013-7"
+       transform="translate(-20.289223,71.364562)">
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="42.546593"
+         y="41.307369"
+         id="text1928-0"><tspan
+           sodipodi:role="line"
+           id="tspan1926-7"
+           style="stroke-width:0.264583"
+           x="42.546593"
+           y="41.307369">name = 'artist two'</tspan></text>
+      <rect
+         style="fill:none;stroke:#ff00b1;stroke-width:1.05833"
+         id="rect846-5"
+         width="79.375"
+         height="14.2875"
+         x="36.196594"
+         y="31.78237" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="15.955982"
+       y="24.760117"
+       id="text5759"><tspan
+         sodipodi:role="line"
+         id="tspan5757"
+         style="stroke-width:0.264583"
+         x="15.955982"
+         y="24.760117">Artist (artist one)</tspan></text>
+    <g
+       id="g2013-73"
+       transform="translate(-20.702296,31.703424)">
+      <rect
+         style="fill:none;stroke:#ff00b1;stroke-width:1.05833"
+         id="rect846-7"
+         width="50.799999"
+         height="14.2875"
+         x="36.196594"
+         y="31.78237" />
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="42.546593"
+         y="41.307369"
+         id="text1928-7"><tspan
+           sodipodi:role="line"
+           id="tspan1926-8"
+           style="stroke-width:0.264583"
+           x="42.546593"
+           y="41.307369">artist = </tspan></text>
+    </g>
+    <g
+       id="g2013-73-9"
+       transform="translate(-98.861672,5.482216)">
+      <rect
+         style="fill:none;stroke:#ff00b1;stroke-width:1.05833"
+         id="rect846-7-8"
+         width="47.625"
+         height="22.225"
+         x="36.196594"
+         y="31.78237" />
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="42.546593"
+         y="41.307369"
+         id="text1928-7-9"><tspan
+           sodipodi:role="line"
+           id="tspan1926-8-4"
+           style="stroke-width:0.264583"
+           x="42.546593"
+           y="41.307369">artist =</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="42.546593"
+           y="49.244869"
+           id="tspan22607">album =  </tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="-62.665077"
+       y="37.264587"
+       id="text5759-6-2"><tspan
+         sodipodi:role="line"
+         id="tspan5757-5-3"
+         style="stroke-width:0.264583"
+         x="-62.665077"
+         y="37.264587">Song (song_one)</tspan></text>
+    <g
+       id="g2013-73-0"
+       transform="translate(-20.790741,109.86272)">
+      <rect
+         style="fill:none;stroke:#ff00b1;stroke-width:1.05833"
+         id="rect846-7-1"
+         width="50.799999"
+         height="14.2875"
+         x="36.196594"
+         y="31.78237" />
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="42.546593"
+         y="41.307369"
+         id="text1928-7-2"><tspan
+           sodipodi:role="line"
+           id="tspan1926-8-6"
+           style="stroke-width:0.264583"
+           x="42.546593"
+           y="41.307369">artist = </tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="15.907373"
+       y="103.14693"
+       id="text6675"><tspan
+         sodipodi:role="line"
+         id="tspan6673"
+         style="stroke-width:0.264583"
+         x="15.907373"
+         y="103.14693">Artist (artist_two)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff00b1;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="M 43.615089,63.485794 52.922691,39.047617"
+       id="path14180"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g2013-73"
+       inkscape:connection-end="#g2013" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="15.494298"
+       y="63.48579"
+       id="text5759-6"><tspan
+         sodipodi:role="line"
+         id="tspan5757-5"
+         style="stroke-width:0.264583"
+         x="15.494298"
+         y="63.48579">Album (album_one)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="50.808064"
+       y="55.351875"
+       id="text15966"><tspan
+         sodipodi:role="line"
+         id="tspan15964"
+         style="stroke-width:0.264583"
+         x="50.808064"
+         y="55.351875">CASCADE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="50.706692"
+       y="133.66583"
+       id="text15966-8"><tspan
+         sodipodi:role="line"
+         id="tspan15964-9"
+         style="stroke-width:0.264583"
+         x="50.706692"
+         y="133.66583">CASCADE</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff00b1;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="m 43.550115,141.64509 9.300494,-24.21066"
+       id="path21294"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g2013-73-0"
+       inkscape:connection-end="#g2013-7" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="15.405848"
+       y="141.6451"
+       id="text5759-6-0"><tspan
+         sodipodi:role="line"
+         id="tspan5757-5-8"
+         style="stroke-width:0.264583"
+         x="15.405848"
+         y="141.6451">Album (album_two)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff00b1;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="m -15.040078,44.225923 30.99606,-5.403452"
+       id="path23806"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g2013-73-9"
+       inkscape:connection-end="#g2013" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="-10.841296"
+       y="46.0942"
+       id="text15966-5"><tspan
+         sodipodi:role="line"
+         id="tspan15964-1"
+         style="stroke-width:0.264583"
+         x="-10.841296"
+         y="46.0942">CASCADE</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff00b1;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="m -15.040078,55.021693 30.534376,8.52027"
+       id="path23808"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g2013-73-9"
+       inkscape:connection-end="#g2013-73" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="-20.755066"
+       y="65.921738"
+       id="text15966-6"><tspan
+         sodipodi:role="line"
+         id="tspan15964-3"
+         style="stroke-width:0.264583"
+         x="-20.755066"
+         y="65.921738">RESTRICT</tspan></text>
+    <g
+       id="g2013-73-9-8"
+       transform="translate(-99.500992,88.957949)">
+      <rect
+         style="fill:none;stroke:#ff00b1;stroke-width:1.05833"
+         id="rect846-7-8-5"
+         width="47.625"
+         height="22.225"
+         x="36.196594"
+         y="31.78237" />
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="42.546593"
+         y="41.307369"
+         id="text1928-7-9-2"><tspan
+           sodipodi:role="line"
+           id="tspan1926-8-4-3"
+           style="stroke-width:0.264583"
+           x="42.546593"
+           y="41.307369">artist =</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="42.546593"
+           y="49.244869"
+           id="tspan22607-2">album =  </tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="-63.304394"
+       y="120.74033"
+       id="text5759-6-2-7"><tspan
+         sodipodi:role="line"
+         id="tspan5757-5-3-6"
+         style="stroke-width:0.264583"
+         x="-63.304394"
+         y="120.74033">Song (song_two)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff00b1;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="m -15.679398,126.45303 39.771078,-9.0186"
+       id="path28132"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g2013-73-9-8"
+       inkscape:connection-end="#g2013-7" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="-10.559998"
+       y="127.8828"
+       id="text15966-5-5"><tspan
+         sodipodi:role="line"
+         id="tspan15964-1-4"
+         style="stroke-width:0.264583"
+         x="-10.559998"
+         y="127.8828">CASCADE</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff00b1;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="m -15.679398,136.87524 31.085251,6.55635"
+       id="path28134"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g2013-73-9-8"
+       inkscape:connection-end="#g2013-73-0" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="-20.473768"
+       y="147.71033"
+       id="text15966-6-5"><tspan
+         sodipodi:role="line"
+         id="tspan15964-3-4"
+         style="stroke-width:0.264583"
+         x="-20.473768"
+         y="147.71033">RESTRICT</tspan></text>
+    <g
+       id="g41250">
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="-21.066759"
+         y="-2.4784424"
+         id="text39805"><tspan
+           sodipodi:role="line"
+           id="tspan39803"
+           style="stroke-width:0.264583"
+           x="-21.066759"
+           y="-2.4784424">&gt;&gt;&gt; artist_one.delete()</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="-21.066759"
+           y="5.4590573"
+           id="tspan39807">(4, {'Song': 2, 'Album': 1, 'Artist': 1})</tspan></text>
+      <rect
+         style="fill:none;stroke:#0012ff;stroke-width:1.05833;stroke-opacity:1"
+         id="rect40985"
+         width="149.22501"
+         height="22.225"
+         x="-27.416759"
+         y="-12.003443" />
+    </g>
+    <g
+       id="g41250-2"
+       transform="translate(-116.17906,86.810275)">
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="-21.066759"
+         y="-2.4784424"
+         id="text39805-3"><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="-21.066759"
+           y="-2.4784424"
+           id="tspan39807-9">もしこの関係が `PROTECT` の場合は、</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="-21.066759"
+           y="5.9165411"
+           id="tspan46027">`artist_one.delete()` の実行時に</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="-21.066759"
+           y="14.311524"
+           id="tspan48341">`ProtectedError` が raise される。</tspan></text>
+      <rect
+         style="fill:none;stroke:#0012ff;stroke-width:1.05833;stroke-opacity:1"
+         id="rect40985-4"
+         width="130.175"
+         height="30.1625"
+         x="-27.416759"
+         y="-12.003443" />
+    </g>
+    <g
+       id="g41244">
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="114.00834"
+         y="65.265648"
+         id="text30203"><tspan
+           sodipodi:role="line"
+           id="tspan30201"
+           style="stroke-width:0.264583"
+           x="114.00834"
+           y="65.265648">&gt;&gt;&gt; album_one.delete()</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="114.00834"
+           y="73.203148"
+           id="tspan30205"># Raises RestrictedError.</tspan></text>
+      <rect
+         style="fill:none;stroke:#0012ff;stroke-width:1.05833;stroke-opacity:1"
+         id="rect40985-6"
+         width="98.425003"
+         height="22.225"
+         x="107.65834"
+         y="-77.682159"
+         transform="scale(1,-1)" />
+    </g>
+    <g
+       id="g41238">
+      <text
+         xml:space="preserve"
+         style="font-size:6.35px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="114.42142"
+         y="119.3783"
+         id="text33941"><tspan
+           sodipodi:role="line"
+           id="tspan33939"
+           style="stroke-width:0.264583"
+           x="114.42142"
+           y="119.3783">&gt;&gt;&gt; artist_two.delete()</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="114.42142"
+           y="127.3158"
+           id="tspan33943"># Raises RestrictedError.</tspan></text>
+      <rect
+         style="fill:none;stroke:#0012ff;stroke-width:1.05833;stroke-opacity:1"
+         id="rect40985-3"
+         width="98.425003"
+         height="22.225"
+         x="108.07142"
+         y="109.8533" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0012ff;stroke-width:1.323;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 107.65834,68.292396 66.294297,69.740389"
+       id="path41716"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g41244"
+       inkscape:connection-end="#g2013-73" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0012ff;stroke-width:1.323;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 110.76267,132.0783 66.205852,142.72156"
+       id="path41718"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g41238"
+       inkscape:connection-end="#g2013-73-0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0012ff;stroke-width:1.323;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 50.058254,10.221558 3.745043,14.538559"
+       id="path41720"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g41250"
+       inkscape:connection-end="#g2013" />
+    <path
+       style="fill:none;stroke:#0012ff;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M -13.42082,74.80683 -2.8915159,65.265646"
+       id="path49043" />
+  </g>
+</svg>
