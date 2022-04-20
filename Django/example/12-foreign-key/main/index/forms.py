@@ -1,18 +1,8 @@
-import logging
-
-from asyncio.log import logger
 from unicodedata import name
 from django import forms
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-from authors.models import Author
-
-from common.utilities import StrChoiceEnum
-
 from .models import Book
-
-logger = logging.getLogger(__name__)
 
 class BookEditForm(forms.ModelForm):
     class Meta:
@@ -21,18 +11,6 @@ class BookEditForm(forms.ModelForm):
             'name',
             'author',
         )
-    
-    def clean_author(self):
-        obj_author = None
-        str_authorName = self.cleaned_data.get('author')
-        if str_authorName:
-            try:
-                obj_author = Author.objects.get(name = str_authorName)
-            except ObjectDoesNotExist as err:
-                logger.warning(f'Specified author name `{obj_author}` not found.')
-                raise forms.ValidationError('削除済みの著者が選択されました。選択し直してください。')
-
-        return obj_author
     
 
 class BookCSVForm(forms.Form):
