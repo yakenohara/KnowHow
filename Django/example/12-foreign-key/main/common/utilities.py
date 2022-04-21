@@ -3,6 +3,8 @@ import enum
 import io
 import urllib.parse
 
+from django.db import models
+
 def makeChoiceEnum(primitiveType):
     
     class _ChoiceEnum(primitiveType, enum.Enum):
@@ -57,6 +59,12 @@ def makeVerboseNameVsFieldNameDict(obj_model):
     """
     dict_fieldNameVsVerboseName = {}
     for meta_field in obj_model._meta.get_fields():
+
+        # 外部キー参照されているフィールドがある場合は、
+        # models.ManyToOneRel フィールドが生成されるので、これは除外する
+        if isinstance(meta_field, models.ManyToOneRel):
+            continue
+
         str_verbose_name = obj_model._meta.get_field(meta_field.name).verbose_name
         dict_fieldNameVsVerboseName[str_verbose_name] = meta_field.name
     
