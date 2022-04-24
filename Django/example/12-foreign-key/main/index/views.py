@@ -223,3 +223,346 @@ class BookUpdateAPIView(TokenAPIViewForUpdate):
 
 class BookDeleteAPIView(TokenAPIViewForDeletion):
     model = Book
+
+
+from rest_framework import status, serializers
+
+from drf_spectacular.extensions import OpenApiViewExtension
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiResponse, OpenApiExample
+
+from common.views import InvalidReasonSerializerForDoc
+
+class BookCreationSerializerForDoc(serializers.Serializer):
+    name = serializers.CharField(help_text = '名前を指定します。他の著書と同じの名前は登録できません。また、空文字も無効です。')
+    author = serializers.CharField(help_text = '任意で著者名を指定します。存在しない著者名は登録できません', required = False)
+
+class BookCreationArraySerializerForDoc(serializers.Serializer):
+    class BookCreationSerializer(BookCreationSerializerForDoc):
+        pass
+    editors = BookCreationSerializer(many = True)
+
+class BookCreateOpenApiView(OpenApiViewExtension):
+
+    target_class = BookCreateAPIView
+
+    def view_replacement(self):
+        
+        class Fixed(self.target_class):
+
+            null = None
+            
+            @extend_schema(
+                tags = ['著書管理'],
+                operation_id = '著書の追加',
+                description = '著書を追加します。',
+                request = BookCreationArraySerializerForDoc,
+                responses = {
+                    status.HTTP_200_OK: None,
+                    status.HTTP_400_BAD_REQUEST: OpenApiResponse(
+                        response = InvalidReasonSerializerForDoc,
+                        description = 'JSON ファイルのパースエラーもしくはバリデーションエラー'
+                    ),
+                    status.HTTP_500_INTERNAL_SERVER_ERROR: OpenApiResponse(
+                        response = InvalidReasonSerializerForDoc,
+                        description = '`OperationalError` の発生。デッドロックの可能性。'
+                    ),
+                },
+                examples = [
+                    OpenApiExample(
+                        name = '著者名指定',
+                        description = '著者名指定',
+                        request_only = True,
+                        value = {
+                            "books" : [
+                                {
+                                    "name" : "book A",
+                                    "author" : "author A"
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = '著者名未指定(空文字)',
+                        description = '著者名未指定(空文字)',
+                        request_only = True,
+                        value = {
+                            "books" : [
+                                {
+                                    "name" : "book A",
+                                    "author" : ""
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = '著者名未指定 (プロパティなし)',
+                        description = '著者名未指定 (プロパティなし)',
+                        request_only = True,
+                        value = {
+                            "books" : [
+                                {
+                                    "name" : "book A"
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = 'パースエラー (400 NG)',
+                        description = 'JSON ファイルのパースエラー (400 NG)',
+                        status_codes = [str(status.HTTP_400_BAD_REQUEST)],
+                        response_only = True,
+                        value = {
+                            "detail": "JSONDecodeError occured while `json.loads`. Check following.\nError message: Expecting ',' delimiter: line 1 column 90 (char 89)\nrequest.body: b'{    \"books\": [      {        \"name\": \"book A\",        \"author\": \"author A\"      }    ]  '"
+                        },
+                    ),
+                    OpenApiExample(
+                        name = 'バリデーションエラー (400 NG)',
+                        description = '登録する情報のバリデーションエラー (400 NG)',
+                        status_codes = [str(status.HTTP_400_BAD_REQUEST)],
+                        response_only = True,
+                        value = {
+                            "detail": "Validation error: {'non_field_errors': [ErrorDetail(string='この 名前 を持った Book が既に存在します。', code='invalid')]}"
+                        },
+                    ),
+                    OpenApiExample(
+                        name = 'OperationalError (500 NG)',
+                        description = 'デッドロックの可能性 (500 NG)',
+                        status_codes = [str(status.HTTP_500_INTERNAL_SERVER_ERROR)],
+                        response_only = True,
+                        value = {
+                            "detail": "database is locked"
+                        },
+                    ),
+                ],
+            )
+
+            def post(self, request, *args, **kwargs):
+                pass
+
+        return Fixed
+
+class BookListSerializerForDoc(serializers.Serializer):
+    id = serializers.IntegerField(help_text = 'ID')
+    name = serializers.CharField(help_text = '著書名')
+    author = serializers.DateField(help_text = '著者名')
+
+class BookListupedArraySerializerForDoc(serializers.Serializer):
+    class BookListSerializer(BookListSerializerForDoc):
+        pass
+    editors = BookListSerializer(many = True)
+
+class AuthorListOpenApiView(OpenApiViewExtension):
+    
+    target_class = BookListAPIView
+
+    def view_replacement(self):
+        
+        class Fixed(self.target_class):
+
+            null = None
+            
+            @extend_schema(
+                tags = ['著書管理'],
+                operation_id = '著書一覧の取得',
+                description = '著書の一覧を取得します。',
+                parameters = [
+                    OpenApiParameter(name = 'id', description = 'ID', required = False, type = int),
+                    OpenApiParameter(name = 'name', description = '著書名', required = False, type = str),
+                ],
+                responses = {
+                    status.HTTP_200_OK: OpenApiResponse(
+                        response = BookListupedArraySerializerForDoc,
+                        description = '著書の一覧'
+                    ),
+                    status.HTTP_400_BAD_REQUEST: OpenApiResponse(
+                        response = InvalidReasonSerializerForDoc,
+                        description = 'クエリ文字列 (クエリストリング) のパースエラー'
+                    ),
+                },
+                examples = [
+                    OpenApiExample(
+                        name = '200 OK',
+                        description = '取得例 (200 OK)',
+                        status_codes = [str(status.HTTP_200_OK)],
+                        value = {
+                            "books": [
+                                {
+                                    "id": 1,
+                                    "name": "book A",
+                                    "author": "author A"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "book B",
+                                    "author": ""
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = '400 NG',
+                        description = '取得例 (400 NG)',
+                        status_codes = [str(status.HTTP_400_BAD_REQUEST)],
+                        value = {
+                            "detail": "Validation error found in /api/v1/books.json/?id=a"
+                        },
+                    ),
+                ],
+            )
+
+            def get(self, request, *args, **kwargs):
+                pass
+
+        return Fixed
+
+class BookUpdateSerializerForDoc(serializers.Serializer):
+    id = serializers.IntegerField(help_text = 'ID を指定します。存在しない ID は指定できません。')
+    name = serializers.CharField(help_text = '著書名を指定します。他の著書名と同じの名前は指定できません。また、空文字も無効です。')
+    author = serializers.CharField(help_text = '任意で著者名を指定します。存在しない著者名は登録できません', required = False)
+
+class BookUpdatingArraySerializerForDoc(serializers.Serializer):
+    class BookUpdateSerializer(BookUpdateSerializerForDoc):
+        pass
+    editors = BookUpdateSerializer(many = True)
+
+class AuthorUpdateOpenApiView(OpenApiViewExtension):
+    
+    target_class = BookUpdateAPIView
+
+    def view_replacement(self):
+        
+        class Fixed(self.target_class):
+
+            null = None
+            
+            @extend_schema(
+                tags = ['著書管理'],
+                operation_id = '著書の編集',
+                description = '著書の情報を更新します。',
+                request = BookUpdatingArraySerializerForDoc,
+                responses = {
+                    status.HTTP_200_OK: None,
+                    status.HTTP_400_BAD_REQUEST: OpenApiResponse(
+                        response = InvalidReasonSerializerForDoc,
+                        description = 'JSON ファイルのパースエラーもしくはバリデーションエラー'
+                    ),
+                    status.HTTP_500_INTERNAL_SERVER_ERROR: OpenApiResponse(
+                        response = InvalidReasonSerializerForDoc,
+                        description = '`OperationalError` の発生。デッドロックの可能性。'
+                    ),
+                },
+                examples = [
+                    OpenApiExample(
+                        name = '著者名指定',
+                        description = '著者名指定',
+                        request_only = True,
+                        value = {
+                            "books": [
+                                {
+                                    "id" : 1,
+                                    "name" : "book A",
+                                    "author" : "author A"
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = '著者名未指定 (空文字)',
+                        description = '著者名未指定 (空文字)',
+                        request_only = True,
+                        value = {
+                            "books": [
+                                {
+                                    "id" : 1,
+                                    "name" : "book A",
+                                    "author" : ""
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = '著者名未指定 (プロパティなし)',
+                        description = '著者名未指定 (プロパティなし)',
+                        request_only = True,
+                        value = {
+                            "books": [
+                                {
+                                    "id" : 1,
+                                    "name" : "book A"
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = 'パースエラー (400 NG)',
+                        description = 'JSON ファイルのパースエラー (400 NG)',
+                        status_codes = [str(status.HTTP_400_BAD_REQUEST)],
+                        response_only = True,
+                        value = {
+                            "detail": "JSONDecodeError occured while `json.loads`. Check following.\nError message: Expecting ',' delimiter: line 1 column 106 (char 105)\nrequest.body: b'{    \"books\": [      {        \"id\": 1,        \"name\": \"book A\",        \"author\": \"author A\"      }    ]  '"
+                        },
+                    ),
+                    OpenApiExample(
+                        name = 'バリデーションエラー (400 NG)',
+                        description = '登録する情報のバリデーションエラー (400 NG)',
+                        status_codes = [str(status.HTTP_400_BAD_REQUEST)],
+                        response_only = True,
+                        value = {
+                            "detail": "Validation error: {'non_field_errors': [ErrorDetail(string='この 名前 を持った Book が既に存在します。', code='invalid')]}"
+                        },
+                    ),
+                    OpenApiExample(
+                        name = 'OperationalError (500 NG)',
+                        description = 'デッドロックの可能性 (500 NG)',
+                        status_codes = [str(status.HTTP_500_INTERNAL_SERVER_ERROR)],
+                        response_only = True,
+                        value = {
+                            "detail": "database is locked"
+                        },
+                    ),
+                ]
+            )
+
+            def post(self, request, *args, **kwargs):
+                pass
+
+        return Fixed
+
+class BookDeleteOpenApiView(OpenApiViewExtension):
+    
+    target_class = BookDeleteAPIView
+
+    def view_replacement(self):
+        
+        class Fixed(self.target_class):
+
+            @extend_schema(
+                tags = ['著書管理'],
+                operation_id = '著書の削除',
+                description = '指定 ID の著書を削除します。',
+                parameters = [
+                    OpenApiParameter(name = 'id', description = 'ID', location = OpenApiParameter.PATH , type = int),
+                ],
+                responses = {
+                    status.HTTP_200_OK: None,
+                    status.HTTP_404_NOT_FOUND: OpenApiResponse(
+                        response = InvalidReasonSerializerForDoc,
+                        description = '指定 ID が存在しないエラー'
+                    ),
+                },
+                examples = [
+                    OpenApiExample(
+                        name = '指定 ID 検索エラー (404 NG)',
+                        description = '指定 ID が存在しないエラー (404 NG)',
+                        status_codes = [str(status.HTTP_404_NOT_FOUND)],
+                        value = {
+                            "detail": "Specified Book ID: 1 not found."
+                        },
+                    ),
+                ]
+            )
+
+            def delete(self, request, pk, *args, **kwargs):
+                pass
+
+        return Fixed
