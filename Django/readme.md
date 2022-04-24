@@ -4337,4 +4337,63 @@ class Book(models.Model):
  - models.DO_NOTHING  
    紐付けられた外部キーオブジェクトが削除された時、なんの処理もしない。  
 
-上記の様にするだけで、
+あとは URL スキームの設計と View 定義を他のアプリと同様に実装するだけで、html テンプレートに対して `form.author` が、 `.widget_type` が `select` の状態で、かつ選択できるリスト内容が著者一覧となった状態で渡る。ただ、このまま html ファイルを作り込みすると下図のように、著者リストの表示内容がオブジェクトを `str()` しただけの内容になる。  
+
+![](assets/images/2022-04-24-22-15-06.png)  
+
+そのため、authors/models.py の `class Author(models.Model):` を以下の様に変更する。  
+
+```python
+class Author(models.Model):
+    id = models.AutoField(verbose_name = 'ID', primary_key = True)
+    name = models.CharField(verbose_name = '名前', max_length = 255, unique = True)
+    birthday = models.DateField(verbose_name = '生年月日', null = True, blank = True)
+
+    # 以下を追加
+    def __str__(self):
+        return self.name
+```
+
+すると、著者リストが `name` フィールドの値を使用したもので選択できるようになる。  
+
+![](assets/images/2022-04-24-22-22-08.png)  
+
+ただし、1 つ注意点がある。外部キー参照 "される" 側のモデルには `models.ManyToOneRel` というフィールドが追加される。この PJ では common/utilities.py の `def makeVerboseNameVsFieldNameDict(obj_model):` で verbose_name とフィールド名の対応表を作成している。  
+
+```python
+def makeVerboseNameVsFieldNameDict(obj_model):
+    """
+    モデルから verbose_name とフィールド名の対応表を作成して返す
+    """
+    dict_fieldNameVsVerboseName = {}
+    for meta_field in obj_model._meta.get_fields():
+        str_verbose_name = obj_model._meta.get_field(meta_field.name).verbose_name
+        dict_fieldNameVsVerboseName[str_verbose_name] = meta_field.name
+    
+    return dict_fieldNameVsVerboseName
+```
+
+追加された `models.ManyToOneRel` フィールドは自動で追加されるフィールドで、この関数の用途としては不要なフィールドである上、 `.verbose_name` を持たないので、著者一覧の CSV 出力時にこの関数の実行時エラーになる。その為、この関数を以下のように変更する。  
+
+```python
+def makeVerboseNameVsFieldNameDict(obj_model):
+    """
+    モデルから verbose_name とフィールド名の対応表を作成して返す
+    """
+    dict_fieldNameVsVerboseName = {}
+    for meta_field in obj_model._meta.get_fields():
+
+        # 外部キー参照されているフィールドがある場合は、
+        # models.ManyToOneRel フィールドが生成されるので、これは除外する
+        if isinstance(meta_field, models.ManyToOneRel):
+            continue
+
+        str_verbose_name = obj_model._meta.get_field(meta_field.name).verbose_name
+        dict_fieldNameVsVerboseName[str_verbose_name] = meta_field.name
+    
+    return dict_fieldNameVsVerboseName
+```
+
+## ここまでのソースコード
+
+この項で実装したソースコードを、example/12-foreign-key/main に置いた。  
