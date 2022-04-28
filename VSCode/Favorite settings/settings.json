@@ -7,6 +7,11 @@
 
     // Git
     "git.ignoreMissingGitWarning": true,
+
+    // Better Jinja
+    "files.associations": {
+        "*.html": "jinja-html"
+    },
     
     // General
     "debug.console.fontSize" : 11,
@@ -25,4 +30,5 @@
 
     // Dummy
     "dummy": 0,
+
 }
