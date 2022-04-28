@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}著者の{% if object %}編集{% else %}追加{% endif %}{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 mb-5 border-bottom">著者の{% if object %}編集{% else %}追加{% endif %}</h4>
+    <form method="post">
+      {% csrf_token %}
+      
+      {% include "form.html" with obj_field=form.name str_help_message="著者の名前を入力します。"%}
+      {% include "form.html" with obj_field=form.birthday str_help_message="任意で著者の生年月日を入力します。"%}
+      
+      <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+          <button type="submit" class="btn btn-primary">登録</button>
+        </div>
+      </div>
+    </form>
+    <a href="{% url 'authors:list' %}" class="btn btn-secondary btn-sm">戻る</a>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{# ユーザーがログインしているかどうかは、`user.is_authenticated` で判定できる #}
+{# https://docs.djangoproject.com/en/4.0/ref/contrib/auth/#django.contrib.auth.models.User.is_authenticated #}
+{% block title %}ユーザー{% if user.is_authenticated %}の追加{% else %}登録{% endif %}{% endblock title %}
+
+{% block content %}
+<h4 class="mt-4 mb-5 border-bottom">ユーザー{% if user.is_authenticated %}の追加{% else %}登録{% endif %}</h4>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% bootstrap_form form %}
+    <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+          <button type="submit" class="btn btn-primary">{% if user.is_authenticated %}追加{% else %}登録{% endif %}</button>
+        </div>
+      </div>
+</form>
+{% endblock %}
