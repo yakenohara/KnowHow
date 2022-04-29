@@ -18,6 +18,7 @@ from common.const import FL_SLEEP_TIME_OF_RETRYING_CAUSE_OF_DEADLOCK, INT_TIMES_
 from common.forms import CSVImputForm
 from common.utilities import makeCSVStringFromDict, makeVerboseNameVsFieldNameDict, getOrdinalString, getQeryStringInURL
 from common.views import TokenAPIViewForCreation, TokenAPIViewForList, TokenAPIViewForUpdate, TokenAPIViewForDeletion
+from editors.models import Editor
 
 from .forms import BookEditForm, BookCSVForm
 from .models import Book
@@ -60,6 +61,38 @@ def makeDictFromBooks(cls, model_books):
             dict_tmp['author'] = Author.objects.get(id = int_author).name
         else: # 著者が指定されていない場合
             dict_tmp['author'] = ''
+        obj_editors = dict_tmp.get('editors', None)
+        if obj_editors: # 編集者が指定されている場合
+            str_editors = []
+            for tmp_editor in obj_editors:
+                tmp_str = tmp_editor.name.replace('\\','\\\\') # 著者名に ',' が含まれている場合は '\' でエスケープ
+                tmp_str = tmp_str.replace(',','\,') # 著者名に '\' が含まれている場合は '\' でエスケープ
+                str_editors.append(tmp_str)
+            dict_tmp['editors'] = ','.join(str_editors)
+        else: # 著者が指定されていない場合
+            dict_tmp['editors'] = ''
+        dict_books.append(dict_tmp)
+    return dict_books
+
+def makeDictFromBooksForRESTAPI(cls, model_books):
+    """
+    書籍リストを辞書配列化する
+    """
+    dict_books = []
+    for model_book in model_books:
+        dict_tmp = model_to_dict(model_book)
+        int_author = dict_tmp.get('author', None)
+        if int_author: # 著者が指定されている場合
+            dict_tmp['author'] = Author.objects.get(id = int_author).name
+        else: # 著者が指定されていない場合
+            dict_tmp['author'] = ''
+        obj_editors = dict_tmp.get('editors', None)
+        str_editors = []
+        if obj_editors: # 編集者が指定されている場合
+            for tmp_editor in obj_editors:
+                str_editors.append(tmp_editor.name)
+            dict_tmp['editors'] = ','.join(str_editors)
+        dict_tmp['editors'] = str_editors
         dict_books.append(dict_tmp)
     return dict_books
 
@@ -163,14 +196,19 @@ def import_from_csv(request):
                 for obj_toImportBook in obj_toImportBooks:
 
                     try:
-                        Book.objects.update_or_create(
+                        obj_book, _ = Book.objects.update_or_create(
                             id = obj_toImportBook['id'],
                             defaults = {
                                 'name': obj_toImportBook['name'],
                                 'author': obj_toImportBook['author'],
                             }
                         )
-                        
+
+                        # ManyToManyField は `update_or_create` 内でセットできない為、ここで個別にセットする
+                        if obj_toImportBook['editors']:
+                            obj_book.editors.set(obj_toImportBook['editors'])
+                            obj_book.save()
+
                         # レコードを更新したのでリストから ID を削除
                         dict_notUpdatedIDs.pop(obj_toImportBook['id'], None)
 
@@ -214,7 +252,7 @@ class BookListAPIView(TokenAPIViewForList):
     model = Book
     property_keyword = 'books'
     serializer = BookSerializerForQueryString
-    dictionarizer = makeDictFromBooks
+    dictionarizer = makeDictFromBooksForRESTAPI
 
 class BookUpdateAPIView(TokenAPIViewForUpdate):
     model = Book

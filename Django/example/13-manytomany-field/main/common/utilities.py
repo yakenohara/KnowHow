@@ -64,6 +64,9 @@ def makeVerboseNameVsFieldNameDict(obj_model):
         # models.ManyToOneRel フィールドが生成されるので、これは除外する
         if isinstance(meta_field, models.ManyToOneRel):
             continue
+        # ManyToManyField で参照されているフィールドがある場合も同様に除外する
+        if isinstance(meta_field, models.ManyToManyRel):
+            continue
 
         str_verbose_name = obj_model._meta.get_field(meta_field.name).verbose_name
         dict_fieldNameVsVerboseName[str_verbose_name] = meta_field.name
@@ -104,3 +107,62 @@ def getQeryStringInURL(dict_params):
         str_queryStringInURL = '?' + '&'.join(str_queryStrings)
 
     return str_queryStringInURL
+
+def parseCommaSeparatedList(str_toParse):
+    """
+    ',' 区切りで記載されたリストをパースして配列化する
+    ('\' でエスケープされた '\', ',' を考慮する)
+    エスケープシーケンスに不正がある場合、第 2 引数にエラー文字位置を返す
+    不正がない場合は、第 2 引数に -1 を返す
+    """
+
+    if len(str_toParse) == 0:
+        return [], -1
+
+    bl_escaped = False
+    str_list = []
+    int_probeIndex = -1 # 参照文字位置
+    int_startIndex = 0
+    
+    for char_probe in str_toParse:
+        
+        int_probeIndex += 1
+
+        # 直前の文字が '\' の場合
+        if bl_escaped:
+
+            # エスケープされた '\' もしくは ',' の場合
+            if char_probe == '\\' or char_probe == ',':
+                bl_escaped = False
+                continue
+
+            else: # 直前の文字がエスケープ文字 '\' なのに、当該文字が '\' でも ',' でもない場合
+                return str_list, int_probeIndex
+
+        # 直前の文字が '\' ではない場合
+        else:
+            if char_probe == '\\':
+                bl_escaped = True
+                continue
+
+            elif char_probe == ',':
+
+                # 文字列を切り出してエスケープシーケンスを元に戻して配列に格納
+                str_tmp = str_toParse[int_startIndex:int_probeIndex]
+                str_tmp = str_tmp.replace('\,',',')
+                str_tmp = str_tmp.replace('\\\\','\\')
+                str_list.append(str_tmp)
+
+                int_startIndex = int_probeIndex + 1
+
+    # 最後の文字が '\' の場合
+    if bl_escaped:
+        return str_list, int_probeIndex
+
+    # 文字列を切り出してエスケープシーケンスを元に戻して配列に格納
+    str_tmp = str_toParse[int_startIndex:]
+    str_tmp = str_tmp.replace('\,',',')
+    str_tmp = str_tmp.replace('\\\\','\\')
+    str_list.append(str_tmp)
+
+    return str_list, -1

@@ -29,6 +29,7 @@ class BookSerializerForCreate(serializers.ModelSerializer):
         fields = (
             'name',
             'author',
+            'editors',
         )
 
     def validate(self, data):

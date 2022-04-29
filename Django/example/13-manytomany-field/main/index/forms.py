@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from authors.models import Author
-
+from common.utilities import parseCommaSeparatedList
 from editors.models import Editor
 
 from .models import Book
@@ -50,6 +50,8 @@ class BookCSVForm(forms.Form):
 
     author = forms.CharField(max_length = 255, required = False)
 
+    editors = forms.CharField(required = False)
+
     def clean(self):
 
         cleaned_data = super().clean()
@@ -66,5 +68,33 @@ class BookCSVForm(forms.Form):
 
         else: # 著者が指定されていない場合
             cleaned_data['author'] = None
+
+        str_editorsInCSV = cleaned_data.get('editors')
+        if str_editorsInCSV: # 編集者が指定されている場合
+
+            str_editors, int_errIndex = parseCommaSeparatedList(str_editorsInCSV)
+
+            # エスケープシーケンスに不正がある場合
+            if -1 < int_errIndex:
+                if int_errIndex == (len(str_editorsInCSV) - 1): # 文字列最後に不正がある場合
+                    str_errmsg = f'Unknown escape sequence `{str_editorsInCSV[int_errIndex]}` found in `{str_editorsInCSV}`.'
+                else:
+                    str_errmsg = f'Unknown escape sequence `\{str_editorsInCSV[int_errIndex]}` found in `{str_editorsInCSV}`.'
+                raise ValidationError(str_errmsg, code = 'invalid')
+            
+            obj_editors = []
+            for str_editor in str_editors:
+                obj_editor = Editor.objects.filter(name = str_editor).first()
+
+                if not obj_editor: # 編集者が存在しない場合
+                    str_errmsg = f'Specified editor `{obj_editor}` not found while cleaning ID: {cleaned_data.get("id")}, name: {cleaned_data.get("name")}.'
+                    raise ValidationError(str_errmsg, code = 'invalid')
+
+                obj_editors.append(obj_editor)
+
+            cleaned_data['editors'] = obj_editors
+
+        else: # 編集者が指定されていない場合
+            cleaned_data['editors'] = []
 
         return cleaned_data
