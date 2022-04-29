@@ -8,6 +8,17 @@ from authors.models import Author
 from .models import Book
 
 class BookEditForm(forms.ModelForm):
+    
+    # https://docs.djangoproject.com/en/4.0/ref/forms/fields/#django.forms.ModelChoiceField
+    author = forms.ModelChoiceField(
+        label = '著者名',
+        required = False,
+        queryset = Author.objects.all().order_by('name'), # `name` フィールドでソートしたリストを表示させる
+        error_messages = {
+            'invalid_choice': 'すでに削除された著者名が選択されています。再度選択してください。'
+        }
+    )
+
     class Meta:
         model = Book
         fields = (

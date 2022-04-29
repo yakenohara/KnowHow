@@ -4337,6 +4337,40 @@ class Book(models.Model):
  - models.DO_NOTHING  
    紐付けられた外部キーオブジェクトが削除された時、なんの処理もしない。  
 
+また、書籍の追加画面で使用する html テンプレートで、著者名が名前順にソートされた状態でリストから選択できると便利なので、index/forms.py を以下のように変更する。  
+
+ - 変更前  
+```python
+class BookEditForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = (
+            'name',
+            'author',
+        )
+```
+ - 変更後  
+```python
+class BookEditForm(forms.ModelForm):
+    
+    # https://docs.djangoproject.com/en/4.0/ref/forms/fields/#django.forms.ModelChoiceField
+    author = forms.ModelChoiceField(
+        label = '著者名',
+        required = False,
+        queryset = Author.objects.all().order_by('name'), # `name` フィールドでソートしたリストを表示させる
+        error_messages = {
+            'invalid_choice': 'すでに削除された著者名が選択されています。再度選択してください。'
+        }
+    )
+
+    class Meta:
+        model = Book
+        fields = (
+            'name',
+            'author',
+        )
+```
+
 あとは URL スキームの設計と View 定義を他のアプリと同様に実装するだけで、html テンプレートに対して `form.author` が、 `.widget_type` が `select` の状態で、かつ選択できるリスト内容が著者一覧となった状態で渡る。ただ、このまま html ファイルを作り込みすると下図のように、著者リストの表示内容がオブジェクトを `str()` しただけの内容になる。  
 
 ![](assets/images/2022-04-24-22-15-06.png)  

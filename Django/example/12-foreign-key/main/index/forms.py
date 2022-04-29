@@ -9,7 +9,7 @@ from .models import Book
 
 class BookEditForm(forms.ModelForm):
     
-    # https://docs.djangoproject.com/en/4.0/ref/forms/fields/
+    # https://docs.djangoproject.com/en/4.0/ref/forms/fields/#django.forms.ModelChoiceField
     author = forms.ModelChoiceField(
         label = '著者名',
         required = False,
