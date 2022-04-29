@@ -5,6 +5,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 from authors.models import Author
 
+from editors.models import Editor
+
 from .models import Book
 
 class BookEditForm(forms.ModelForm):
@@ -19,11 +21,21 @@ class BookEditForm(forms.ModelForm):
         }
     )
 
+    editors = forms.ModelMultipleChoiceField(
+        label = '編集者名',
+        required = False,
+        queryset = Editor.objects.all().order_by('name'),
+        error_messages = {
+            'invalid_choice': 'すでに削除された編集者名が選択されています。再度選択してください。'
+        }
+    )
+
     class Meta:
         model = Book
         fields = (
             'name',
             'author',
+            'editors',
         )
 
 class BookCSVForm(forms.Form):
