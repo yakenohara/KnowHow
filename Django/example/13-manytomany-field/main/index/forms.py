@@ -21,6 +21,7 @@ class BookEditForm(forms.ModelForm):
         }
     )
 
+    # https://docs.djangoproject.com/en/4.0/ref/forms/fields/#django.forms.ModelMultipleChoiceField
     editors = forms.ModelMultipleChoiceField(
         label = '編集者名',
         required = False,
