@@ -4,6 +4,8 @@ from rest_framework import serializers
 
 from authors.models import Author
 
+from editors.models import Editor
+
 from .models import Book
 
 class BookSerializerForQueryString(serializers.Serializer):
@@ -20,9 +22,14 @@ class BookSerializerForQueryString(serializers.Serializer):
         
         return dict_queryForFilter
 
+class WordListingField(serializers.StringRelatedField):
+    def to_internal_value(self, value):
+        return value
+
 class BookSerializerForCreate(serializers.ModelSerializer):
     name = serializers.CharField(max_length = 255)
     author = serializers.CharField(max_length = 255, required = False, allow_blank = True)
+    editors = WordListingField(many = True)
 
     class Meta:
         model = Book
@@ -45,13 +52,37 @@ class BookSerializerForCreate(serializers.ModelSerializer):
             data['author'] = obj_toSaveAuthor
         else: # 著者が指定されていない場合
             data['author'] = None
-        
+
+        str_editors = data.get('editors', None)
+        if str_editors: # 編集者が指定されている場合
+            int_toSaveEditorIDs = []
+            for str_editor in str_editors:
+                obj_toSaveEditor = Editor.objects.filter(name = str_editor).first()
+                if not obj_toSaveEditor: # 存在しない編集者の場合
+                    raise serializers.ValidationError(f'指定された編集者名 `{str_editor}` は存在しません。')
+                int_toSaveEditorIDs.append(obj_toSaveEditor.id)
+
+            data['editors'] = int_toSaveEditorIDs
+
+        else: # 編集者が指定されていない場合
+            data['editors'] = []
+
         return data
+
+    # https://www.django-rest-framework.org/community/3.0-announcement/#the-create-and-update-methods
+    def create(self, validated_data):
+        
+        int_toSaveEditorIDs = validated_data.pop('editors')
+        obj_createdBook = super().create(validated_data)
+        obj_createdBook.editors.set(int_toSaveEditorIDs)
+
+        return obj_createdBook
 
 class BookSerializerForUpdate(serializers.ModelSerializer):
     id = serializers.IntegerField()
     name = serializers.CharField(max_length = 255)
     author = serializers.CharField(max_length = 255, required = False, allow_blank = True)
+    editors = WordListingField(many = True)
 
     class Meta:
         model = Author
@@ -74,5 +105,28 @@ class BookSerializerForUpdate(serializers.ModelSerializer):
             data['author'] = obj_toSaveAuthor
         else: # 著者が指定されていない場合
             data['author'] = None
+
+        str_editors = data.get('editors', None)
+        if str_editors: # 編集者が指定されている場合
+            int_toSaveEditorIDs = []
+            for str_editor in str_editors:
+                obj_toSaveEditor = Editor.objects.filter(name = str_editor).first()
+                if not obj_toSaveEditor: # 存在しない編集者の場合
+                    raise serializers.ValidationError(f'指定された編集者名 `{str_editor}` は存在しません。')
+                int_toSaveEditorIDs.append(obj_toSaveEditor.id)
+
+            data['editors'] = int_toSaveEditorIDs
+
+        else: # 編集者が指定されていない場合
+            data['editors'] = []
         
         return data
+
+    # https://www.django-rest-framework.org/community/3.0-announcement/#the-create-and-update-methods
+    def update(self, instance, validated_data):
+        
+        int_toSaveEditorIDs = validated_data.pop('editors')        
+        super().update(instance, validated_data)
+        instance.editors.set(int_toSaveEditorIDs)
+
+        return instance
