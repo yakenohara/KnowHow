@@ -29,7 +29,7 @@ class WordListingField(serializers.StringRelatedField):
 class BookSerializerForCreate(serializers.ModelSerializer):
     name = serializers.CharField(max_length = 255)
     author = serializers.CharField(max_length = 255, required = False, allow_blank = True)
-    editors = WordListingField(many = True)
+    editors = WordListingField(many = True, required = False)
 
     class Meta:
         model = Book
@@ -82,7 +82,7 @@ class BookSerializerForUpdate(serializers.ModelSerializer):
     id = serializers.IntegerField()
     name = serializers.CharField(max_length = 255)
     author = serializers.CharField(max_length = 255, required = False, allow_blank = True)
-    editors = WordListingField(many = True)
+    editors = WordListingField(many = True, required = False)
 
     class Meta:
         model = Author

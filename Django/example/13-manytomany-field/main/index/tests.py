@@ -15,6 +15,8 @@ from accounts.models import TokenForRESTAPI
 
 from authors.models import Author
 
+from editors.models import Editor
+
 from common.const import INT_TIMES_OF_RETRYING_CAUSE_OF_DEADLOCK, STR_ATTRIBUTE_KEYWORD_FOR_TOKEN
 
 from index.views import makeDictFromBooks
@@ -40,6 +42,20 @@ class BookCreateTest(TestCase):
                 'birthday': None,
             }
         )
+        Editor.objects.update_or_create(
+            id = 1,
+            defaults = {
+                'name': 'createdEditor1',
+                'sex': Editor.Sex.FEMALE,
+            }
+        )
+        Editor.objects.update_or_create(
+            id = 2,
+            defaults = {
+                'name': 'createdEditor2',
+                'sex': None,
+            }
+        )
 
     def test_001(self):
         """
@@ -54,7 +70,8 @@ class BookCreateTest(TestCase):
         """
         dict_toSaveBook = {
             'name': 'toSaveBook',
-            'author': ''
+            'author': '',
+            'editors': [],
         }
         obj_response = self.client.post('/create/', data = dict_toSaveBook)
         self.assertEqual(obj_response.status_code, 302)
@@ -70,7 +87,8 @@ class BookCreateTest(TestCase):
         """
         dict_toSaveBook = {
             'name': 'toSaveBook',
-            'author': 1
+            'author': 1,
+            'editors': [1, 2]
         }
         obj_response = self.client.post('/create/', data = dict_toSaveBook)
         self.assertEqual(obj_response.status_code, 302)
@@ -129,6 +147,20 @@ class BookUpdateTest(TestCase):
                 'birthday': datetime.date(2000, 6, 10),
             }
         )
+        Editor.objects.update_or_create(
+            id = 1,
+            defaults = {
+                'name': 'createdEditor1',
+                'sex': None,
+            }
+        )
+        Editor.objects.update_or_create(
+            id = 2,
+            defaults = {
+                'name': 'createdEditor2',
+                'sex': None,
+            }
+        )
 
     def test_001(self):
         """
@@ -143,7 +175,8 @@ class BookUpdateTest(TestCase):
         """
         dict_toUpdateBook = {
             'name': 'updated book',
-            'author': ''
+            'author': '',
+            'editors': [],
         }
         obj_response =  self.client.post(f'/{self.obj_createBook.id}/update/', data = dict_toUpdateBook)
         self.assertEqual(obj_response.status_code, 302)
@@ -152,11 +185,12 @@ class BookUpdateTest(TestCase):
     
     def test_003(self):
         """
-        著者の編集成功時に正しい URL へリダイレクトされるかどうか確認する(外部キー参照なし)
+        著者の編集成功時に正しい URL へリダイレクトされるかどうか確認する(外部キー参照あり)
         """
         dict_toUpdateBook = {
             'name': 'updated book',
-            'author': 1
+            'author': 1,
+            'editors': [1,2],
         }
         obj_response =  self.client.post(f'/{self.obj_createBook.id}/update/', data = dict_toUpdateBook)
         self.assertEqual(obj_response.status_code, 302)
@@ -214,6 +248,22 @@ class makeDictFromBooksTest(TestCase):
             }
         )
 
+        obj_createdEditorA, _ = Editor.objects.update_or_create(
+            id = 1,
+            defaults = {
+                'name': 'created editor A',
+                'sex': Editor.Sex.FEMALE,
+            }
+        )
+
+        obj_createdEditorB, _ = Editor.objects.update_or_create(
+            id = 2,
+            defaults = {
+                'name': 'created editor B',
+                'sex': None,
+            }
+        )
+
         self.dict_books = []
         self.dict_books.append(
             Book.objects.create(
@@ -233,6 +283,8 @@ class makeDictFromBooksTest(TestCase):
                 author = None,
             )
         )
+        self.dict_books[2].editors.set([obj_createdEditorA, obj_createdEditorB])
+        self.dict_books[2].save()
 
     def test_001(self):
         """
@@ -242,17 +294,20 @@ class makeDictFromBooksTest(TestCase):
             {
                 'id': 1,
                 'name': 'book A',
-                'author': 'created author A'
+                'author': 'created author A',
+                'editors': '',
             },
             {
                 'id': 2,
                 'name': 'book B',
-                'author': 'created author B'
+                'author': 'created author B',
+                'editors': '',
             },
             {
                 'id': 3,
                 'name': 'book C',
-                'author': ''
+                'author': '',
+                'editors': 'created editor A,created editor B',
             },
         ]
         self.assertEqual(makeDictFromBooks(None, self.dict_books), dict_expectedBooks)
@@ -291,6 +346,22 @@ class export_as_csvTest(TestCase):
             }
         )
 
+        obj_createdEditorA, _ = Editor.objects.update_or_create(
+            id = 1,
+            defaults = {
+                'name': 'created editor A',
+                'sex': Editor.Sex.FEMALE,
+            }
+        )
+
+        obj_createdEditorB, _ = Editor.objects.update_or_create(
+            id = 2,
+            defaults = {
+                'name': 'created editor B',
+                'sex': None,
+            }
+        )
+
         Book.objects.update_or_create(
             id = 1,
             defaults = {
@@ -312,13 +383,15 @@ class export_as_csvTest(TestCase):
                 'author': obj_authorC
             }
         )
-        Book.objects.update_or_create(
+        obj_book, _ = Book.objects.update_or_create(
             id = 4,
             defaults = {
                 'name': 'book D',
                 'author': None
             }
         )
+        obj_book.editors.set([obj_createdEditorA, obj_createdEditorB])
+        obj_book.save()
         
     def test_001(self):
         """
@@ -328,11 +401,11 @@ class export_as_csvTest(TestCase):
         self.assertEqual(obj_response.status_code, 200)
 
         str_expected = textwrap.dedent('''\
-            ID,著書名,著者名
-            1,book A,author A
-            2,book B,author B
-            3,book C,author C
-            4,book D,
+            ID,著書名,著者名,編集者名
+            1,book A,author A,
+            2,book B,author B,
+            3,book C,author C,
+            4,book D,,"created editor A,created editor B"
         ''')
         # 改行 コードを `\n` に統一
         str_expected = re.sub(r'\r\n', r'\n', str_expected)
@@ -377,6 +450,22 @@ class import_from_csvTest(TestCase):
             }
         )
 
+        obj_createdEditorA, _ = Editor.objects.update_or_create(
+            id = 1,
+            defaults = {
+                'name': 'created editor A',
+                'sex': Editor.Sex.FEMALE,
+            }
+        )
+
+        obj_createdEditorB, _ = Editor.objects.update_or_create(
+            id = 2,
+            defaults = {
+                'name': 'created editor B',
+                'sex': None,
+            }
+        )
+
         Book.objects.update_or_create(
             id = 1,
             defaults = {
@@ -398,13 +487,15 @@ class import_from_csvTest(TestCase):
                 'author': obj_authorC
             }
         )
-        Book.objects.update_or_create(
+        obj_book, _ = Book.objects.update_or_create(
             id = 4,
             defaults = {
                 'name': 'book D',
                 'author': None
             }
         )
+        obj_book.editors.set([obj_createdEditorA, obj_createdEditorB])
+        obj_book.save()
 
     def test_001(self):
         """
@@ -412,8 +503,8 @@ class import_from_csvTest(TestCase):
         """
 
         str_toImportCSVText = textwrap.dedent('''\
-            ID,著書名,著者名
-            5,"added, name",
+            ID,著書名,著者名,編集者名
+            5,"added, name",,
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -433,11 +524,11 @@ class import_from_csvTest(TestCase):
         obj_response = self.client.get('/export_as_csv/')
         
         str_expected = textwrap.dedent('''\
-            ID,著書名,著者名
-            1,book A,author A
-            2,book B,author B
-            3,book C,author C
-            4,book D,
+            ID,著書名,著者名,編集者名
+            1,book A,author A,
+            2,book B,author B,
+            3,book C,author C,
+            4,book D,,"created editor A,created editor B"
         ''')
         # 改行 コードを `\n` に統一
         str_expected = re.sub(r'\r\n', r'\n', str_expected)
@@ -453,8 +544,8 @@ class import_from_csvTest(TestCase):
         UnicodeDecodeError
         """
         str_toImportCSVText = textwrap.dedent('''\
-            ID,著書名,著者名
-            5,"added, name",
+            ID,著書名,著者名,編集者名
+            5,"added, name",,
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -475,11 +566,11 @@ class import_from_csvTest(TestCase):
         obj_response = self.client.get('/export_as_csv/')
         
         str_expected = textwrap.dedent('''\
-            ID,著書名,著者名
-            1,book A,author A
-            2,book B,author B
-            3,book C,author C
-            4,book D,
+            ID,著書名,著者名,編集者名
+            1,book A,author A,
+            2,book B,author B,
+            3,book C,author C,
+            4,book D,,"created editor A,created editor B"
         ''')
         # 改行 コードを `\n` に統一
         str_expected = re.sub(r'\r\n', r'\n', str_expected)
@@ -495,8 +586,8 @@ class import_from_csvTest(TestCase):
         必要なカラムタイトルが存在しない
         """
         str_toImportCSVText = textwrap.dedent('''\
-            ID,著書名
-            5,"added, name"
+            ID,著書名,著者名
+            5,"added, name",
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -517,11 +608,11 @@ class import_from_csvTest(TestCase):
         obj_response = self.client.get('/export_as_csv/')
         
         str_expected = textwrap.dedent('''\
-            ID,著書名,著者名
-            1,book A,author A
-            2,book B,author B
-            3,book C,author C
-            4,book D,
+            ID,著書名,著者名,編集者名
+            1,book A,author A,
+            2,book B,author B,
+            3,book C,author C,
+            4,book D,,"created editor A,created editor B"
         ''')
         # 改行 コードを `\n` に統一
         str_expected = re.sub(r'\r\n', r'\n', str_expected)
@@ -537,9 +628,9 @@ class import_from_csvTest(TestCase):
         バリデーションエラーとなるレコードが一部存在する
         """
         str_toImportCSVText = textwrap.dedent('''\
-            ID,著書名,著者名
-            5,"added, name",author C
-            6,added name,author D
+            ID,著書名,著者名,編集者名
+            5,"added, name",author C,"created editor A,created editor B"
+            6,added name,author D,
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -560,12 +651,12 @@ class import_from_csvTest(TestCase):
         obj_response = self.client.get('/export_as_csv/')
         
         str_expected = textwrap.dedent('''\
-            ID,著書名,著者名
-            1,book A,author A
-            2,book B,author B
-            3,book C,author C
-            4,book D,
-            5,"added, name",author C
+            ID,著書名,著者名,編集者名
+            1,book A,author A,
+            2,book B,author B,
+            3,book C,author C,
+            4,book D,,"created editor A,created editor B"
+            5,"added, name",author C,"created editor A,created editor B"
         ''')
         # 改行 コードを `\n` に統一
         str_expected = re.sub(r'\r\n', r'\n', str_expected)
@@ -581,8 +672,8 @@ class import_from_csvTest(TestCase):
         名前フィールドが他レコードと重複している
         """
         str_toImportCSVText = textwrap.dedent('''\
-            ID,著書名,著者名
-            5,book D,
+            ID,著書名,著者名,編集者名
+            5,book D,,
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -603,11 +694,11 @@ class import_from_csvTest(TestCase):
         obj_response = self.client.get('/export_as_csv/')
         
         str_expected = textwrap.dedent('''\
-            ID,著書名,著者名
-            1,book A,author A
-            2,book B,author B
-            3,book C,author C
-            4,book D,
+            ID,著書名,著者名,編集者名
+            1,book A,author A,
+            2,book B,author B,
+            3,book C,author C,
+            4,book D,,"created editor A,created editor B"
         ''')
         # 改行 コードを `\n` に統一
         str_expected = re.sub(r'\r\n', r'\n', str_expected)
@@ -623,7 +714,7 @@ class import_from_csvTest(TestCase):
         置き換えモードで全て削除
         """
         str_toImportCSVText = textwrap.dedent('''\
-            ID,著書名,著者名
+            ID,著書名,著者名,編集者名
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -657,8 +748,8 @@ class import_from_csvTest(TestCase):
         デッドロックの発生(既定回数内)
         """
         str_toImportCSVText = textwrap.dedent('''\
-            ID,著書名,著者名
-            5,added name,
+            ID,著書名,著者名,編集者名
+            5,added name,,
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -692,12 +783,12 @@ class import_from_csvTest(TestCase):
         obj_response = self.client.get('/export_as_csv/')
         
         str_expected = textwrap.dedent('''\
-            ID,著書名,著者名
-            1,book A,author A
-            2,book B,author B
-            3,book C,author C
-            4,book D,
-            5,added name,
+            ID,著書名,著者名,編集者名
+            1,book A,author A,
+            2,book B,author B,
+            3,book C,author C,
+            4,book D,,"created editor A,created editor B"
+            5,added name,,
         ''')
         # 改行 コードを `\n` に統一
         str_expected = re.sub(r'\r\n', r'\n', str_expected)
@@ -713,8 +804,8 @@ class import_from_csvTest(TestCase):
         デッドロックの発生(既定回数超過)
         """
         str_toImportCSVText = textwrap.dedent('''\
-            ID,著書名,著者名
-            5,added name,
+            ID,著書名,著者名,編集者名
+            5,added name,,
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -741,11 +832,11 @@ class import_from_csvTest(TestCase):
         obj_response = self.client.get('/export_as_csv/')
         
         str_expected = textwrap.dedent('''\
-            ID,著書名,著者名
-            1,book A,author A
-            2,book B,author B
-            3,book C,author C
-            4,book D,
+            ID,著書名,著者名,編集者名
+            1,book A,author A,
+            2,book B,author B,
+            3,book C,author C,
+            4,book D,,"created editor A,created editor B"
         ''')
         # 改行 コードを `\n` に統一
         str_expected = re.sub(r'\r\n', r'\n', str_expected)
@@ -895,6 +986,91 @@ class BookCreateAPIViewTest(TestCase):
         self.assertEqual(obj_response.status_code, 200)
         self.assertEqual(Book.objects.get(name = 'created book').author, None)
 
+    def test_006(self):
+        """
+        存在しない編集者名
+        """
+
+        str_input = textwrap.dedent('''\
+            {
+                "books": [
+                    {
+                        "name": "created book",
+                        "editors": [
+                            "editor A"
+                        ]
+                    }
+                ]
+            }
+        ''')
+        obj_response = self.client.post(
+            '/api/v1/books/create/',
+            HTTP_AUTHORIZATION = f'{STR_ATTRIBUTE_KEYWORD_FOR_TOKEN} {self.obj_token.key}',
+            data = str_input,
+            content_type = 'application/json',
+        )
+        self.assertContains(obj_response, '指定された編集者名 `editor A` は存在しません。', status_code = 400)
+
+
+    def test_007(self):
+        """
+        editors フィールドの指定
+        """
+
+        Editor.objects.create(
+            name = 'Editor A',
+            sex = Editor.Sex.FEMALE,
+        )
+        Editor.objects.create(
+            name = 'Editor B',
+            sex = None,
+        )
+        str_input = textwrap.dedent('''\
+            {
+                "books": [
+                    {
+                        "name": "created book",
+                        "editors": [
+                            "Editor A",
+                            "Editor B"
+                        ]
+                    }
+                ]
+            }
+        ''')
+        obj_response = self.client.post(
+            '/api/v1/books/create/',
+            HTTP_AUTHORIZATION = f'{STR_ATTRIBUTE_KEYWORD_FOR_TOKEN} {self.obj_token.key}',
+            data = str_input,
+            content_type = 'application/json',
+        )
+        self.assertEqual(obj_response.status_code, 200)
+        self.assertEqual(Book.objects.get(name = 'created book').editors.all()[0].name, 'Editor A')
+        self.assertEqual(Book.objects.get(name = 'created book').editors.all()[1].name, 'Editor B')
+
+    def test_008(self):
+        """
+        editors フィールドの空指定
+        """
+        str_input = textwrap.dedent('''\
+            {
+                "books": [
+                    {
+                        "name": "created book",
+                        "editors": []
+                    }
+                ]
+            }
+        ''')
+        obj_response = self.client.post(
+            '/api/v1/books/create/',
+            HTTP_AUTHORIZATION = f'{STR_ATTRIBUTE_KEYWORD_FOR_TOKEN} {self.obj_token.key}',
+            data = str_input,
+            content_type = 'application/json',
+        )
+        self.assertEqual(obj_response.status_code, 200)
+        self.assertEqual(Book.objects.get(name = 'created book').editors.all().count(), 0)
+
 class BookListAPIViewTest(TestCase):
     """ BookListAPIView """
 
@@ -950,6 +1126,20 @@ class BookListAPIViewTest(TestCase):
                 'author': obj_authorB
             }
         )
+        editor1, _ = Editor.objects.update_or_create(
+            id = 1,
+            defaults = {
+                'name': 'createdEditor1',
+                'sex': Editor.Sex.FEMALE,
+            }
+        )
+        editor2, _ = Editor.objects.update_or_create(
+            id = 2,
+            defaults = {
+                'name': 'createdEditor2',
+                'sex': None,
+            }
+        )
         obj_id3, _ = Book.objects.update_or_create(
             id = 3,
             defaults = {
@@ -957,6 +1147,8 @@ class BookListAPIViewTest(TestCase):
                 'author': obj_authorC
             }
         )
+        obj_id3.editors.set([editor1, editor2])
+        obj_id3.save()
         Book.objects.update_or_create(
             id = 4,
             defaults = {
@@ -971,6 +1163,10 @@ class BookListAPIViewTest(TestCase):
                     'id': 3,
                     'name': 'book C',
                     'author': 'author C',
+                    'editors': [
+                        "createdEditor1",
+                        "createdEditor2"
+                    ]
                 },
             ]
         }
@@ -1133,6 +1329,8 @@ class BookUpdateAPIViewTest(TestCase):
         )
         self.assertEqual(obj_response.status_code, 200)
         self.assertEqual(Book.objects.get(name = 'updated book').author, None)
+
+    # todo ここから
 
 class BookDeleteAPIViewTest(TestCase):
     """ BookDeleteAPIView """

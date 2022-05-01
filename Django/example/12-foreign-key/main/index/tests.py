@@ -152,7 +152,7 @@ class BookUpdateTest(TestCase):
     
     def test_003(self):
         """
-        著者の編集成功時に正しい URL へリダイレクトされるかどうか確認する(外部キー参照なし)
+        著者の編集成功時に正しい URL へリダイレクトされるかどうか確認する(外部キー参照あり)
         """
         dict_toUpdateBook = {
             'name': 'updated book',

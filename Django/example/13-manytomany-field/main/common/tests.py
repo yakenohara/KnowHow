@@ -15,7 +15,7 @@ from accounts.models import TokenForRESTAPI
 from editors.models import Editor
 
 from common.const import STR_ATTRIBUTE_KEYWORD_FOR_TOKEN
-from common.utilities import StrChoiceEnum, makeVerboseNameVsFieldNameDict, makeCSVStringFromDict, getOrdinalString, getQeryStringInURL
+from common.utilities import StrChoiceEnum, makeVerboseNameVsFieldNameDict, makeCSVStringFromDict, getOrdinalString, getQeryStringInURL, parseCommaSeparatedList
 
 # <auth.py>--------------------------------------------------------------------
 
@@ -177,6 +177,73 @@ class getQeryStringInURLTest(TestCase):
         }
         str_expected = '?id=1&name=Foo%20Bar'
         self.assertEqual(getQeryStringInURL(dict_query), str_expected)
+
+class parseCommaSeparatedListTest(TestCase):
+    """ parseCommaSeparatedList """
+
+    def test_001(self):
+        """
+        空文字列の指定
+        """
+        str_expected = []
+        int_expected = -1
+
+        str_behavior, int_behavior = parseCommaSeparatedList('')
+
+        self.assertEqual(str_behavior, str_expected)
+        self.assertEqual(int_behavior, int_expected)
+
+    def test_002(self):
+        """
+        エスケープされた '\' と ','
+        """
+        str_expected = ['\\', ',']
+        int_expected = -1
+
+        str_behavior, int_behavior = parseCommaSeparatedList('\\\\,\,')
+
+        self.assertEqual(str_behavior, str_expected)
+        self.assertEqual(int_behavior, int_expected)
+
+    def test_003(self):
+        """
+        直前の文字がエスケープ文字 '\' なのに、当該文字が '\' でも ',' でもない場合
+        """
+
+        str_expected = []
+        int_expected = 1
+
+        str_behavior, int_behavior = parseCommaSeparatedList('\\a')
+
+        self.assertEqual(str_behavior, str_expected)
+        self.assertEqual(int_behavior, int_expected)
+
+    def test_004(self):
+        """
+        最後の文字が '\' の場合
+        """
+
+        str_expected = []
+        int_expected = 1
+
+        str_behavior, int_behavior = parseCommaSeparatedList('a\\')
+
+        self.assertEqual(str_behavior, str_expected)
+        self.assertEqual(int_behavior, int_expected)
+
+    def test_005(self):
+        """
+        様々なパターン
+        """
+
+        str_expected = ['', ',', '\\', '']
+        int_expected = -1
+
+        str_behavior, int_behavior = parseCommaSeparatedList(',\,,\\\\,')
+
+        self.assertEqual(str_behavior, str_expected)
+        self.assertEqual(int_behavior, int_expected)
+
         
 # ---------------------------------------------------------------<utilities.py>
 
