@@ -69,6 +69,10 @@
 | Ctrl + Alt + `↑` | `command` + `option` + `↑`  |
 | Ctrl + Alt + `↓` | `command` + `option` + `↓`  |
 
+# 設定
+
+mail.app -> `メール` -> `環境設定` -> `一般` タブ -> `デフォルトメールソフト` -> firefox
+
 # HomeBrew
 
 ## Install
