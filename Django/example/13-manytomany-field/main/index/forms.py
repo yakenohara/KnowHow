@@ -77,7 +77,7 @@ class BookCSVForm(forms.Form):
 
             # エスケープシーケンスに不正がある場合
             if -1 < int_errIndex:
-                if int_errIndex == (len(str_editorsInCSV) - 1): # 文字列最後に不正がある場合
+                if int_errIndex == (len(str_editorsInCSV) - 1) and str_editorsInCSV[-1] == '\\': # 文字列最後に不正がある場合
                     str_errmsg = f'Unknown escape sequence `{str_editorsInCSV[int_errIndex]}` found in `{str_editorsInCSV}`.'
                 else:
                     str_errmsg = f'Unknown escape sequence `\{str_editorsInCSV[int_errIndex]}` found in `{str_editorsInCSV}`.'

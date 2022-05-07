@@ -19,7 +19,7 @@ from editors.models import Editor
 
 from common.const import INT_TIMES_OF_RETRYING_CAUSE_OF_DEADLOCK, STR_ATTRIBUTE_KEYWORD_FOR_TOKEN
 
-from index.views import makeDictFromBooks
+from index.views import makeDictFromBooks, makeDictFromBooksForRESTAPI
 from index.models import Book
 
 # Create your tests here.
@@ -311,6 +311,94 @@ class makeDictFromBooksTest(TestCase):
             },
         ]
         self.assertEqual(makeDictFromBooks(None, self.dict_books), dict_expectedBooks)
+
+class makeDictFromBooksForRESTAPITest(TestCase):
+    """ makeDictFromBooksForRESTAPI """
+
+    def setUp(self):
+
+        obj_createdAuthorA, _ = Author.objects.update_or_create(
+            id = 1,
+            defaults = {
+                'name': 'created author A',
+                'birthday': datetime.date(1999, 12, 13),
+            }
+        )
+
+        obj_createdAuthorB, _ = Author.objects.update_or_create(
+            id = 2,
+            defaults = {
+                'name': 'created author B',
+                'birthday': datetime.date(1999, 12, 13),
+            }
+        )
+
+        obj_createdEditorA, _ = Editor.objects.update_or_create(
+            id = 1,
+            defaults = {
+                'name': 'created editor A',
+                'sex': Editor.Sex.FEMALE,
+            }
+        )
+
+        obj_createdEditorB, _ = Editor.objects.update_or_create(
+            id = 2,
+            defaults = {
+                'name': 'created editor B',
+                'sex': None,
+            }
+        )
+
+        self.dict_books = []
+        self.dict_books.append(
+            Book.objects.create(
+                name = 'book A',
+                author = obj_createdAuthorA
+            )
+        )
+        self.dict_books.append(
+            Book.objects.create(
+                name = 'book B',
+                author = obj_createdAuthorB,
+            )
+        )
+        self.dict_books.append(
+            Book.objects.create(
+                name = 'book C',
+                author = None,
+            )
+        )
+        self.dict_books[2].editors.set([obj_createdEditorA, obj_createdEditorB])
+        self.dict_books[2].save()
+
+    def test_001(self):
+        """
+        著者リストを辞書配列化する
+        """
+        dict_expectedBooks = [
+            {
+                'id': 1,
+                'name': 'book A',
+                'author': 'created author A',
+                'editors': [],
+            },
+            {
+                'id': 2,
+                'name': 'book B',
+                'author': 'created author B',
+                'editors': [],
+            },
+            {
+                'id': 3,
+                'name': 'book C',
+                'author': '',
+                'editors': [
+                    'created editor A',
+                    'created editor B'
+                ]
+            },
+        ]
+        self.assertEqual(makeDictFromBooksForRESTAPI(None, self.dict_books), dict_expectedBooks)
 
 class export_as_csvTest(TestCase):
     """ export_as_csv """
@@ -631,6 +719,9 @@ class import_from_csvTest(TestCase):
             ID,著書名,著者名,編集者名
             5,"added, name",author C,"created editor A,created editor B"
             6,added name,author D,
+            7,added name,,\\
+            8,added name,,\\a
+            9,added name,,created editor C
         ''')
         # 改行 コードを `\r\n` に統一
         str_toImportCSVText = re.sub(r'\r\n', r'\n', str_toImportCSVText)
@@ -1330,7 +1421,93 @@ class BookUpdateAPIViewTest(TestCase):
         self.assertEqual(obj_response.status_code, 200)
         self.assertEqual(Book.objects.get(name = 'updated book').author, None)
 
-    # todo ここから
+    def test_006(self):
+        """
+        存在しない編集者名
+        """
+        str_input = textwrap.dedent('''\
+            {
+                "books": [
+                    {
+                        "id": 2,
+                        "name": "updated book",
+                        "editors": [
+                            "Editor A"
+                        ]
+                    }
+                ]
+            }
+        ''')
+        obj_response = self.client.post(
+            '/api/v1/books/update/',
+            HTTP_AUTHORIZATION = f'{STR_ATTRIBUTE_KEYWORD_FOR_TOKEN} {self.obj_token.key}',
+            data = str_input,
+            content_type = 'application/json',
+        )
+        self.assertEqual(obj_response.status_code, 400)
+        self.assertEqual(Book.objects.get(name = 'created book 1').editors.all().first(), None)
+
+    def test_007(self):
+        """
+        editors フィールドの指定
+        """
+
+        Editor.objects.create(
+            name = 'Editor A',
+            sex = Editor.Sex.FEMALE,
+        )
+        Editor.objects.create(
+            name = 'Editor B',
+            sex = None,
+        )
+        str_input = textwrap.dedent('''\
+            {
+                "books": [
+                    {
+                        "id": 2,
+                        "name": "updated book",
+                        "editors": [
+                            "Editor A",
+                            "Editor B"
+                        ]
+                    }
+                ]
+            }
+        ''')
+        obj_response = self.client.post(
+            '/api/v1/books/update/',
+            HTTP_AUTHORIZATION = f'{STR_ATTRIBUTE_KEYWORD_FOR_TOKEN} {self.obj_token.key}',
+            data = str_input,
+            content_type = 'application/json',
+        )
+        self.assertEqual(obj_response.status_code, 200)
+        self.assertEqual(Book.objects.get(name = 'updated book').editors.all()[0].name, 'Editor A')
+        self.assertEqual(Book.objects.get(name = 'updated book').editors.all()[1].name, 'Editor B')
+
+    def test_008(self):
+        """
+        editors フィールドの空指定
+        """
+        str_input = textwrap.dedent('''\
+            {
+                "books": [
+                    {
+                        "id": 2,
+                        "name": "updated book",
+                        "editors": []
+                    }
+                ]
+            }
+        ''')
+        obj_response = self.client.post(
+            '/api/v1/books/update/',
+            HTTP_AUTHORIZATION = f'{STR_ATTRIBUTE_KEYWORD_FOR_TOKEN} {self.obj_token.key}',
+            data = str_input,
+            content_type = 'application/json',
+        )
+        self.assertEqual(obj_response.status_code, 200)
+        self.assertEqual(Book.objects.get(name = 'updated book').editors.all().count(), 0)
+
 
 class BookDeleteAPIViewTest(TestCase):
     """ BookDeleteAPIView """
