@@ -270,9 +270,12 @@ from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiRespon
 
 from common.views import InvalidReasonSerializerForDoc
 
+from index.serializer import WordListingField
+
 class BookCreationSerializerForDoc(serializers.Serializer):
     name = serializers.CharField(help_text = '名前を指定します。他の著書と同じの名前は登録できません。また、空文字も無効です。')
     author = serializers.CharField(help_text = '任意で著者名を指定します。存在しない著者名は登録できません', required = False)
+    editors = WordListingField(help_text = '任意で編集者名を指定します。存在しない編集者名は登録できません', many = True, required = False)
 
 class BookCreationArraySerializerForDoc(serializers.Serializer):
     class BookCreationSerializer(BookCreationSerializerForDoc):
@@ -333,8 +336,37 @@ class BookCreateOpenApiView(OpenApiViewExtension):
                         }
                     ),
                     OpenApiExample(
-                        name = '著者名未指定 (プロパティなし)',
-                        description = '著者名未指定 (プロパティなし)',
+                        name = '編集者名指定',
+                        description = '編集者名指定',
+                        request_only = True,
+                        value = {
+                            "books" : [
+                                {
+                                    "name" : "book A",
+                                    "editors" : [
+                                        "Editor A",
+                                        "Editor B"
+                                    ]
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = '編集者名未指定(空配列)',
+                        description = '編集者名未指定(空配列)',
+                        request_only = True,
+                        value = {
+                            "books" : [
+                                {
+                                    "name" : "book A",
+                                    "editors" : []
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = '著者名・編集者未指定 (プロパティなし)',
+                        description = '著者名・編集者未指定 (プロパティなし)',
                         request_only = True,
                         value = {
                             "books" : [
@@ -383,11 +415,12 @@ class BookListSerializerForDoc(serializers.Serializer):
     id = serializers.IntegerField(help_text = 'ID')
     name = serializers.CharField(help_text = '著書名')
     author = serializers.DateField(help_text = '著者名')
+    editors = WordListingField(help_text = '編集者名', many = True)
 
 class BookListupedArraySerializerForDoc(serializers.Serializer):
     class BookListSerializer(BookListSerializerForDoc):
         pass
-    editors = BookListSerializer(many = True)
+    books = BookListSerializer(many = True)
 
 class AuthorListOpenApiView(OpenApiViewExtension):
     
@@ -427,12 +460,17 @@ class AuthorListOpenApiView(OpenApiViewExtension):
                                 {
                                     "id": 1,
                                     "name": "book A",
-                                    "author": "author A"
+                                    "author": "author A",
+                                    "editors": [
+                                        "editor A",
+                                        "editor B"
+                                    ]
                                 },
                                 {
                                     "id": 2,
                                     "name": "book B",
-                                    "author": ""
+                                    "author": "",
+                                    "editors": []
                                 }
                             ]
                         }
@@ -457,6 +495,7 @@ class BookUpdateSerializerForDoc(serializers.Serializer):
     id = serializers.IntegerField(help_text = 'ID を指定します。存在しない ID は指定できません。')
     name = serializers.CharField(help_text = '著書名を指定します。他の著書名と同じの名前は指定できません。また、空文字も無効です。')
     author = serializers.CharField(help_text = '任意で著者名を指定します。存在しない著者名は登録できません', required = False)
+    editors = WordListingField(help_text = '任意で編集者名を指定します。存在しない 編集者名は登録できません', many = True, required = False)
 
 class BookUpdatingArraySerializerForDoc(serializers.Serializer):
     class BookUpdateSerializer(BookUpdateSerializerForDoc):
@@ -505,6 +544,23 @@ class AuthorUpdateOpenApiView(OpenApiViewExtension):
                         }
                     ),
                     OpenApiExample(
+                        name = '編集者名指定',
+                        description = '編集者名指定',
+                        request_only = True,
+                        value = {
+                            "books": [
+                                {
+                                    "id" : 1,
+                                    "name" : "book A",
+                                    "editors" : [
+                                        "editor A",
+                                        "editor B"
+                                    ]
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
                         name = '著者名未指定 (空文字)',
                         description = '著者名未指定 (空文字)',
                         request_only = True,
@@ -519,8 +575,22 @@ class AuthorUpdateOpenApiView(OpenApiViewExtension):
                         }
                     ),
                     OpenApiExample(
-                        name = '著者名未指定 (プロパティなし)',
-                        description = '著者名未指定 (プロパティなし)',
+                        name = '編集者名未指定 (空配列)',
+                        description = '編集者名未指定 (空配列)',
+                        request_only = True,
+                        value = {
+                            "books": [
+                                {
+                                    "id" : 1,
+                                    "name" : "book A",
+                                    "editors" : []
+                                }
+                            ]
+                        }
+                    ),
+                    OpenApiExample(
+                        name = '著者名・編集者名未指定 (プロパティなし)',
+                        description = '著者名・編集者名未指定 (プロパティなし)',
                         request_only = True,
                         value = {
                             "books": [

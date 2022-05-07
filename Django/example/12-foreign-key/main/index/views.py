@@ -349,7 +349,7 @@ class BookListSerializerForDoc(serializers.Serializer):
 class BookListupedArraySerializerForDoc(serializers.Serializer):
     class BookListSerializer(BookListSerializerForDoc):
         pass
-    editors = BookListSerializer(many = True)
+    books = BookListSerializer(many = True)
 
 class AuthorListOpenApiView(OpenApiViewExtension):
     

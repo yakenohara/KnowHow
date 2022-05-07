@@ -13,6 +13,7 @@
           <th scope="col">ID</th>
           <th scope="col">著書名</th>
           <th scope="col">著者</th>
+          <th scope="col">編集者</th>
           <th scope="col">操作</th>
         </tr>
       </thead>
@@ -22,6 +23,7 @@
           <th scope="row">{{ book.id }}</th>
           <td>{{ book.name }}</td>
           <td>{% if book.author %}{{ book.author }}{% else %}不明な著者{% endif %}</td>
+          <td>{% if book.editorsForView %}{{ book.editorsForView }}{% else %}不明な編集者{% endif %}</td>
           <td>
             <a href="{% url 'index:update' book.id %}" class="btn btn-outline-primary btn-sm">編集</a>
             <a href="javascript:void(0)" data-id="{{ book.id }}" data-delete_confirmation_message="著者 {{ book.name }} を削除しますか？" class="btn btn-outline-primary btn-sm delete-btn">削除</a>

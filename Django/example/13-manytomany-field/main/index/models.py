@@ -13,3 +13,13 @@ class Book(models.Model):
     # note
     # ManyToManyField では、`null = True` は、`python manage.py makemigrations` の実行で  
     # `index.Book.editors: (fields.W340) null has no effect on ManyToManyField.` の警告が出るるので、使用しない。  
+
+    @property
+    def editorsForView(self):
+        """
+        WebUI 用の編集者リスト文字列を返す
+        """
+        str_editors = []
+        for str_editor in self.editors.all():
+            str_editors.append(str_editor.name)
+        return ', '.join(str_editors)
