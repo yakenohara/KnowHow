@@ -4274,7 +4274,7 @@ CSV 入出力、REST API、API ドキュメントは editors アプリ同様に�
 
 著書名が指定可能な著書を登録できるアプリ作成を通して、著書と著者が "外部キー" で紐付けられているテーブル定義をしてみよう。  
 
-ここでは例として、メインページのために作成した index アプリを利用して、著書を管理する作成し、著者の著者名が author アプリで管理している著者名に紐づくようにする。
+ここでは例として、メインページのために作成した index アプリを利用して、著書を管理するアプリを作成し、著者の著者名が author アプリで管理している著者名に紐づくようにする。
 
 index アプリのモデル定義は以下のようになる。  
 
@@ -4431,3 +4431,101 @@ def makeVerboseNameVsFieldNameDict(obj_model):
 ## ここまでのソースコード
 
 この項で実装したソースコードを、example/12-foreign-key/main に置いた。  
+
+# ManyToManyField フィールド
+
+編集者名が "複数" 登録可能なフィールドを定義してみよう。
+
+ここでは例として、メインページで作成した著書を管理するアプリを利用し、著者の編集者名が editor アプリで管理している編集者名に紐づくようにする。
+
+index アプリのモデル定義は以下のようになる。  
+
+```python
+class Book(models.Model):
+    id = models.AutoField(verbose_name = 'ID', primary_key = True)
+    name = models.CharField(verbose_name = '著書名', max_length = 255, unique = True)
+    author = models.ForeignKey(Author, verbose_name = '著者名', on_delete = models.SET_NULL, null = True, blank = True)
+    editors = models.ManyToManyField(Editor, verbose_name = '編集者名', blank = True)
+    # note
+    # ManyToManyField では、`null = True` は、`python manage.py makemigrations` の実行で  
+    # `index.Book.editors: (fields.W340) null has no effect on ManyToManyField.` の警告が出るるので、使用しない。  
+
+    @property
+    def editorsForView(self):
+        """
+        WebUI 用の編集者リスト文字列を返す
+        """
+        str_editors = []
+        for str_editor in self.editors.all():
+            str_editors.append(str_editor.name)
+        return ', '.join(str_editors)
+```
+
+また、ForeginKey フィールドの時と同様に、書籍の追加画面で使用する html テンプレートで、編集者名が名前順にソートされた状態でリストから選択できると便利なので、index/forms.py を以下のように変更する。  
+
+ - 変更前
+```python
+class BookEditForm(forms.ModelForm):
+    
+    # https://docs.djangoproject.com/en/4.0/ref/forms/fields/#django.forms.ModelChoiceField
+    author = forms.ModelChoiceField(
+        label = '著者名',
+        required = False,
+        queryset = Author.objects.all().order_by('name'), # `name` フィールドでソートしたリストを表示させる
+        error_messages = {
+            'invalid_choice': 'すでに削除された著者名が選択されています。再度選択してください。'
+        }
+    )
+
+    class Meta:
+        model = Book
+        fields = (
+            'name',
+            'author',
+        )
+```
+ - 変更後
+```python
+class BookEditForm(forms.ModelForm):
+    
+    # https://docs.djangoproject.com/en/4.0/ref/forms/fields/#django.forms.ModelChoiceField
+    author = forms.ModelChoiceField(
+        label = '著者名',
+        required = False,
+        queryset = Author.objects.all().order_by('name'), # `name` フィールドでソートしたリストを表示させる
+        error_messages = {
+            'invalid_choice': 'すでに削除された著者名が選択されています。再度選択してください。'
+        }
+    )
+
+    # https://docs.djangoproject.com/en/4.0/ref/forms/fields/#django.forms.ModelMultipleChoiceField
+    editors = forms.ModelMultipleChoiceField(
+        label = '編集者名',
+        required = False,
+        queryset = Editor.objects.all().order_by('name'),
+        error_messages = {
+            'invalid_choice': 'すでに削除された編集者名が選択されています。再度選択してください。'
+        }
+    )
+
+    class Meta:
+        model = Book
+        fields = (
+            'name',
+            'author',
+            'editors',
+        )
+```
+さらに、ForeginKey フィールドの時と同様に、編集者リストの表示内容がオブジェクトを `str()` しただけの内容にならないように、editors/models.py の `class Editor(models.Model):` に `def __str__(self):` を以下の様に追加する。
+
+```python
+class Editor(models.Model):
+
+    # note
+    # ここに定義するクラス変数名が、DB 内のカラム定義に該当する。
+    id = models.AutoField(verbose_name = 'ID', primary_key = True)
+    name = models.CharField(verbose_name = '名前', max_length = 255, unique = True)
+
+    def __str__(self):
+        return self.name
+```
