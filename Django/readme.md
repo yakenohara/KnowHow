@@ -35,10 +35,11 @@
 
 ## JavaScript ライブラリバージョン
 
-| ライブラリ | Version |
-| ---------- | ------- |
-| jQuery     | 3.6.0   |
-| Bootstrap  | 5.1.3   |
+| ライブラリ             | Version |
+| ---------------------- | ------- |
+| jQuery                 | 3.6.0   |
+| Bootstrap              | 5.1.3   |
+| Bootstrap Dual Listbox | 4.0.2   |
 
 # 環境のセットアップ・PJ の作成
 
@@ -4529,3 +4530,173 @@ class Editor(models.Model):
     def __str__(self):
         return self.name
 ```
+
+あとは URL スキームの設計と View 定義を他のアプリと同様に実装するのだが、ManyToManyField フィールドを含んだオブジェクトの create には注意が必要。index/views.py 内で CSV 入力による `Book.objects.update_or_create(~` している処理がこの PJ では該当するが、この `.update_or_create` 内で、以下のように `editors` プロパティに Editor のリストを指定すると、`Direct assignment to the forward side of a many-to-many set is prohibited. Use editors.set() instead.` というエラーが発生する。
+
+ - index/views.py  
+```python
+def import_from_csv(request):
+~~~~~~~~~~~~~~~~~~~~~~~~~~Omitting~~~~~~~~~~~~~~~~~~~~~~~~~~
+                        Book.objects.update_or_create(
+                            id = obj_toImportBook['id'],
+                            defaults = {
+                                'name': obj_toImportBook['name'],
+                                'author': obj_toImportBook['author'],
+                                'editors': obj_toImportBook['editors'],
+                            }
+                        )
+```
+
+その為、このフィールドは `.set` メソッドを使って以下のように別途保存する。  
+
+ - index/views.py  
+```python
+def import_from_csv(request):
+~~~~~~~~~~~~~~~~~~~~~~~~~~Omitting~~~~~~~~~~~~~~~~~~~~~~~~~~
+                        obj_book, _ = Book.objects.update_or_create(
+                            id = obj_toImportBook['id'],
+                            defaults = {
+                                'name': obj_toImportBook['name'],
+                                'author': obj_toImportBook['author'],
+                            }
+                        )
+
+                        # ManyToManyField は `update_or_create` 内でセットできない為、ここで個別にセットする
+                        if obj_toImportBook['editors']:
+                            obj_book.editors.set(obj_toImportBook['editors'])
+                            obj_book.save()
+```
+
+
+これで、html テンプレートに対して `form.editors` が、 `.widget_type` が `selectmultiple` の状態で、かつ複数選択できるリスト内容が編集者一覧となった状態で渡る。(ただし、ForeginKey フィールドの時と似たように、外部キー参照 "される" 側のモデルには `models.ManyToManyRel` というフィールドが追加されるので、common/utilities.py の `def makeVerboseNameVsFieldNameDict(obj_model):` 内で `models.ManyToManyRel` をスキップする処理を入れるのを忘れずに。)
+
+![](assets/images/2022-05-07-15-17-12.png)  
+
+ただ、上図のように生成される `<select>` タグは ctrl や shift を押しながら選択するもので、若干使い勝手が悪い。その為、jQuery と Bootstrap を使用したプラグイン [Bootstrap Dual Listbox](https://www.virtuosoft.eu/code/bootstrap-duallistbox/) を利用して選択し易い UI にしよう。  
+
+[Bootstrap Dual Listbox のダウンロードページ](https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox/tags) から v4.0.2 をダウンロードしたら、解凍した src/bootstrap-duallistbox.css を static/css ディレクトリ配下に、src/jquery.bootstrap-duallistbox.js を static/js 配下に配置する。  
+
+templates/index/form.html は以下のように、`form.editors` フィールドは新たなテンプレートファイル form_dual.html に渡し、ファイル後半で bootstrap-duallistbox.css と jquery.bootstrap-duallistbox.js を読み込む。
+
+ - 変更前  
+```html
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}書籍の{% if object %}編集{% else %}追加{% endif %}{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 mb-5 border-bottom">書籍の{% if object %}編集{% else %}追加{% endif %}</h4>
+    <form method="post">
+      {% csrf_token %}{# Cross Site Request Forgery protection https://docs.djangoproject.com/en/4.0/ref/csrf/ #}
+      
+      {# note #}
+      {# `field=form.name` の `=` にはスペースをいれてはならない #}
+      {% include "form.html" with obj_field=form.name str_help_message="書籍の名前を入力します。"%}
+      {% include "form.html" with obj_field=form.author str_help_message="任意で著者を選択します。"%}
+      {% include "form_dual.html" with obj_field=form.editors str_help_message="任意で編集者を選択します。"%}
+      
+      <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+          <button type="submit" class="btn btn-primary">登録</button>
+        </div>
+      </div>
+    </form>
+    <a href="{% url 'editors:list' %}" class="btn btn-secondary btn-sm">戻る</a>
+{% endblock content %}
+```
+ - 変更後  
+```html
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% load i18n static %}
+
+{% block title %}書籍の{% if object %}編集{% else %}追加{% endif %}{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 mb-5 border-bottom">書籍の{% if object %}編集{% else %}追加{% endif %}</h4>
+    <form method="post">
+      {% csrf_token %}{# Cross Site Request Forgery protection https://docs.djangoproject.com/en/4.0/ref/csrf/ #}
+      
+      {# note #}
+      {# `field=form.name` の `=` にはスペースをいれてはならない #}
+      {% include "form.html" with obj_field=form.name str_help_message="書籍の名前を入力します。"%}
+      {% include "form.html" with obj_field=form.author str_help_message="任意で著者を選択します。"%}
+      {% include "form_dual.html" with obj_field=form.editors str_help_message="任意で編集者を選択します。"%}
+      
+      <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+          <button type="submit" class="btn btn-primary">登録</button>
+        </div>
+      </div>
+    </form>
+    <a href="{% url 'editors:list' %}" class="btn btn-secondary btn-sm">戻る</a>
+{% endblock content %}
+
+{% block scripts %}
+<link href="{% static 'css/bootstrap-duallistbox.css' %}" rel="stylesheet" type="text/css"  />
+<script src="{% static 'js/jquery.bootstrap-duallistbox.js' %}"></script>
+{% endblock scripts %}
+```
+
+`form.editors` フィールドを受け取るテンプレートファイル form_dual.html は以下のようにする。  
+
+ - form_dual.html  
+```html
+{% load widget_tweaks %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    $("#{{ obj_field.id_for_label }}").bootstrapDualListbox({
+        filterTextClear:'全件表示',
+        filterPlaceHolder:'検索',
+        moveSelectedLabel:'選択済みに移動します。',
+        moveAllLabel:'全てを選択済みに移動します。',
+        removeSelectedLabel:'未選択に移動します。',
+        removeAllLabel:'全てを未選択に移動します。',
+        moveOnSelect: false,
+        nonSelectedListLabel: "未選択",
+        selectedListLabel: "選択済み",
+        infoText:'{0}件',
+        showFilterInputs:true,
+        infoTextEmpty:'0件',
+        infoTextFiltered:'{1}件中{0}件表示',
+    });
+})
+</script>
+
+<div class="mb-3">
+    {{ obj_field.label_tag}}{% if obj_field.field.required %} ※{% endif %}
+    {% if str_help_message %}<i title="{{str_help_message}}"> ？</i>{% endif %}
+
+    <div>
+        {% if obj_field.errors %}
+        <select name="{{ obj_field.name }}" class="form-select is-invalid" id="{{ obj_field.id_for_label }}" multiple>
+        {% for node in obj_field %}
+            <option value="{{ node.data.value }}" id="{{ obj_field.id_for_label }}_{{ node.data.attrs.id }}"{% if node.data.selected %} selected{% endif %}>{{ node.data.label }}</option>
+        {% endfor %}
+        </select>
+        {% for error in obj_field.errors %}
+        <div class="invalid-feedback">
+            {{ error | escape }}
+        </div>
+        {% endfor %}
+        {% else %}
+        <select name="{{ obj_field.name }}" class="form-select" id="{{ obj_field.id_for_label }}" multiple>
+        {% for node in obj_field %}
+            <option value="{{ node.data.value }}" id="{{ obj_field.id_for_label }}_{{ node.data.attrs.id }}"{% if node.data.selected %} selected{% endif %}>{{ node.data.label }}</option>
+        {% endfor %}
+        </select>
+        {% endif %}
+    </div>
+</div>
+```
+
+以上のように Bootstrap Dual Listbox を組み込むだけで、下図のように複数選択がし易い UI になる。
+
+![](assets/images/2022-05-07-15-32-44.png)  
+
+
+## ここまでのソースコード
+
+この項で実装したソースコードを、example/13-manytomany-field/main に置いた。 
