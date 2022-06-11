@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% load i18n static %}
+
+{% block title %}書籍の{% if object %}編集{% else %}追加{% endif %}{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 mb-5 border-bottom">書籍の{% if object %}編集{% else %}追加{% endif %}</h4>
+    <form method="post">
+      {% csrf_token %}{# Cross Site Request Forgery protection https://docs.djangoproject.com/en/4.0/ref/csrf/ #}
+      
+      {# note #}
+      {# `field=form.name` の `=` にはスペースをいれてはならない #}
+      {% include "form.html" with obj_field=form.name str_help_message="書籍の名前を入力します。"%}
+      {% include "form.html" with obj_field=form.author str_help_message="任意で著者を選択します。"%}
+      {% include "form_dual.html" with obj_field=form.editors str_help_message="任意で編集者を選択します。"%}
+      
+      <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+          <button type="submit" class="btn btn-primary">登録</button>
+        </div>
+      </div>
+    </form>
+    <a href="{% url 'editors:list' %}" class="btn btn-secondary btn-sm">戻る</a>
+{% endblock content %}
+
+{% block scripts %}
+<link href="{% static 'css/bootstrap-duallistbox.css' %}" rel="stylesheet" type="text/css"  />
+<script src="{% static 'js/jquery.bootstrap-duallistbox.js' %}"></script>
+{% endblock scripts %}

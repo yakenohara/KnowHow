@@ -69,6 +69,8 @@ postgres=# ALTER ROLE my_django_user SET timezone TO 'UTC';
 ALTER ROLE
 postgres=# GRANT ALL PRIVILEGES ON DATABASE my_django_db TO my_django_user;
 GRANT
+postgres=# ALTER USER my_django_user CREATEDB; # <- 単体テスト実行時に DB を作成する権限を付与
+ALTER ROLE
 postgres=# \l
                                             データベース一覧
      名前     |  所有者  | エンコーディング | 照合順序 | Ctype(変換演算子) |        アクセス権限

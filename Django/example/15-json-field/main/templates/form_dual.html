@@ -1,0 +1,47 @@
+{% load widget_tweaks %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    $("#{{ obj_field.id_for_label }}").bootstrapDualListbox({
+        filterTextClear:'全件表示',
+        filterPlaceHolder:'検索',
+        moveSelectedLabel:'選択済みに移動します。',
+        moveAllLabel:'全てを選択済みに移動します。',
+        removeSelectedLabel:'未選択に移動します。',
+        removeAllLabel:'全てを未選択に移動します。',
+        moveOnSelect: false,
+        nonSelectedListLabel: "未選択",
+        selectedListLabel: "選択済み",
+        infoText:'{0}件',
+        showFilterInputs:true,
+        infoTextEmpty:'0件',
+        infoTextFiltered:'{1}件中{0}件表示',
+    });
+})
+</script>
+
+<div class="mb-3">
+    {{ obj_field.label_tag}}{% if obj_field.field.required %} ※{% endif %}
+    {% if str_help_message %}<i title="{{str_help_message}}"> ？</i>{% endif %}
+
+    <div>
+        {% if obj_field.errors %}
+        <select name="{{ obj_field.name }}" class="form-select is-invalid" id="{{ obj_field.id_for_label }}" multiple>
+        {% for node in obj_field %}
+            <option value="{{ node.data.value }}" id="{{ obj_field.id_for_label }}_{{ node.data.attrs.id }}"{% if node.data.selected %} selected{% endif %}>{{ node.data.label }}</option>
+        {% endfor %}
+        </select>
+        {% for error in obj_field.errors %}
+        <div class="invalid-feedback">
+            {{ error | escape }}
+        </div>
+        {% endfor %}
+        {% else %}
+        <select name="{{ obj_field.name }}" class="form-select" id="{{ obj_field.id_for_label }}" multiple>
+        {% for node in obj_field %}
+            <option value="{{ node.data.value }}" id="{{ obj_field.id_for_label }}_{{ node.data.attrs.id }}"{% if node.data.selected %} selected{% endif %}>{{ node.data.label }}</option>
+        {% endfor %}
+        </select>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% load i18n static %}
+
+{% block title %}書籍の{% if object %}編集{% else %}追加{% endif %}{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 mb-5 border-bottom">書籍の{% if object %}編集{% else %}追加{% endif %}</h4>
+    <form method="post">
+      {% csrf_token %}{# Cross Site Request Forgery protection https://docs.djangoproject.com/en/4.0/ref/csrf/ #}
+      
+      {# note #}
+      {# `field=form.name` の `=` にはスペースをいれてはならない #}
+      {% include "form.html" with obj_field=form.name str_help_message="書籍の名前を入力します。"%}
+      {% include "form.html" with obj_field=form.author str_help_message="任意で著者を選択します。"%}
+      {% include "form_dual.html" with obj_field=form.editors str_help_message="任意で編集者を選択します。"%}
+
+      <div class="mb-3">
+        <div class="hierarchized_checkbox">
+          {# 親のチェックボックス #}
+          <div class="form-check form-check-inline">
+            {# note #}
+            {# チェックボックスの一般的な記述方法は下記参照 #}
+            {# https://getbootstrap.jp/docs/5.0/forms/checks-radios/ #}
+            <input type="checkbox" name="allChecked" class="form-check-input parent_checkbox" id="tag_all">
+            <label for="tag_all" class="form-check-label">タグ:</label>
+          </div>
+          <div class="hierarchized_checkbox">
+            {# 親のチェックボックス #}
+            <div class="form-check form-check-inline ms-4">
+              <input type="checkbox" name="allChecked" class="form-check-input parent_checkbox" id="target_all">
+              <label for="target_all" class="form-check-label">対象読者:</label>
+            </div>
+            {# 子のチェックボックス #}
+            <div class="hierarchized_checkbox ms-5">
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="tags" value="for_kids" class="form-check-input" id="id_tag_for_kids"{% if bl_tag_for_kids %} checked{% endif %}>
+                <label class="form-check-label" for="id_tag_for_kids">幼年漫画</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="tags" value="for_boys" class="form-check-input" id="id_tag_for_boys"{% if bl_tag_for_boys %} checked{% endif %}>
+                <label class="form-check-label" for="id_tag_for_boys">少年漫画</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="tags" value="for_girls" class="form-check-input" id="id_tag_for_girls"{% if bl_tag_for_girls %} checked{% endif %}>
+                <label class="form-check-label" for="id_tag_for_girls">少女漫画</label>
+              </div>
+            </div>
+          </div>
+          <div class="hierarchized_checkbox">
+            {# 親のチェックボックス #}
+            <div class="form-check form-check-inline ms-4">
+              <input type="checkbox" name="allChecked" class="form-check-input parent_checkbox" id="genre_all">
+              <label for="genre_all" class="form-check-label">ジャンル:</label>
+            </div>
+            {# 子のチェックボックス #}
+            <div class="hierarchized_checkbox ms-5">
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="tags" value="genre_school" class="form-check-input" id="id_tag_genre_school"{% if bl_tag_genre_school %} checked{% endif %}>
+                <label class="form-check-label" for="id_tag_genre_school">学園</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="tags" value="genre_comedy" class="form-check-input" id="id_tag_genre_comedy"{% if bl_tag_genre_comedy %} checked{% endif %}>
+                <label class="form-check-label" for="id_tag_genre_comedy">ギャグ</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="tags" value="genre_fantasy" class="form-check-input" id="id_tag_genre_fantasy"{% if bl_tag_genre_fantasy %} checked{% endif %}>
+                <label class="form-check-label" for="id_tag_genre_fantasy">ファンタジー</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+          <button type="submit" class="btn btn-primary">登録</button>
+        </div>
+      </div>
+    </form>
+    <a href="{% url 'editors:list' %}" class="btn btn-secondary btn-sm">戻る</a>
+{% endblock content %}
+
+{% block scripts %}
+<link href="{% static 'css/bootstrap-duallistbox.css' %}" rel="stylesheet" type="text/css"  />
+<script src="{% static 'js/jquery.bootstrap-duallistbox.js' %}"></script>
+<script>
+$(function(){
+  $(document).ready(function(){
+    
+    // チェックボックスのいずれかのチェック状態が変更された場合
+    $("input[type='checkbox']").on('change', function() {
+      
+      var bl_is_checked = this.checked;
+      
+      // 親のチェックボックスの場合
+      if ($(this).hasClass('parent_checkbox')) {
+
+        // .parents('.hierarchized_checkbox:first')
+        // ->先祖方向に遡って一番最初に現れた `hierarchized_checkbox` 要素
+
+        // .children('.hierarchized_checkbox')
+        // ->直下の子供で `hierarchized_checkbox` クラスを有するすべての要素
+
+        // .find('input[type='checkbox']')
+        // ->すべての子孫のチェックボックス
+        $(this).parents('.hierarchized_checkbox:first').children('.hierarchized_checkbox').find("input[type='checkbox']").each(function(index, element){
+          $(element).prop('checked', bl_is_checked); // 自身のチェックボックスの状態にする
+        });
+      };
+
+      $($(document).find('.parent_checkbox').get().reverse()).each(function(index, element){
+      // $(document).find('.parent_checkbox').get().reverse()
+      // -> ドキュメント内のすべての `parent_checkbox` クラスをもつ要素を `.get()` で配列化し、`.reverse()` で配列内順序を逆転させる
+
+        // .parents('.hierarchized_checkbox:first')
+        // ->先祖方向に遡って一番最初に現れた `hierarchized_checkbox` 要素
+
+        // .children('.hierarchized_checkbox')
+        // ->直下の子供で `hierarchized_checkbox` クラスを有するすべての要素
+
+        // .find('input[type='checkbox']')
+        // ->すべての子孫のチェックボックス
+        var elems_displayed = $(element).parents('.hierarchized_checkbox:first').children('.hierarchized_checkbox').find("input[type='checkbox']");
+
+        // .parents('.hierarchized_checkbox:first')
+        // ->先祖方向に遡って一番最初に現れた `hierarchized_checkbox` 要素
+
+        // .children('.hierarchized_checkbox')
+        // ->直下の子供で `hierarchized_checkbox` クラスを有するすべての要素
+
+        // .find('input[type='checkbox']')
+        // ->すべての子孫のチェックボックスで、チェック = True な要素
+        var elems_selected = $(element).parents('.hierarchized_checkbox:first').children('.hierarchized_checkbox').find("input[type='checkbox']:checked");
+
+        // 直下の子要素がすべて選択されている場合にチェック = True, そうでなければアンチェック
+        $(element).prop('checked', elems_displayed.length == elems_selected.length);
+
+        // 直下の子要素が 1 つ以上選択されている & すべて選択されていない
+        if (0 < elems_selected.length && elems_selected.length < elems_displayed.length) {
+          $(element).prop('indeterminate', true); // WebUI 上の表示は未確定状態
+          $(element).prop('checked', true); // 内部的には "checked" な状態
+
+        // 直下の子要素が 1 つも選択されていないまたはすべて選択されている
+        } else {
+          $(element).prop('indeterminate', false); // WebUI 上の未確定表示状態を解除
+        };
+
+      });
+    });
+
+    // Dom Content Loaded 時に各チェックボックスの親のチェックボックスの状態を更新させるため、
+    // 強制的にすべてのチェックボックスの `change` イベントを発行させる
+    $("input[type='checkbox']:checked").trigger('change');
+
+  });
+});
+</script>
+{% endblock scripts %}
