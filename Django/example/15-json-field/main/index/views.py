@@ -1,5 +1,6 @@
 import csv
 import io
+import json
 import logging
 import time
 
@@ -94,6 +95,18 @@ class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('index:index')
 
+def _convertInternalValToUIVal(str_internalVals):
+    """
+    タグを表す配列の内部的な変数の表記方法を WebUI で使用される文字列の表記方法に変換して返す
+    e.g.
+    ['for_kids', 'genre_school'] -> ['幼年漫画', '学園']
+    """
+    str_uiVals = []
+    dict_internalValVSUIVal = dict(Book.Tags.choices())
+    for str_internalVal in str_internalVals:
+        str_uiVals.append(dict_internalValVSUIVal[str_internalVal])
+    return str_uiVals
+
 def makeDictFromBooks(cls, model_books):
     """
     書籍リストを辞書配列化する
@@ -111,11 +124,12 @@ def makeDictFromBooks(cls, model_books):
             str_editors = []
             for tmp_editor in obj_editors:
                 tmp_str = tmp_editor.name.replace('\\','\\\\') # 著者名に ',' が含まれている場合は '\' でエスケープ
-                tmp_str = tmp_str.replace(',','\,') # 著者名に '\' が含まれている場合は '\' でエスケープ
+                tmp_str = tmp_str.replace(',','\,') # 著者名に '\' が含まれている場合は '\' でエスケープ #todo コメントミス
                 str_editors.append(tmp_str)
             dict_tmp['editors'] = ','.join(str_editors)
         else: # 著者が指定されていない場合
             dict_tmp['editors'] = ''
+        dict_tmp['tags'] = json.dumps(_convertInternalValToUIVal(dict_tmp['tags']), ensure_ascii=False)
         dict_books.append(dict_tmp)
     return dict_books
 
@@ -246,6 +260,7 @@ def import_from_csv(request):
                             defaults = {
                                 'name': obj_toImportBook['name'],
                                 'author': obj_toImportBook['author'],
+                                'tags': obj_toImportBook['tags'],
                             }
                         )
 

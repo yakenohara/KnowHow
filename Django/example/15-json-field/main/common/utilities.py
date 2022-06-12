@@ -166,3 +166,17 @@ def parseCommaSeparatedList(str_toParse):
     str_list.append(str_tmp)
 
     return str_list, -1
+
+def is_specifiedArray(type, subject):
+    """
+    指定型の要素のみをもった配列かどうか検査する
+    期待される型の配列出ない場合は Exception を raise する
+    """
+    if not isinstance(subject, list):
+        str_msg = f'Type of specified object is {str(type(subject))}.'
+        raise Exception(str_msg)
+    
+    for obj_elem in subject:
+        if not isinstance(obj_elem, type):
+            str_msg = f'Unexpected type {str(type(obj_elem))} found in {str(subject)}.'
+            raise Exception(str_msg)

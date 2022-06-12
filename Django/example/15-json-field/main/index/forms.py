@@ -1,13 +1,16 @@
+import json
+
 from unicodedata import name
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from authors.models import Author
-from common.utilities import parseCommaSeparatedList
+from common.utilities import parseCommaSeparatedList, is_specifiedArray
 from editors.models import Editor
 
 from .models import Book
+from .common import convertUIValToInternalVal
 
 class BookEditForm(forms.ModelForm):
     
@@ -60,6 +63,8 @@ class BookCSVForm(forms.Form):
 
     editors = forms.CharField(required = False)
 
+    tags = forms.CharField(required = False)
+
     def clean(self):
 
         cleaned_data = super().clean()
@@ -104,5 +109,30 @@ class BookCSVForm(forms.Form):
 
         else: # 編集者が指定されていない場合
             cleaned_data['editors'] = []
+
+        str_tagsInCSV = cleaned_data.get('tags')
+        if str_tagsInCSV: # タグが指定されている場合
+            # JSON 文字列のパース
+            try:
+                str_webUITags = json.loads(str_tagsInCSV)
+            except json.JSONDecodeError as err: # JSON フォーマットになっていない場合
+                str_errmsg = f'Following specified `tag` field not replesents JSON format.\n{str_tagsInCSV}'
+                raise ValidationError(str_errmsg, code = 'invalid')
+
+            # 文字列型の要素のみを有している配列かどうかチェック
+            try:
+                is_specifiedArray(str, str_webUITags)
+            except Exception as err:
+                raise ValidationError(str(err), code = 'invalid')
+
+            # 存在する WebUI 文字列かどうかチェックして、
+            # 存在するなら対応した内部文字列に変換
+            try:
+                cleaned_data['tags'] = convertUIValToInternalVal(str_webUITags)
+            except KeyError as err:
+                raise ValidationError(str(err), code = 'invalid')
+
+        else: # タグが指定されていない場合
+            cleaned_data['tags'] = []
 
         return cleaned_data
