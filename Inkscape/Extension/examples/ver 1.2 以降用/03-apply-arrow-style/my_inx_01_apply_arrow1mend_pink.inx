@@ -1,9 +1,6 @@
 <inkscape-extension>
     <_name>Apply Arrow1Mend-Pink</_name>
     <id>extension.example.03</id>
-	<dependency type="executable" location="extensions">my_inx_01_apply_arrow1mend_pink.py</dependency>
-	<dependency type="executable" location="extensions">inkex.py</dependency>
-	<dependency type="executable" location="extensions">simplestyle.py</dependency>
     <effect>
 		<object-type>text</object-type>
                 <effects-menu>

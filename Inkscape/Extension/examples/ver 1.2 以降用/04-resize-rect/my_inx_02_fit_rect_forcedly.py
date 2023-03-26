@@ -57,7 +57,8 @@ class FitRectForcedly(inkex.EffectExtension):
                     float_firstY = float(obj_child.get('y'))
                     float_lastX = float(obj_child.get('x'))
                     float_lastY = float(obj_child.get('y'))
-                    float_lineHeight = float(obj_textStyle['line-height'].replace('em',''))
+                    # inkex.errormsg(_(obj_child.get_line_height_uu()))
+                    float_lineHeight = float(obj_child.get_line_height_uu())
                     int_maxlenOfLine = 0
                     int_numOfLines = 1
 
@@ -115,7 +116,7 @@ class FitRectForcedly(inkex.EffectExtension):
                 'x':(obj_textsize['firstX'] - int_padding_uu * 2),
                 'y':(obj_textsize['firstY'] - obj_textsize['font-size'] - int_padding_uu),
                 'width': (obj_textsize['font-size'] * obj_textsize['maxlenOfLine'] * 0.5 + int_padding_uu * 6),
-                'height': obj_textsize['font-size'] * obj_textsize['lineHeight'] * obj_textsize['numOfLines'] + int_padding_uu * 2
+                'height': obj_textsize['lineHeight'] * obj_textsize['numOfLines'] + int_padding_uu * 2
             }
 
             # inkex.errormsg(_(json.dumps(obj_toApplyBBox, indent=4)))

@@ -1,9 +1,6 @@
 <inkscape-extension>
     <_name>Fit rect forcedly</_name>
     <id>extension.example.04</id>
-	<dependency type="executable" location="extensions">my_inx_02_fit_rect_forcedly.py</dependency>
-	<dependency type="executable" location="extensions">inkex.py</dependency>
-	<dependency type="executable" location="extensions">simplestyle.py</dependency>
     <effect>
 		<object-type>text</object-type>
                 <effects-menu>

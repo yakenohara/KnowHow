@@ -1,9 +1,6 @@
 <inkscape-extension>
     <_name>Show methods</_name>
     <id>extension.example.05</id>
-	<dependency type="executable" location="extensions">show-methods.py</dependency>
-	<dependency type="executable" location="extensions">inkex.py</dependency>
-	<dependency type="executable" location="extensions">simplestyle.py</dependency>
     <effect>
 		<object-type>text</object-type>
                 <effects-menu>

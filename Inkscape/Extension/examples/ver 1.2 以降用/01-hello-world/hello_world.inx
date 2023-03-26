@@ -1,9 +1,6 @@
 <inkscape-extension>
     <_name>Hello World</_name>
     <id>extension.example.01</id>
-	<dependency type="executable" location="extensions">hello_world.py</dependency>
-	<dependency type="executable" location="extensions">inkex.py</dependency>
-	<dependency type="executable" location="extensions">simplestyle.py</dependency>
     <effect>
 		<object-type>text</object-type>
     </effect>
