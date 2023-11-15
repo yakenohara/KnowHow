@@ -4,7 +4,7 @@
 
 以下から 操作対象の Chrome の バージョンに合わせた Driver をダウンロードする。
 
-https://sites.google.com/a/chromium.org/chromedriver/downloads
+https://sites.google.com/chromium.org/driver/?pli=1
 
 ※note  
  - chrome driver に 64bit 版は存在しない。Windowsなら、`chromedriver_win32.zip` でいい。
