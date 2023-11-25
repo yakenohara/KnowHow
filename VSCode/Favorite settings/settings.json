@@ -27,6 +27,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "editor.insertSpaces": true, // <- defaulst as true
     "extensions.ignoreRecommendations": true,
+    "editor.copyWithSyntaxHighlighting": false,
 
     // Dummy
     "dummy": 0,
