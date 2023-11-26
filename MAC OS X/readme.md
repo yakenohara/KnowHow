@@ -31,7 +31,7 @@
 | F12                                                     | `control` + `command` + `f`                                                       |
 | Win + PrintScreen (ピクチャに保存される)                | `command` + `shift` + `3` (デスクトップに保存される)                              |
 | Win + Alt + PrintScreen (ビデオ\キャプチャに保存される) | `command` + `shift` + `4` + `space` → `return` (デスクトップに保存される)         |
-| Win + Shift + F (クリップボードに保存される)            | `command` + `shift` + `4` (デスクトップに保存される)                              |
+| Win + Shift + S (クリップボードに保存される)            | `command` + `shift` + `4` (デスクトップに保存される)                              |
 | Ctrl + Shift + ESC                                      | `option` + `command` + `esc`                                                      |
 
 ## Finder
