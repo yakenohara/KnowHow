@@ -111,3 +111,9 @@ Entering 'sub/testA-A1/sub/testA-A1-a'
 
 
 ```
+
+## 特定のユーザー名によるコミットがされていないかどうか (複数指定 (AND 条件))
+
+```
+git log --perl-regexp --author='^((?!yakenohara|Shinnosuke Yakenohara).*)$'
+```
