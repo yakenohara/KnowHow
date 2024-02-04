@@ -7,10 +7,12 @@
 
 # クローン後に Submodule を追加する
 
+## format
 ```
-# format
 git submodule add (repository) (local-path)
-# e.g.
+```
+## e.g.
+```
 git submodule add https://github.com/twbs/bootstrap.git bootstrap
 ```
 
@@ -78,7 +80,9 @@ git submodule foreach --recursive 'git status --short'
 git submodule foreach --recursive 'git reset . ; git clean --force -d ; git checkout .'
 ```
 
-## リモートリポジトリに Submodule が追加されたら
+## リモートリポジトリに Submodule が追加されたら (例)
+
+### 前提
 
 ```
 .testA
@@ -86,13 +90,29 @@ git submodule foreach --recursive 'git reset . ; git clean --force -d ; git chec
   ┗sub/testA1-a
 ```
 
-```
-# submodule の確認(左側の`-` は、submodule を pull したけれど、ローカルの PJ 配下のディレクトリ構成には反映していない状態を意味する)
-> git submodule ; git submodule foreach --recursive 'git submodule'
--f8027fd91fbf2c7dcbdcae0afa7c7f99823c87d5 sub/testA-A1
+### 現状確認コマンド
 
-# submodule を再帰的に update & init
-> git submodule update --init ; git submodule foreach --recursive 'git submodule update --init'
+```
+git submodule ; git submodule foreach --recursive 'git submodule'
+```
+
+#### 結果
+
+note. submodule の確認(左側の`-` は、submodule を pull したけれど、ローカルの PJ 配下のディレクトリ構成には反映していない状態を意味する)
+
+```
+-f8027fd91fbf2c7dcbdcae0afa7c7f99823c87d5 sub/testA-A1
+```
+
+### submodule を再帰的に update & init
+
+```
+git submodule update --init ; git submodule foreach --recursive 'git submodule update --init'
+```
+
+#### 結果
+
+```
 Submodule 'sub/testA-A1' (https://github.com/yakenohara/testA-A1.git) registered for path 'sub/testA-A1'
 Cloning into 'D:/testA/sub/testA-A1'...
 Submodule path 'sub/testA-A1': checked out 'f8027fd91fbf2c7dcbdcae0afa7c7f99823c87d5'
@@ -101,15 +121,24 @@ Submodule 'sub/testA-A1-a' (https://github.com/yakenohara/testA-A1-a.git) regist
 Cloning into 'D:/testA/sub/testA-A1/sub/testA-A1-a'...
 Submodule path 'sub/testA-A1-a': checked out '23723481abab88541e823fcf2d03f6e5e9cfcb7a'
 Entering 'sub/testA-A1/sub/testA-A1-a'
+```
 
-# ↓ `-` が無くなった
-> git submodule ; git submodule foreach --recursive 'git submodule'
+### 現状確認コマンド (再確認)
+
+```
+git submodule ; git submodule foreach --recursive 'git submodule'
+
+```
+
+#### 結果
+
+note.  `-` が無くなる
+
+```
  f8027fd91fbf2c7dcbdcae0afa7c7f99823c87d5 sub/testA-A1 (heads/master)
 Entering 'sub/testA-A1'
  23723481abab88541e823fcf2d03f6e5e9cfcb7a sub/testA-A1-a (heads/master)
 Entering 'sub/testA-A1/sub/testA-A1-a'
-
-
 ```
 
 ## 特定のユーザー名によるコミットがされていないかどうか (複数指定 (AND 条件))
