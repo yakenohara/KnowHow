@@ -2,9 +2,6 @@
     // Markdown All in One
     "markdown.extension.print.absoluteImgPath": false,
     
-    // Paste Image
-    "pasteImage.path": "${currentFileDir}/assets/images",
-
     // Git
     "git.ignoreMissingGitWarning": true,
 
@@ -28,6 +25,9 @@
     "editor.insertSpaces": true, // <- defaulst as true
     "extensions.ignoreRecommendations": true,
     "editor.copyWithSyntaxHighlighting": false,
+    "markdown.copyFiles.destination": {
+        "*.md": "assets/images/${documentBaseName}/",
+    }
 
     // Dummy
     "dummy": 0,
