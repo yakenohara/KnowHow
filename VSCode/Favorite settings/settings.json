@@ -11,6 +11,8 @@
     },
     
     // General
+    "workbench.secondarySideBar.defaultVisibility" :"hidden",
+    "security.workspace.trust.enabled": false,
     "debug.console.fontSize" : 11,
     "editor.fontSize": 11,
     "editor.mouseWheelZoom": true,
