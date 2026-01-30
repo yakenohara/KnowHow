@@ -17,3 +17,7 @@ C:\Users\<username>>\AppData\Roaming\CUE Tools
 
 v.2.2.6 におけるおすすめ設定を `settings/favorites` 配下に保存。  
 デフォルトとの違いは、`settings/default` との違いを参照。  
+
+GUI 上での設定の違いは以下  
+![alt text](assets/images/setting-2-tagging.svg)  
+![alt text](assets/images/setting-3-accuraterip.svg)  
