@@ -1,6 +1,8 @@
 # 使う側
 
-## 環境セットアップ時のみ
+## PowerShell Gallery に公開されているモジュールのインストール
+
+### 環境セットアップ時のみ
 
 `PSGallery` の `InstallationPolicy` を `Trusted` にする
 
@@ -22,7 +24,7 @@ Name                      InstallationPolicy   SourceLocation
 PSGallery                 Trusted              https://www.powershellgallery.com/api/v2
 ```
 
-## モジュールの追加
+### モジュールの追加
 
 すべてのユーザーが使用できるようにインストールする (管理者権限が必要)  
 ([Az.Monitor](https://www.powershellgallery.com/packages/Az.Monitor/7.0.0) をインストールする例)  
@@ -73,3 +75,5 @@ Manifest   1.0.0.0    AppBackgroundTask                   {Disable-AppBackground
 Manifest   2.0.0.0    AppLocker                           {Get-AppLockerFileInformation, Get-AppLockerPolicy, New-Ap...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<Omitting>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
+
+## 非公開モジュールのインストール
