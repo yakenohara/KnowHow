@@ -47,7 +47,7 @@ API Key が作成されるので、Copy しておく。(この時に Copy して
 
     Note1:  
     x.y 形式で指定した場合は `Publish-Module` 実行時に以下エラーとなる。(この例では `ModuleVersion = '1.0'` と指定)  
-    ```
+    ```powershell
     > Publish-Module -Path . -Repository PSGallery -NuGetApiKey '********'
     Publish-PSArtifactUtility : モジュール 'Yakenohara.COM.iTunes.Track': 'File does not exist (C:\Users\***\AppData\Local\Temp\***
     **\Yakenohara.COM.iTunes.Track\Yakenohara.COM.iTunes.Track.1.0.nupkg).

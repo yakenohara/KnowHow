@@ -77,3 +77,16 @@ Manifest   2.0.0.0    AppLocker                           {Get-AppLockerFileInfo
 ```
 
 ## 非公開モジュールのインストール
+
+# todo  
+`Install-Module` と `Import-Module` の違い  
+
+バージョンを指定して `Install-Module` する方法  
+
+指定したバージョンのモジュールがインストールされているかどうか確認する方法  
+
+インストールしたモジュールのバージョン管理方法  
+    -> node.js の package-lock.json のような方法  
+    -> この PJ ではバージョン xx 、 この PJ ではバージョン yy を使用する方法  
+
+モジュールではなく、モジュール内のコマンドの名称が衝突した場合どうなる  
