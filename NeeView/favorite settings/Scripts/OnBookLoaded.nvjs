@@ -1,0 +1,2 @@
+log("OnBookLoaded")
+//nv.ShowMessage("OnBookLoaded")

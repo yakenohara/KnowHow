@@ -1,0 +1,27 @@
+// @name ストレッチを切り替える
+// @description 画像のストレッチを順番に切り替えます。
+
+nv.Command.ToggleStretchMode.execute();
+
+switch(nv.Config.View.StretchMode){
+    case "None":
+        nv.ShowMessage("オリジナル サイズ");
+        break;
+    case "Uniform":
+        nv.ShowMessage("ウィンドウに合わせる");
+        break;
+    case "UniformToFill":
+        nv.ShowMessage("ウィンドウいっぱいに広げる");
+        break;
+    case "UniformToSize":
+        nv.ShowMessage("面積をウィンドウに合わせる");
+        break;
+    case "UniformToVertical":
+        nv.ShowMessage("高さをウィンドウに合わせる");
+        break;
+    case "UniformToHorizontal":
+        nv.ShowMessage("幅をウィンドウに合わせる");
+        break;
+    default:
+        nv.ShowToast(`Unkown StretchMode: "${nv.Config.View.StretchMode}"`);
+}

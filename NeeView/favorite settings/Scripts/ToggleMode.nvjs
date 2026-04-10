@@ -1,0 +1,2 @@
+log(`nv.Args:`)
+log(nv.Config.Script)

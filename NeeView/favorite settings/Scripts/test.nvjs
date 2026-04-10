@@ -1,0 +1,15 @@
+var path = `${nv.Config.Script.ScriptFolder}\data.json`;
+log(path)
+
+var data = {
+    name: "taro",
+    age: 20
+};
+
+// JSON文字列化
+var json = JSON.stringify(data, null, 2);
+
+// 書き込み
+nv.File.WriteAllText(path, json);
+
+nv.Log("保存完了");

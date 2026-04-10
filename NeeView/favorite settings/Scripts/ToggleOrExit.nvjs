@@ -1,0 +1,18 @@
+// @name ToggleOrExit
+// @description フルスクリーンなら解除、そうでなければ終了
+
+if(nv.Config.Window.State === 'FullScreen'){ // フルスクリーン表示中の場合
+    nv.Command["CancelFullScreen"].Execute(); // フルスクリーン表示解除
+}else{
+
+    // 確認して終了
+    //todo キーボード押下内容によって切替
+    var bl_selection = nv.ShowDialog(
+        `終了しますか？`,
+        ``, //
+        2
+    )
+    if(bl_selection){ // "はい" が選択された場合
+        nv.Command["CloseApplication"].Execute();
+    }
+}
