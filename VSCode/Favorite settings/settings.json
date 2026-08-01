@@ -14,6 +14,7 @@
     // General
     "workbench.secondarySideBar.defaultVisibility" :"hidden",
     "security.workspace.trust.enabled": false,
+    "editor.fontFamily": "'BIZ UDGothic', Consolas, 'Courier New', monospace",
     "debug.console.fontSize" : 11,
     "editor.fontSize": 11,
     "editor.mouseWheelZoom": true,
@@ -28,11 +29,13 @@
     "editor.insertSpaces": true, // <- defaulst as true
     "extensions.ignoreRecommendations": true,
     "editor.copyWithSyntaxHighlighting": false,
+    "chat.titleBar.openInAgentsWindow.enabled": false,
     "markdown.copyFiles.destination": {
         "*.md": "assets/images/",
-    }
+    },
 
     // Dummy
     "dummy": 0,
 
 }
+
