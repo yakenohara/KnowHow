@@ -30,6 +30,7 @@
     "extensions.ignoreRecommendations": true,
     "editor.copyWithSyntaxHighlighting": false,
     "chat.titleBar.openInAgentsWindow.enabled": false,
+    "chat.titleBar.signIn.enabled": false,
     "markdown.copyFiles.destination": {
         "*.md": "assets/images/",
     },
