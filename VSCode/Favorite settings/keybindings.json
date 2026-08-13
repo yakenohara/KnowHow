@@ -1,0 +1,12 @@
+[
+    // Markdown All in One
+    {
+        // Markdown All in One がフリーズした場合に enter キーが反応しなくなるので、無効化
+        "key": "enter",
+        "command": "-markdown.extension.onEnterKey"
+    },
+    {
+        "key": "backspace",
+        "command": "-markdown.extension.onBackspaceKey"
+    }
+]
