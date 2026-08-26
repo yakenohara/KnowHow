@@ -1985,7 +1985,7 @@
 #qt-fs-opacity=0.800000
 
 # Resize interface to the native video size (真偽値)
-#qt-video-autoresize=1
+qt-video-autoresize=0
 
 # Show playing item name in window title (真偽値)
 #qt-name-in-title=1
@@ -4660,7 +4660,7 @@ avcodec-hw=d3d11va
 #sub-margin=0
 
 # Subtitles text scaling factor (整数)
-#sub-text-scale=100
+sub-text-scale=50
 
 # Subpictures source module (文字列)
 #sub-source=
