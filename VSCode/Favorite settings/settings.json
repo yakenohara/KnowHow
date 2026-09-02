@@ -12,7 +12,6 @@
     },
     
     // General
-    "workbench.secondarySideBar.defaultVisibility" :"hidden",
     "security.workspace.trust.enabled": false,
     "editor.fontFamily": "'BIZ UDGothic', Consolas, 'Courier New', monospace",
     "debug.console.fontSize" : 11,
@@ -35,6 +34,8 @@
     "markdown.copyFiles.destination": {
         "*.md": "assets/images/",
     },
+    "window.commandCenter": false, // タイトルバー中央に表示される**「コマンドセンター」** を無効
+    "workbench.secondarySideBar.defaultVisibility": "hidden", // Chat パネル(セカンダリサイドバー)を新しいウィンドウで自動表示するかどうか default: `visibleInWorkspace`
 
     // Dummy
     "dummy": 0,
