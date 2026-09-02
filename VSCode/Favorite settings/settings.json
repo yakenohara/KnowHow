@@ -19,6 +19,7 @@
     "editor.fontSize": 11,
     "editor.mouseWheelZoom": true,
     "files.autoGuessEncoding": true,
+    "files.defaultLanguage": "markdown",
     "files.hotExit": "off",
     "markdown.preview.fontSize": 11,
     "terminal.integrated.fontSize": 11,
